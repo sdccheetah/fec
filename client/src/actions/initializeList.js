@@ -1,4 +1,4 @@
-const initializeList = (list) => ({
+const initializeList = ({list}) => ({
   type: "INIT_STORE",
   list: list
 });

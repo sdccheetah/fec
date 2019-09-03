@@ -1,19 +1,28 @@
 import React from 'react';
+const axios = require('axios');
 
-const BasicList = ({list}) => {
+const BasicList = ({store, getInitList}) => {
   
-  if (!list) {
+  if (!store) {
+    const getData = () => {
+      axios.get('http://18.217.220.129/products/list')
+      .then(data => {
+        getInitList(data.data);
+      });
+    }
+
+    getData();
+    
     return (
       <div>
         <h2>Nothing Here!</h2>
       </div>
     );
   } else {
-    console.log('basiclist');
-    console.log(list);
+
     return (
       <div>
-        {list.map((item) => {
+        {store.list.map((item) => {
           return (
             <ul key={item.name}>
             <li>Name: {item.name}</li>

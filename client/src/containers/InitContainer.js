@@ -3,7 +3,7 @@ import { initializeList } from './../actions/initializeList.js';
 import InitPage from '../components/InitPage.js';
 
 const mapStateToProps = (store) => ({
-  list: store
+  store: store
 });
 
 const mapDispatchToProps = (dispatch) => ({
