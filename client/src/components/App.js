@@ -1,6 +1,8 @@
 import React from 'react';
 import InitContainer from './../containers/InitContainer.js';
-import ReviewsListContainer from './../containers/ReviewsContainer.js';
+import ReviewsListContainer from '../containers/ReviewsListContainer.js';
+import ReviewsMetaContainer from '../containers/ReviewsMetaContainer.js';
+
 
 
 class App extends React.Component {
@@ -10,6 +12,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <InitContainer />
+        <ReviewsMetaContainer/>
         <ReviewsListContainer/>
       </div>
     );

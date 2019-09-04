@@ -4,19 +4,15 @@ const axios = require('axios');
 class ReviewsList extends React.Component {
 
     componentDidMount() {
-        console.log("Ratings mounted successfully!");
-        console.log(this.props.store.mainItem.product_id);
+        console.log("Reviews List mounted successfully!");
         this.getReviews(this.props.store.mainItem.product_id);
     }
 
     getReviews(product_id) {
         axios.get(`http://18.217.220.129/reviews/${product_id}/list`)
             .then(data => {
-                console.log(data.data);
+                //console.log(data.data);
                 this.props.reviewsListAction(data.data);
-            })
-            .then(i => {
-                console.log(this.props.store.reviewsList.reviewsList.results);
             })
     }
 
@@ -34,6 +30,8 @@ class ReviewsList extends React.Component {
                   <li>User: {item.reviewer_name}</li>
                   <li>Date: {item.date}</li>
                   <li>Body: {item.body}</li>
+                  <li>#Helped: {item.helpfulness}</li>
+
                 </ul>
                 )
               })}

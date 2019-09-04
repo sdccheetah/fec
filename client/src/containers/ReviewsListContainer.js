@@ -11,9 +11,9 @@ const mapDispatchToProps = (dispatch) => ({
   reviewsListAction: (reviewsList) => dispatch(reviewsListAction(reviewsList))
 });
 
-const ReviewsContainer = connect(
+const ReviewsListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ReviewsList);
 
-export default ReviewsContainer;
+export default ReviewsListContainer;
