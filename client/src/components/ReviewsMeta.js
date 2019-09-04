@@ -67,10 +67,11 @@ class ReviewsMetaData extends React.Component {
             <div> {metaData.count} Total Ratings</div> <br/>
             {metaData.stars.map((item, i) => {
                 return (
-                    <div className="starPercentage" key={5-i}> {5-i} Stars: 
+                    <div className="starPercentage" key={5-i}> 
+                    <div className="percentage-text">{5-i} Stars </div> 
                     <div className="percentage-bar">
                         <div className="percentage-fill" style={{"width" : `${item}%`}} ></div> 
-                    </div> <div className="percentage-text"> {item}% </div>
+                    </div> <div className="percentage-num"> {item}% </div>
                     </div>
                 )
             } )}

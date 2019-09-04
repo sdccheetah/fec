@@ -4,8 +4,8 @@
 
 .percentage-bar {
     position: relative;
-    height: 20px;
-    width: 350px;
+    height: 10px;
+    width: 300px;
     background-color: #d9d9d9;
     display: inline-block;
 }
@@ -17,4 +17,11 @@
 
 .percentage-text {
     display: inline-block;
+    text-decoration: underline;
+    padding: 2px;
+}
+
+.percentage-num {
+    display: inline-block;
+    padding: 2px;
 }
