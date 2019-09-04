@@ -5,7 +5,7 @@ import ProductInfo from './overview/ProductInfo.js';
 import StyleSelect from './overview/StyleSelect.js';
 import css from './overview/Overview.css';
 
-const InitPage = ({store, getInitMain, getStyles}) => {
+const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
 
   return (
     <div>
@@ -22,6 +22,7 @@ const InitPage = ({store, getInitMain, getStyles}) => {
       />
       <StyleSelect
         store={store.mainItem.styles}
+        setCurrent={setCurrent}
       />
     </div>
   )

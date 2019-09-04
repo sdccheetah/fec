@@ -13,6 +13,11 @@ const mainItemReducer = (state = {product_id: Math.floor(Math.random() * Math.fl
         currentStyle: action.styles[0]
       }
       return Object.assign({}, state, tempObj);
+    case 'SET_CURRENT':
+      tempObj = {
+        currentStyle: action.currentStyle.style
+      }
+      return Object.assign({}, state, tempObj);
     default:
       return state;
   }

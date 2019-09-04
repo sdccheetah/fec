@@ -8,4 +8,9 @@ const getStyles = ({styles}) => ({
   styles: styles
 });
 
-export { initializeMain, getStyles };
+const setCurrent = ({style}) => ({
+  type: "SET_CURRENT",
+  currentStyle: style
+});
+
+export { initializeMain, getStyles, setCurrent };

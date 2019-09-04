@@ -5,7 +5,7 @@ const StyleImages = ({store}) => {
   console.log('inside StyleImages');
   console.log(store.currentStyle);
 
-  if (store.styles) {
+  if (store.currentStyle) {
     let currentPic = store.currentStyle.photos[store.currentStyle['default?']].thumbnail_url;
     const onImgClick = (e) => {
       e.preventDefault();
@@ -22,8 +22,8 @@ const StyleImages = ({store}) => {
     return (
       <div className="images">
         <div className="img-container img gallery">
-          {store.styles.map((item) => {
-            let picture = item.photos[item['default?']].thumbnail_url;
+          {store.currentStyle.photos.map((item) => {
+            let picture = item.thumbnail_url;
             return (
               <img src={picture} onClick={setImage} />
             );
