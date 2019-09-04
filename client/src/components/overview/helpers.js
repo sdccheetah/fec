@@ -1,7 +1,7 @@
 const imageZoom = (imgID, resultID, pic) => {
-console.log('imageZoom, not if');
+
   if (document.getElementById(imgID)) {
-        console.log("In imageZoom");
+
     const getCursorPos = (e) => {
       e = e || window.event;
       let a = img.getBoundingClientRect();
