@@ -2,8 +2,9 @@ import React from 'react';
 const axios = require('axios');
 
 const BasicList = ({store, getInitList}) => {
-  
-  if (!store) {
+  console.log('initial state');
+  console.log(store);
+  if (!store.init) {
     const getData = () => {
       axios.get('http://18.217.220.129/products/list')
       .then(data => {

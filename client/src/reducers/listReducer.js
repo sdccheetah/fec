@@ -1,10 +1,9 @@
-const simpleReducer = (state = null, action) => {
+const simpleReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000))}, action) => {
   switch (action.type) {
     case 'INIT_STORE':
-        console.log('action');
-        console.log(action.list);
       let tempObj = {
-        list: action.list
+        list: action.list,
+        init: true
       }
       return Object.assign({}, state, tempObj)
     default:
