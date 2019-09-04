@@ -1,4 +1,4 @@
-const reviewsReducer = (state = {reviewsList : []}, action) => {
+const reviewsListReducer = (state = {reviewsList : []}, action) => {
     switch (action.type) {
       case 'REVIEWS_LIST':
         return {
@@ -9,4 +9,4 @@ const reviewsReducer = (state = {reviewsList : []}, action) => {
     }
   }
   
-  export default reviewsReducer;
+  export default reviewsListReducer;

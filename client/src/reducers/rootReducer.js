@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import mainItem from './mainItemReducer.js';
-import reviews from './reviewsReducer.js';
+import reviewsList from './reviewsListReducer.js';
 
 const rootReducer = combineReducers ({
   mainItem: mainItem,
-  reviews
+  reviewsList
 });
 
 export default rootReducer;

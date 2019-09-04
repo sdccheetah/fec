@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ReviewsList from '../components/ReviewsList';
-import { reviewsAction } from '../actions/reviewsAction.js';
+import { reviewsListAction } from '../actions/reviewsListAction.js';
 
 
 const mapStateToProps = (store) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  reviewsAction: (reviewsList) => dispatch(reviewsAction(reviewsList))
+  reviewsListAction: (reviewsList) => dispatch(reviewsListAction(reviewsList))
 });
 
 const ReviewsContainer = connect(

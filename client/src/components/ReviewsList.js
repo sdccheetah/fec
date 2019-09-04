@@ -13,15 +13,15 @@ class ReviewsList extends React.Component {
         axios.get(`http://18.217.220.129/reviews/${product_id}/list`)
             .then(data => {
                 console.log(data.data);
-                this.props.reviewsAction(data.data);
+                this.props.reviewsListAction(data.data);
             })
             .then(i => {
-                console.log(this.props.store.reviews.reviewsList.results);
+                console.log(this.props.store.reviewsList.reviewsList.results);
             })
     }
 
     render() {
-        let reviews = this.props.store.reviews.reviewsList.results || [];
+        let reviews = this.props.store.reviewsList.reviewsList.results || [];
         return (
           <div className="Reviews">
             REVIEWSLIST HERE!
