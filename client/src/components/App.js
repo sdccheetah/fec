@@ -1,6 +1,6 @@
 import React from 'react';
 import InitContainer from './../containers/InitContainer.js';
-import axios from 'axios';
+import ReviewsListContainer from './../containers/ReviewsContainer.js';
 
 
 class App extends React.Component {
@@ -10,6 +10,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <InitContainer />
+        <ReviewsListContainer/>
       </div>
     );
   }
