@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { initializeMain } from './../actions/initializeMain.js';
+import { initializeMain, getStyles } from './../actions/initializeMain.js';
 import InitPage from '../components/InitPage.js';
 
 const mapStateToProps = (store) => ({
@@ -7,7 +7,8 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInitMain: (mainItem) => dispatch(initializeMain({mainItem}))
+  getInitMain: (mainItem) => dispatch(initializeMain({mainItem})),
+  getStyles: (styles) => dispatch(getStyles({styles}))
 });
 
 const InitContainer = connect(

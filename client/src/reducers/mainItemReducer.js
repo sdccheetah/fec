@@ -1,11 +1,17 @@
 const mainItemReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000)) + 1}, action) => {
+  let tempObj = {};
   switch (action.type) {
     case 'INIT_STORE':
-      let tempObj = {
-        mainItem: action.mainItem,
+      tempObj = {
+        details: action.mainItem,
         init: true
       }
-      return Object.assign({}, state, tempObj)
+      return Object.assign({}, state, tempObj);
+    case 'SET_STYLES':
+      tempObj = {
+        styles: action.styles
+      }
+      return Object.assign({}, state, tempObj);
     default:
       return state;
   }

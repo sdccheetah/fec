@@ -3,4 +3,9 @@ const initializeMain = ({mainItem}) => ({
   mainItem: mainItem
 });
 
-export { initializeMain };
+const getStyles = ({styles}) => ({
+  type: "SET_STYLES",
+  styles: styles
+});
+
+export { initializeMain, getStyles };
