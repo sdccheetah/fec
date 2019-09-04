@@ -1,13 +1,14 @@
 import React from 'react';
 const axios = require('axios');
 
-const BasicList = ({store, getInitList}) => {
-  
-  if (!store) {
+const BasicList = ({store, getInitMain}) => {
+  console.log('initial state');
+  console.log(store);
+  if (!store.mainItem.init) {
     const getData = () => {
-      axios.get('http://18.217.220.129/products/list')
+      axios.get(`http://18.217.220.129/products/${store.mainItem.product_id}`)
       .then(data => {
-        getInitList(data.data);
+        getInitMain(data.data);
       });
     }
 
@@ -19,10 +20,11 @@ const BasicList = ({store, getInitList}) => {
       </div>
     );
   } else {
-
+    console.log('random get productid');
+    console.log(store);
     return (
-      <div>
-        {store.list.map((item) => {
+      <div>PlaceHolder for Overview
+        {/* {store.list.map((item) => {
           return (
             <ul key={item.name}>
             <li>Name: {item.name}</li>
@@ -31,7 +33,7 @@ const BasicList = ({store, getInitList}) => {
             <li>Category: {item.category}</li>
             </ul>
           );
-        })}
+        })} */}
       </div>
     );
   }
