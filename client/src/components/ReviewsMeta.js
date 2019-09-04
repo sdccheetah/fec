@@ -8,7 +8,7 @@ class ReviewsMetaData extends React.Component {
         this.getMetaData(this.props.store.mainItem.product_id);
     }
 
-    average(ratings) {
+    ratingData(ratings) {
         let total = 0;
         let count = 0;
         for (let i = 1; i < 6; i++) { //Go 1 through 5
@@ -17,7 +17,11 @@ class ReviewsMetaData extends React.Component {
                 total = total + i*ratings[i];
             }
         }
-        return parseFloat(parseFloat(total/count).toFixed(1));
+        let average = parseFloat(parseFloat(total/count).toFixed(1));
+        return {
+            average: average,
+            total: total
+        };
     }
 
     recommended(recs) {
@@ -34,13 +38,12 @@ class ReviewsMetaData extends React.Component {
                 console.log(metaData);
                 let ratings = metaData.ratings;
                 console.log(ratings);
-                let avg = this.average(ratings); //Get the average rating
-                newObj.average = avg;
+                let ratingData = this.ratingData(ratings); //Get the average rating
+                Object.assign(newObj,ratingData);
                 this.props.reviewsMetaAction(newObj);
                 let recs = this.recommended(metaData.recommended); //Get the percent recommended
                 newObj.recs = recs;
                 this.props.reviewsMetaAction(newObj);
-
 
             })
 

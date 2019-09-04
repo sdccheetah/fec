@@ -17,7 +17,7 @@ class ReviewsList extends React.Component {
     }
 
     render() {
-        let reviews = this.props.store.reviewsList.reviewsList.results || [];
+        let reviews = this.props.store.reviewsList.results || [];
         return (
           <div className="Reviews">
             REVIEWSLIST HERE!
