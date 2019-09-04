@@ -1,5 +1,6 @@
 import React from 'react';
 const axios = require('axios');
+import './reviews.css';
 
 class ReviewsMetaData extends React.Component {
 
@@ -20,14 +21,16 @@ class ReviewsMetaData extends React.Component {
             }
         }
         let average = parseFloat(parseFloat(total/count).toFixed(1));
+        let stars = [];
+        stars.push((parseFloat(ratings[5]/count)*100).toFixed(0));
+        stars.push((parseFloat(ratings[4]/count)*100).toFixed(0));
+        stars.push((parseFloat(ratings[3]/count)*100).toFixed(0));
+        stars.push((parseFloat(ratings[2]/count)*100).toFixed(0));
+        stars.push((parseFloat(ratings[1]/count)*100).toFixed(0));
         return {
             average: average,
             count: count,
-            one: (parseFloat(ratings[1]/count)*100).toFixed(0),
-            two: (parseFloat(ratings[2]/count)*100).toFixed(0),
-            three: (parseFloat(ratings[3]/count)*100).toFixed(0),
-            four: (parseFloat(ratings[4]/count)*100).toFixed(0),
-            five: (parseFloat(ratings[5]/count)*100).toFixed(0)
+            stars: stars
         };
     }
 
@@ -45,8 +48,7 @@ class ReviewsMetaData extends React.Component {
                 let metaData = data.data;
                 console.log(metaData);
                 let ratings = metaData.ratings;
-                console.log(ratings);
-                let ratingData = this.ratingData(ratings); //Get the average rating
+                let ratingData = this.ratingData(ratings); //Get the average rating and counts for #stars
                 Object.assign(newObj,ratingData);
                 this.props.reviewsMetaAction(newObj);
                 let recs = this.recommended(metaData.recommended); //Get the percent recommended
@@ -60,15 +62,18 @@ class ReviewsMetaData extends React.Component {
     render() {
         let metaData = this.props.store.reviewsMeta;
         return (
-          <div className="Reviews">
+          <div className="ReviewsMeta">
             REVIEWSMETADATA HERE! 
-            <div> {metaData.count} Total Ratings</div>
-            <div> 5 Stars: {metaData.five}% </div>
-            <div> 4 Stars: {metaData.four}% </div>
-            <div> 3 Stars: {metaData.three}% </div>
-            <div> 2 Stars: {metaData.two}% </div>
-            <div> 1 Stars: {metaData.one}% </div>
-
+            <div> {metaData.count} Total Ratings</div> <br/>
+            {metaData.stars.map((item, i) => {
+                return (
+                    <div className="starPercentage" key={5-i}> {5-i} Stars: 
+                    <div className="percentage-bar">
+                        <div className="percentage-fill" style={{"width" : `${item}%`}} ></div> 
+                    </div> <div className="percentage-text"> {item}% </div>
+                    </div>
+                )
+            } )}
             <div> <br/> Average: {metaData.average}</div>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>

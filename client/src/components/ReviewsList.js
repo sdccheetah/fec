@@ -1,5 +1,7 @@
 import React from 'react';
 const axios = require('axios');
+import './reviews.css';
+
 
 class ReviewsList extends React.Component {
 

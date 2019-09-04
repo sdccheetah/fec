@@ -11,9 +11,15 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: {
+        use: 
+        {
           loader: 'babel-loader'
         },
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
         exclude: /node_modules/
       }
     ]
@@ -25,5 +31,6 @@ const config = {
     ]
   }
 }
+
 
 module.exports = config;
