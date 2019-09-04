@@ -6,12 +6,12 @@ const StyleSelect = ({store}) => {
   if (store) {
     return (
       <div id="styleSelection">
-        <h3>Select Style:</h3>
-        <select>
-          {store.map((item, index) => {
-            return <option value={item.style_id} key={index}>{item.name}</option>
-          })}
-        </select>
+        {store.map((item, index) => {
+          let color = { "backgroundColor": item.name };
+          return (
+            <div className="circle" style={color}></div>
+          );
+        })}
       </div>
     );
   } else {
