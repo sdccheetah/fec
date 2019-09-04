@@ -1,4 +1,4 @@
-const simpleReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000))}, action) => {
+const listReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000)) + 1}, action) => {
   switch (action.type) {
     case 'INIT_STORE':
       let tempObj = {
@@ -11,4 +11,4 @@ const simpleReducer = (state = {product_id: Math.floor(Math.random() * Math.floo
   }
 }
 
-export default simpleReducer;
+export default listReducer;
