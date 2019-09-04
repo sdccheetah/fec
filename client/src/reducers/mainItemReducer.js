@@ -1,8 +1,8 @@
-const listReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000)) + 1}, action) => {
+const mainItemReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(10000)) + 1}, action) => {
   switch (action.type) {
     case 'INIT_STORE':
       let tempObj = {
-        list: action.list,
+        mainItem: action.mainItem,
         init: true
       }
       return Object.assign({}, state, tempObj)
@@ -11,4 +11,4 @@ const listReducer = (state = {product_id: Math.floor(Math.random() * Math.floor(
   }
 }
 
-export default listReducer;
+export default mainItemReducer;

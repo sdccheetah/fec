@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { initializeList } from './../actions/initializeList.js';
+import { initializeMain } from './../actions/initializeMain.js';
 import InitPage from '../components/InitPage.js';
 
 const mapStateToProps = (store) => ({
@@ -7,7 +7,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInitList: (list) => dispatch(initializeList({list}))
+  getInitMain: (mainItem) => dispatch(initializeMain({mainItem}))
 });
 
 const InitContainer = connect(

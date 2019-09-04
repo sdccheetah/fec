@@ -1,13 +1,13 @@
 import React from 'react';
 import BasicList from './BasicList.js';
 
-const InitPage = ({store, getInitList}) => {
+const InitPage = ({store, getInitMain}) => {
 
   return (
     <div>
       <BasicList 
-        store={store.list}
-        getInitList={getInitList}
+        store={store}
+        getInitMain={getInitMain}
       />
     </div>
   )
