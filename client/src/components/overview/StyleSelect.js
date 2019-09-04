@@ -1,11 +1,11 @@
 import React from 'react';
 
 const StyleSelect = ({store}) => {
-  console.log('Style Select:');
-  console.log(store);
+//   console.log('Style Select:');
+//   console.log(store);
   if (store) {
     return (
-      <div>
+      <div id="styleSelection">
         <h3>Select Style:</h3>
         <select>
           {store.map((item, index) => {

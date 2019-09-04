@@ -3,6 +3,7 @@ import BasicList from './BasicList.js';
 import StyleImages from './overview/StyleImages.js';
 import ProductInfo from './overview/ProductInfo.js';
 import StyleSelect from './overview/StyleSelect.js';
+import css from './overview/Overview.css';
 
 const InitPage = ({store, getInitMain, getStyles}) => {
 

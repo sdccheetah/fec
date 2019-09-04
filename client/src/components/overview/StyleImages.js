@@ -1,8 +1,8 @@
 import React from 'react';
 
 const StyleImages = ({store}) => {
-  console.log('inside StyleImages');
-  console.log(store.styles);
+//   console.log('inside StyleImages');
+//   console.log(store.styles);
   
   if (store.styles) {
     return (

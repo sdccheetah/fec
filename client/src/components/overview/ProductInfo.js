@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ProductInfo = ({store}) => {
-  console.log('product info store');
-  console.log(store);
+//   console.log('product info store');
+//   console.log(store);
   if (store.details) {
     return (
       <div>
