@@ -15,12 +15,19 @@ class ReviewsMetaData extends React.Component {
             if (ratings[i] !== undefined) {
                 count = count + ratings[i];
                 total = total + i*ratings[i];
+            } else {
+                ratings[i] = 0;
             }
         }
         let average = parseFloat(parseFloat(total/count).toFixed(1));
         return {
             average: average,
-            count: count
+            count: count,
+            one: (parseFloat(ratings[1]/count)*100).toFixed(0),
+            two: (parseFloat(ratings[2]/count)*100).toFixed(0),
+            three: (parseFloat(ratings[3]/count)*100).toFixed(0),
+            four: (parseFloat(ratings[4]/count)*100).toFixed(0),
+            five: (parseFloat(ratings[5]/count)*100).toFixed(0)
         };
     }
 
@@ -56,6 +63,12 @@ class ReviewsMetaData extends React.Component {
           <div className="Reviews">
             REVIEWSMETADATA HERE! 
             <div> {metaData.count} Total Ratings</div>
+            <div> 5 Stars: {metaData.five}% </div>
+            <div> 4 Stars: {metaData.four}% </div>
+            <div> 3 Stars: {metaData.three}% </div>
+            <div> 2 Stars: {metaData.two}% </div>
+            <div> 1 Stars: {metaData.one}% </div>
+
             <div> <br/> Average: {metaData.average}</div>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>
