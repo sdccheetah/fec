@@ -20,13 +20,14 @@ class ReviewsMetaData extends React.Component {
         let average = parseFloat(parseFloat(total/count).toFixed(1));
         return {
             average: average,
-            total: total
+            count: count
         };
     }
 
     recommended(recs) {
-        let total = recs[0] + recs[1];
-        let yes = recs[1];
+        let yes = recs[1] || 0;
+        let no = recs[0] || 0;
+        let total = yes + no;
         return (parseFloat(yes/total)*100).toFixed(0);
     }
 
@@ -54,6 +55,7 @@ class ReviewsMetaData extends React.Component {
         return (
           <div className="Reviews">
             REVIEWSMETADATA HERE! 
+            <div> {metaData.count} Total Ratings</div>
             <div> <br/> Average: {metaData.average}</div>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>
