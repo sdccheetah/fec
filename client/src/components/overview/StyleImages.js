@@ -1,7 +1,8 @@
 import React from 'react';
 import magnify from './helpers.js';
+import StyleSelect from './StyleSelect.js';
 
-const StyleImages = ({store}) => {
+const StyleImages = ({store, setCurrent}) => {
   console.log('inside StyleImages');
   console.log(store.currentStyle);
 
@@ -27,7 +28,7 @@ const StyleImages = ({store}) => {
           {store.currentStyle.photos.map((item) => {
             let picture = item.thumbnail_url;
             return (
-              <img src={picture} onClick={setImage} />
+              <img className="slide" src={picture} onClick={setImage} />
             );
           })}
         </div>
@@ -38,7 +39,10 @@ const StyleImages = ({store}) => {
             width="100%"
             height="100%"/>
           {/* <div id="myresult" className="img-zoom-result"></div> */}
-        </div>  
+        </div>
+        <StyleSelect 
+          store={store.styles}
+          setCurrent={setCurrent}/>
       </div>
     );
   } else {

@@ -1,12 +1,12 @@
 * {box-sizing: border-box;}
 
-div.gallery {
+/* div.gallery {
   margin: 5px;
   float: left;
   overflow-y: scroll;
   width: 30%;
-  /* height: auto; */
-}
+  /* height: auto;
+} */
 
 .circle {
   height: 50px;
@@ -14,12 +14,29 @@ div.gallery {
   border-radius: 50%;
   border: 1px;
   border-color: black;
+  margin: 5px;
 }
 
 .images {
   display: inline-flex;
-  height: 600px;
+  height: 500px;
   margin: auto;
+}
+
+.img-container {
+  width: 300px;
+  height: 500px;
+  display: flex;
+  overflow-y: scroll;
+  float: left;
+  display: inline-block;
+}
+.slide{
+  width: 100%;
+  flex-shrink: 0;
+  margin: 5px;
+  /* height: 100%; */
+  float: left;
 }
 
 .descript {
@@ -27,9 +44,15 @@ div.gallery {
 }
 
 .img-zoom-container {
-  float: right;
-  height: 600px;
+  float: left;
+  height: 500px;
+  width: 800px;
   position: relative;
+  display: flex;
+}
+.img-zoom-container #myimage {
+  flex: 2;
+  height: 100%;
 }
 
 .img-magnifier-glass {
@@ -41,11 +64,11 @@ div.gallery {
   height: 100px;
 }
 
-#myimage {
+/* #myimage {
   max-height: 100%;
   max-width: 100%;
   height: 600px;
-}
+} */
 
 #myresult {
   float:right;
