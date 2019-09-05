@@ -3,8 +3,8 @@ import magnify from './helpers.js';
 import StyleSelect from './StyleSelect.js';
 
 const StyleImages = ({store, setCurrent}) => {
-  console.log('inside StyleImages');
-  console.log(store.currentStyle);
+  // console.log('inside StyleImages');
+  // console.log(store.currentStyle);
 
   if (store.currentStyle) {
     let currentPic = store.currentStyle.photos[store.currentStyle['default?']].thumbnail_url;
@@ -38,11 +38,11 @@ const StyleImages = ({store, setCurrent}) => {
             onClick={onImgClick}
             width="100%"
             height="100%"/>
-          {/* <div id="myresult" className="img-zoom-result"></div> */}
         </div>
         <StyleSelect 
           store={store.styles}
-          setCurrent={setCurrent}/>
+          setCurrent={setCurrent}
+          current={store.currentStyle}/>
       </div>
     );
   } else {

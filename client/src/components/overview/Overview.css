@@ -89,7 +89,32 @@
 } */
 
 #styleSelection {
-  float: left;
+  vertical-align: top;
 }
 
+.size {
+  vertical-align: bottom;
+}
+
+#sizeSelection {
+  background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+  overflow: hidden;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px;
+  width: 240px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #3b8ec2;
+}
+#sizeSelection select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px;
+  width: 268px;
+}
 
