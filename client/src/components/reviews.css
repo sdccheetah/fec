@@ -79,3 +79,15 @@
     border-color: #1c1d1f transparent transparent transparent;
     vertical-align: middle;
 }
+
+.five-stars-fill {
+    position: relative;
+    height: 34px;
+    width: 112px;
+    background-color: #333333;
+}
+
+.five-stars-outline {
+    height: 34px;
+    width: 112px;
+}

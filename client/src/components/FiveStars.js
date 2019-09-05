@@ -3,7 +3,11 @@ import './reviews.css';
 
 function FiveStars(props) {
     return (
-        <div>Stars Will Be Here!</div>
+        <div>
+            <div className="five-stars-fill">
+                <img className="five-stars-outline" src="fivestars.png"></img>
+            </div>
+        </div>
     );
 };
 
