@@ -42,7 +42,8 @@ const StyleImages = ({store, setCurrent}) => {
         <StyleSelect 
           store={store.styles}
           setCurrent={setCurrent}
-          current={store.currentStyle}/>
+          current={store.currentStyle}
+          details={store.details}/>
       </div>
     );
   } else {

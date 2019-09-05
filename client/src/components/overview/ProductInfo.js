@@ -6,7 +6,6 @@ const ProductInfo = ({store}) => {
   if (store.details) {
     return (
       <div className="descript">
-        <h2>{store.details.name + ' - Price: ' + store.details.default_price}</h2>
         <h3>{store.details.slogan}</h3>
         <h4>{store.details.description}</h4>
       </div>

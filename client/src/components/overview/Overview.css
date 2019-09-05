@@ -89,11 +89,15 @@
 } */
 
 #styleSelection {
-  vertical-align: top;
+  display: grid;
+  grid-template-columns: 60px 60px 60px;
 }
 
 .size {
   vertical-align: bottom;
+}
+.select-container {
+  vertical-align: center;
 }
 
 #sizeSelection {
