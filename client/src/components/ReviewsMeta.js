@@ -1,6 +1,7 @@
 import React from 'react';
 const axios = require('axios');
 import './reviews.css';
+import FiveStars from './FiveStars';
 
 class ReviewsMetaData extends React.Component {
 
@@ -78,6 +79,7 @@ class ReviewsMetaData extends React.Component {
         return (
           <div className="ReviewsMeta">
             RATINGS &amp; REVIEWS 
+            <FiveStars/>
             <div> {metaData.count} Total Ratings</div> <br/>
             <div> <br/> Average: {metaData.average}</div>
             <div> {metaData.recs}% of reviews recommended this product</div>
