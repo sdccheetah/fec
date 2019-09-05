@@ -17,13 +17,13 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
       <StyleImages
         store={store.mainItem}
       />
-      <ProductInfo
+      {/* <ProductInfo
         store={store.mainItem}
       />
       <StyleSelect
         store={store.mainItem.styles}
         setCurrent={setCurrent}
-      />
+      /> */}
     </div>
   )
 }

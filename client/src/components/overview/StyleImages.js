@@ -1,5 +1,5 @@
 import React from 'react';
-import imageZoom from './helpers.js';
+import magnify from './helpers.js';
 
 const StyleImages = ({store}) => {
   console.log('inside StyleImages');
@@ -9,14 +9,16 @@ const StyleImages = ({store}) => {
     let currentPic = store.currentStyle.photos[store.currentStyle['default?']].thumbnail_url;
     const onImgClick = (e) => {
       e.preventDefault();
-      imageZoom("myimage", "myresult");
+      magnify("myimage", 3);
+      // imageZoom("myimage", "myresult");
     }
 
     const setImage = (e) => {
       e.preventDefault();
       let current = document.getElementById('myimage');
       current.src = e.target.src;
-      imageZoom("myimage", "myresult");
+      magnify("myimage", 3);
+      // imageZoom("myimage", "myresult");
     }
 
     return (
@@ -35,7 +37,7 @@ const StyleImages = ({store}) => {
             onClick={onImgClick}
             width="100%"
             height="100%"/>
-          <div id="myresult" className="img-zoom-result"></div>
+          {/* <div id="myresult" className="img-zoom-result"></div> */}
         </div>  
       </div>
     );
