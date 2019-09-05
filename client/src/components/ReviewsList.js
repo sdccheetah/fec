@@ -21,8 +21,7 @@ class ReviewsList extends React.Component {
     render() {
         let reviews = this.props.store.reviewsList.results || [];
         return (
-          <div className="Reviews">
-            REVIEWSLIST HERE!
+          <div className="ReviewsList">
             <br/>
             Number of Reviews: {reviews.length}
               {reviews.map((item) => {

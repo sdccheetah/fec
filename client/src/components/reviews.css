@@ -1,5 +1,11 @@
 .ReviewsMeta {
-    color: black;
+    color: #4d4d4d;
+    font-family: Calibri;
+}
+
+.ReviewsMeta {
+    color: #333333;
+    font-family: Calibri;
 }
 
 .percentage-bar {
@@ -11,7 +17,8 @@
 }
 
 .percentage-fill {
-    background:   #00e64d;
+    /* background:   #00e64d; */
+    background: #333333;
     height: 100%;
 }
 
@@ -24,4 +31,50 @@
 .percentage-num {
     display: inline-block;
     padding: 2px;
+}
+
+.spacer {
+    padding: 10px 0px;
+    height: 10px;
+}
+
+.characteristic {
+    width: 350px;
+    padding: 10px 0px;
+}
+
+.characteristic-name {
+    color: #333333;
+    padding: 8px 0px;
+}
+
+.characteristic-bar {
+    position: relative;
+    height: 10px;
+    width: 350px;
+    background-color: #d9d9d9;
+}
+
+.characteristic-text-left {
+    color: #333333;
+    padding: 8px 0px;
+    font-size: 80%;
+    float: left;
+}
+
+.characteristic-text-right {
+    color: #333333;
+    padding: 8px 0px;
+    font-size: 80%;
+    float: right;
+}
+
+.characteristic-triangle {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 8px 0 8px;
+    border-color: #1c1d1f transparent transparent transparent;
+    vertical-align: middle;
 }
