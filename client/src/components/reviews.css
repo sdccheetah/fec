@@ -83,11 +83,28 @@
 .five-stars-fill {
     position: relative;
     height: 34px;
-    width: 112px;
     background-color: #333333;
 }
 
 .five-stars-outline {
     height: 34px;
     width: 112px;
+}
+
+.single-star-outline {
+    height: 23px; 
+    width: 20px;
+}
+
+.single-star-fill {
+    position: relative;
+    display: inline-block;
+    height: 23px; 
+    background-color: #333333;
+}
+
+.single-star-container {
+    height: 23px; 
+    width: 20px;
+    display: inline-block;
 }
