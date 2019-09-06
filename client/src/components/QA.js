@@ -27,6 +27,7 @@ class QA extends React.Component {
               cleaned.push(each);
             }
           };
+          getAnswers();
           return (
             <div key={item.question_id}>
               <div>
@@ -34,7 +35,7 @@ class QA extends React.Component {
               </div>
               <div>
                 <Typography>
-                  <Moment format='DD/MM/YYYY' date={item.question_date} />
+                  <Moment format='MM/DD/YYYY' date={item.question_date} />
                 </Typography>
               </div>
               <div>
@@ -44,11 +45,12 @@ class QA extends React.Component {
               </div>
               <div>
                 {cleaned.map(each => {
+                  console.log("each", each);
                   return (
                     <ul>
-                      <div>
+                      <li>
                         <Typography>{each}</Typography>
-                      </div>
+                      </li>
                     </ul>
                   );
                 })}
