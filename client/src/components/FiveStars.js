@@ -2,20 +2,45 @@ import React from 'react';
 import './reviews.css';
 
 function FiveStars(props) {
-    console.log("FIVE STARS HERE");
-    console.log(props.rating);
     let rating = props.rating;
     let stars = [];
     while (stars.length < 5) {
         if (rating > 1) {
             stars.push(1);
         } else if (rating > 0) {
-            stars.push(rating);
+            let empty = Math.abs(0 - rating);
+            let quart = Math.abs(0.25 - rating);
+            let half = Math.abs(0.5 - rating);
+            let three = Math.abs(0.75 - rating);
+            let full = Math.abs(1 - rating);
+            let closest = Math.min(empty, quart, half, three, full);
+            switch (closest) {
+                case (empty): 
+                    stars.push(0);
+                    break;
+                case quart: 
+                    stars.push(0.25);
+                    break;
+                case half: 
+                    stars.push(0.5);
+                    break;
+                case three: 
+                    stars.push(0.75);
+                    break;
+                case full: 
+                    stars.push(1.0);
+                    break;
+                default: 
+                    console.log("OOPS");
+                    stars.push(0);
+                    break;
+            }
         } else {
             stars.push(0);
         }
         rating = rating - 1;
     }
+    console.log(stars);
     return (
         <div>
             {stars.map((item, i) => {
