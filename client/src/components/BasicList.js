@@ -1,24 +1,20 @@
 import React from 'react';
 const axios = require('axios');
 
-const BasicList = ({ store, getInitMain, getStyles }) => {
-  //   console.log('initial state');
-  //   console.log(store);
+const BasicList = ({store, getInitMain, getStyles}) => {
+//   console.log('initial state');
+//   console.log(store);
   if (!store.mainItem.init) {
     const getData = () => {
-      axios
-        .get(`http://18.217.220.129/products/${store.mainItem.product_id}`)
+      axios.get(`http://18.217.220.129/products/${store.mainItem.product_id}`)
+      .then(data => {
+        getInitMain(data.data);
+        axios.get(`http://18.217.220.129/products/${store.mainItem.product_id}/styles`)
         .then(data => {
-          getInitMain(data.data);
-          axios
-            .get(
-              `http://18.217.220.129/products/${store.mainItem.product_id}/styles`
-            )
-            .then(data => {
-              getStyles(data.data.results);
-            });
-        });
-    };
+          getStyles(data.data.results);
+        })
+      });
+    }
 
     getData();
 
