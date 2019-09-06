@@ -29,10 +29,14 @@ const StyleImages = ({store, setCurrent}) => {
 
       <div className="images">
         <div className="img-container img gallery">
-          {store.currentStyle.photos.map((item) => {
+          {store.currentStyle.photos.map((item, index) => {
             let picture = item.thumbnail_url;
             return (
-              <img className="slide" src={picture} onClick={setImage} />
+              <img 
+                key={index}
+                className="slide" 
+                src={picture} 
+                onClick={setImage} />
             );
           })}
         </div>

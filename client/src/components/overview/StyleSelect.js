@@ -38,6 +38,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
               let color = { "backgroundColor": item.name };
               return (
                 <div className="circle" 
+                  key={index}
                   style={color} 
                   onClick={selectColor}
                   id={index}></div>
