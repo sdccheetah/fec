@@ -17,7 +17,7 @@ const BasicList = ({store, getInitMain, getStyles}) => {
     }
 
     getData();
-    
+
     return (
       <div>
         <h2>Nothing Here!</h2>
@@ -27,7 +27,8 @@ const BasicList = ({store, getInitMain, getStyles}) => {
     // console.log('random get productid');
     // console.log(store);
     return (
-      <div>PlaceHolder for Overview
+      <div>
+        PlaceHolder for Overview
         {/* {store.list.map((item) => {
           return (
             <ul key={item.name}>
@@ -41,6 +42,6 @@ const BasicList = ({store, getInitMain, getStyles}) => {
       </div>
     );
   }
-}
+};
 
 export default BasicList;
