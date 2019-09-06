@@ -1,19 +1,20 @@
 import React from 'react';
 const axios = require('axios');
 
-const BasicList = ({store, getInitMain}) => {
+const BasicList = ({ store, getInitMain }) => {
   console.log('initial state');
   console.log(store);
   if (!store.mainItem.init) {
     const getData = () => {
-      axios.get(`http://18.217.220.129/products/${store.mainItem.product_id}`)
-      .then(data => {
-        getInitMain(data.data);
-      });
-    }
+      axios
+        .get(`http://18.217.220.129/products/${store.mainItem.product_id}`)
+        .then(data => {
+          getInitMain(data.data);
+        });
+    };
 
     getData();
-    
+
     return (
       <div>
         <h2>Nothing Here!</h2>
@@ -23,7 +24,8 @@ const BasicList = ({store, getInitMain}) => {
     console.log('random get productid');
     console.log(store);
     return (
-      <div>PlaceHolder for Overview
+      <div>
+        PlaceHolder for Overview
         {/* {store.list.map((item) => {
           return (
             <ul key={item.name}>
@@ -37,6 +39,6 @@ const BasicList = ({store, getInitMain}) => {
       </div>
     );
   }
-}
+};
 
 export default BasicList;
