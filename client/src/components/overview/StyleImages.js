@@ -1,6 +1,9 @@
 import React from 'react';
 import magnify from './helpers.js';
 import StyleSelect from './StyleSelect.js';
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 const StyleImages = ({store, setCurrent}) => {
   // console.log('inside StyleImages');
@@ -23,6 +26,7 @@ const StyleImages = ({store, setCurrent}) => {
     }
 
     return (
+
       <div className="images">
         <div className="img-container img gallery">
           {store.currentStyle.photos.map((item) => {
@@ -32,6 +36,7 @@ const StyleImages = ({store, setCurrent}) => {
             );
           })}
         </div>
+
         <div className="img-zoom-container img">
           <img id="myimage" 
             src={currentPic}
