@@ -4,7 +4,7 @@ import rootReducer from './../reducers/rootReducer.js';
 const store = createStore(rootReducer);
 
 store.subscribe(() => {
-  console.log('get state', store.getState());
+  // console.log('get state', store.getState());
   //console.log(store.getState());
 });
 
