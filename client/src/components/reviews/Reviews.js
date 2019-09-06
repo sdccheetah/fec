@@ -5,9 +5,12 @@ import './reviews.css';
 
 function Reviews(props) {
     return (
-        <div className="Reviews-Layout">
-                <ReviewsMetaContainer/>
-                <ReviewsListContainer/>
+        <div>
+            <br/>
+            <div className="Reviews-Layout">
+                    <ReviewsMetaContainer/>
+                    <ReviewsListContainer/>
+            </div>
         </div>
     )
 };

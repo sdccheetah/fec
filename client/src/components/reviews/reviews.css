@@ -1,6 +1,7 @@
 .Reviews-Layout {
     font-family: 'Roboto', sans-serif;
     display: flex;
+    margin-left: 5%;
 }
 
 .ReviewsMeta {
@@ -11,6 +12,7 @@
 .ReviewsList {
     color: #333333;
     float: right;
+    max-width: 50%;
 }
 
 .percentage-bar {
