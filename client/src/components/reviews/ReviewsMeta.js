@@ -6,7 +6,7 @@ import FiveStars from './FiveStars';
 class ReviewsMetaData extends React.Component {
 
     componentDidMount() {
-        console.log("Review Meta Data mounted successfully!");
+        // console.log("Review Meta Data mounted successfully!");
         this.getMetaData(this.props.store.mainItem.product_id);
     }
 
@@ -58,7 +58,7 @@ class ReviewsMetaData extends React.Component {
             .then(data => { //Process Meta Data first
                 let newObj = {};
                 let metaData = data.data;
-                console.log(metaData);
+                // console.log(metaData);
                 let ratings = metaData.ratings;
                 let ratingData = this.ratingData(ratings); //Get the average rating and counts for #stars
                 Object.assign(newObj,ratingData);

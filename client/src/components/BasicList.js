@@ -17,7 +17,7 @@ const BasicList = ({store, getInitMain, getStyles}) => {
     }
 
     getData();
-    
+
     return (
       <div>
         <h2>Nothing Here!</h2>
@@ -28,19 +28,9 @@ const BasicList = ({store, getInitMain, getStyles}) => {
     // console.log(store);
     return (
       <div>
-        {/* {store.list.map((item) => {
-          return (
-            <ul key={item.name}>
-            <li>Name: {item.name}</li>
-            <li>Slogan: {item.slogan}</li>
-            <li>Description: {item.description}</li>
-            <li>Category: {item.category}</li>
-            </ul>
-          );
-        })} */}
       </div>
     );
   }
-}
+};
 
 export default BasicList;
