@@ -1,4 +1,5 @@
 import React from 'react';
+import magnify from './helpers.js';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
   // console.log('Style Select:');
@@ -10,6 +11,12 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
     e.preventDefault();
     let tempObj = { style: store[Number(e.target.id)] };
     setCurrent(tempObj);
+    if (document.getElementsByClassName("img-magnifier-glass")) {
+      let toRemove = document.getElementsByClassName("img-magnifier-glass");
+      while (toRemove.length > 0) {
+        toRemove[0].parentNode.removeChild(toRemove[0]);
+      }
+    }
   };
 
   const onChange = (e) => {
