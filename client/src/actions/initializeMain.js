@@ -3,4 +3,14 @@ const initializeMain = ({mainItem}) => ({
   mainItem: mainItem
 });
 
-export { initializeMain };
+const getStyles = ({styles}) => ({
+  type: "SET_STYLES",
+  styles: styles
+});
+
+const setCurrent = ({style}) => ({
+  type: "SET_CURRENT",
+  currentStyle: style
+});
+
+export { initializeMain, getStyles, setCurrent };
