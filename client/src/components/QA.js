@@ -44,10 +44,10 @@ class QA extends React.Component {
                 </Typography>
               </div>
               <div>
-                {cleaned.map(each => {
-                  console.log("each", each);
+                {cleaned.map((each, index) => {
+                  // console.log("each", each);
                   return (
-                    <ul>
+                    <ul key={index}>
                       <li>
                         <Typography>{each}</Typography>
                       </li>

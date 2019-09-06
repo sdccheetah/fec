@@ -28,17 +28,7 @@ const BasicList = ({store, getInitMain, getStyles}) => {
     // console.log(store);
     return (
       <div>
-        PlaceHolder for Overview
-        {/* {store.list.map((item) => {
-          return (
-            <ul key={item.name}>
-            <li>Name: {item.name}</li>
-            <li>Slogan: {item.slogan}</li>
-            <li>Description: {item.description}</li>
-            <li>Category: {item.category}</li>
-            </ul>
-          );
-        })} */}
+
       </div>
     );
   }

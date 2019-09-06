@@ -6,7 +6,7 @@ import './reviews.css';
 class ReviewsList extends React.Component {
 
     componentDidMount() {
-        console.log("Reviews List mounted successfully!");
+        // console.log("Reviews List mounted successfully!");
         this.getReviews(this.props.store.mainItem.product_id);
     }
 
