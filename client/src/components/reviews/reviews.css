@@ -1,0 +1,117 @@
+.Reviews-Layout {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    margin-left: 5%;
+}
+
+.ReviewsMeta {
+    color: #4d4d4d;
+    float: left;
+}
+
+.ReviewsList {
+    color: #333333;
+    float: right;
+    max-width: 50%;
+}
+
+.percentage-bar {
+    position: relative;
+    height: 10px;
+    width: 300px;
+    background-color: #d9d9d9;
+    display: inline-block;
+    left: 2px;
+}
+
+.percentage-fill {
+    /* background:   #00e64d; */
+    background: #333333;
+    height: 100%;
+}
+
+.percentage-text {
+    display: inline-block;
+    text-decoration: underline;
+    padding: 2px;
+}
+
+.percentage-num {
+    display: inline-block;
+    padding: 2px;
+}
+
+.spacer {
+    padding: 10px 0px;
+    height: 10px;
+}
+
+.characteristic {
+    width: 350px;
+    padding: 10px 0px;
+}
+
+.characteristic-name {
+    color: #333333;
+    padding: 8px 0px;
+}
+
+.characteristic-bar {
+    position: relative;
+    height: 10px;
+    width: 350px;
+    background-color: #d9d9d9;
+}
+
+.characteristic-text-left {
+    color: #333333;
+    padding: 8px 0px;
+    font-size: 80%;
+    float: left;
+}
+
+.characteristic-text-right {
+    color: #333333;
+    padding: 8px 0px;
+    font-size: 80%;
+    float: right;
+}
+
+.characteristic-triangle {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 8px 0 8px;
+    border-color: #1c1d1f transparent transparent transparent;
+    vertical-align: middle;
+}
+
+.five-stars-fill {
+    position: relative;
+    height: 34px;
+    background-color: #333333;
+}
+
+.five-stars-outline {
+    height: 34px;
+    width: 112px;
+}
+
+.single-star-outline {
+    height: 23px; 
+    width: 20px;
+}
+
+.single-star-fill {
+    position: relative;
+    display: inline-block;
+    height: 23px; 
+    background-color: #333333;
+}
+
+.single-star-container {
+    height: 23px; 
+    width: 20px;
+    display: inline-block;
+}
