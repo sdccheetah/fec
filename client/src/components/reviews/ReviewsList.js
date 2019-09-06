@@ -1,5 +1,6 @@
 import React from 'react';
 const axios = require('axios');
+import FiveStars from './FiveStars';
 import './reviews.css';
 
 
@@ -24,17 +25,20 @@ class ReviewsList extends React.Component {
           <div className="ReviewsList">
             <br/>
             Number of Reviews: {reviews.length}
+            <br/>
               {reviews.map((item) => {
                 return (
-                <ul key={item.review_id}>
-                  <li>Rating: {item.rating}</li>
-                  <li>Summary: {item.summary}</li>
-                  <li>User: {item.reviewer_name}</li>
-                  <li>Date: {item.date}</li>
-                  <li>Body: {item.body}</li>
-                  <li>#Helped: {item.helpfulness}</li>
-
-                </ul>
+                <div>
+                  <ul key={item.review_id}>
+                    <FiveStars rating={item.rating}/>
+                    <li>Rating: {item.rating}</li>
+                    <li>Summary: {item.summary}</li>
+                    <li>User: {item.reviewer_name}</li>
+                    <li>Date: {item.date}</li>
+                    <li>Body: {item.body}</li>
+                    <li>#Helped: {item.helpfulness}</li>
+                  </ul>
+                </div>
                 )
               })}
             
