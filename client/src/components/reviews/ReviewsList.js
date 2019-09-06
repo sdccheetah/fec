@@ -42,11 +42,11 @@ class ReviewsList extends React.Component {
                 return (
                 <div key={item.review_id}>
                   <ul>
-                    <FiveStars rating={item.rating}/>
-                    <li>Rating: {item.rating}</li>
+                    <div className="review-entry-top">
+                      <FiveStars rating={item.rating}/>
+                      <div className="review-entry-name-date">{item.reviewer_name + ", " + item.date.substring(0,10)}</div>
+                    </div>
                     <li>Summary: {item.summary}</li>
-                    <li>User: {item.reviewer_name}</li>
-                    <li>Date: {item.date}</li>
                     <li>Body: {item.body}</li>
                     <li>#Helped: {item.helpfulness}</li>
                   </ul>
