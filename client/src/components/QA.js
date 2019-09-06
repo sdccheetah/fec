@@ -2,6 +2,7 @@ import React from 'react';
 const axios = require('axios');
 import Moment from 'react-moment';
 import { Typography, Grid, Button } from '@material-ui/core';
+import Search from './Search.js';
 
 class QA extends React.Component {
   getData(product_id) {
@@ -31,6 +32,7 @@ class QA extends React.Component {
           return (
             <div key={item.question_id}>
               <div>
+                <Search />
                 <Typography>{item.question_body}</Typography>
               </div>
               <div>
