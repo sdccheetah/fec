@@ -19,17 +19,29 @@ class ReviewsList extends React.Component {
             })
     }
 
+    handleMoreReviews(event) {
+      event.preventDefault();
+      let total = this.props.store.reviewsList.results.length;
+      let limit = this.props.store.reviewsMeta.limit;
+      limit = limit + 2;
+      if (limit > total) {
+        limit = total;
+      }
+      this.props.reviewsLimitAction(limit);
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.results || [];
+        let limit = this.props.store.reviewsMeta.limit;
         return (
           <div className="ReviewsList">
             <br/>
             Number of Reviews: {reviews.length}
             <br/>
-              {reviews.map((item) => {
+              {reviews.slice(0,limit).map((item) => {
                 return (
-                <div>
-                  <ul key={item.review_id}>
+                <div key={item.review_id}>
+                  <ul>
                     <FiveStars rating={item.rating}/>
                     <li>Rating: {item.rating}</li>
                     <li>Summary: {item.summary}</li>
@@ -41,7 +53,7 @@ class ReviewsList extends React.Component {
                 </div>
                 )
               })}
-            
+            <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
           </div>
         );
       }
