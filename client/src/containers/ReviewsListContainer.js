@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ReviewsList from '../components/ReviewsList';
+import ReviewsList from '../components/reviews/ReviewsList';
 import { reviewsListAction } from '../actions/reviewsListAction.js';
 
 

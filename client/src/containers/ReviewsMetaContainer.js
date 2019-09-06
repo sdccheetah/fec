@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ReviewsMeta from '../components/ReviewsMeta';
+import ReviewsMeta from '../components/reviews/ReviewsMeta';
 import { reviewsMetaAction } from '../actions/reviewsMetaAction.js';
 
 

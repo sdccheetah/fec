@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewsListContainer from '../containers/ReviewsListContainer.js';
-import ReviewsMetaContainer from '../containers/ReviewsMetaContainer.js';
+import ReviewsListContainer from '../../containers/ReviewsListContainer.js';
+import ReviewsMetaContainer from '../../containers/ReviewsMetaContainer.js';
 import './reviews.css';
 
 function Reviews(props) {
