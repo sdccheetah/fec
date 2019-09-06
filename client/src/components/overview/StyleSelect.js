@@ -1,8 +1,8 @@
 import React from 'react';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
-  console.log('Style Select:');
-  console.log(store);
+  // console.log('Style Select:');
+  // console.log(store);
   let currentSizes = [];
   let currentSku = 0;
 
@@ -14,7 +14,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
 
   const onChange = (e) => {
     currentSku = current.skus[currentSizes[e.target.value]];
-    console.log(current.skus[currentSizes[e.target.value]]);
+    // console.log(current.skus[currentSizes[e.target.value]]);
   }
 
   if (store) {

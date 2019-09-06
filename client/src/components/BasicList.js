@@ -24,8 +24,8 @@ const BasicList = ({store, getInitMain, getStyles}) => {
       </div>
     );
   } else {
-    console.log('random get productid');
-    console.log(store);
+    // console.log('random get productid');
+    // console.log(store);
     return (
       <div>PlaceHolder for Overview
         {/* {store.list.map((item) => {
