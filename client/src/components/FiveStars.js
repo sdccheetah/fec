@@ -19,13 +19,13 @@ function FiveStars(props) {
                     stars.push(0);
                     break;
                 case quart: 
-                    stars.push(0.25);
+                    stars.push(0.28);
                     break;
                 case half: 
                     stars.push(0.5);
                     break;
                 case three: 
-                    stars.push(0.75);
+                    stars.push(0.72);
                     break;
                 case full: 
                     stars.push(1.0);
@@ -40,7 +40,6 @@ function FiveStars(props) {
         }
         rating = rating - 1;
     }
-    console.log(stars);
     return (
         <div>
             {stars.map((item, i) => {
