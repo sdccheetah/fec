@@ -80,8 +80,8 @@ class ReviewsMetaData extends React.Component {
           <div className="ReviewsMeta">
             RATINGS &amp; REVIEWS 
             <FiveStars rating={metaData.average}/>
+            <div> {metaData.average}</div>
             <div> {metaData.count} Total Ratings</div> <br/>
-            <div> <br/> Average: {metaData.average}</div>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>
             {metaData.stars.map((item, i) => {
