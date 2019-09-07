@@ -1,4 +1,4 @@
-const reviewsListReducer = (state = {average: 0.0, recs: 0, total: 0, stars: [], characteristics: []}, action) => {
+const reviewsMetaReducer = (state = {average: 0.0, recs: 0, total: 0, stars: [], characteristics: [], product_id: null}, action) => {
     switch (action.type) {
       case 'REVIEWS_META':
         return Object.assign({}, state, action.payload);
@@ -7,4 +7,4 @@ const reviewsListReducer = (state = {average: 0.0, recs: 0, total: 0, stars: [],
     }
   }
   
-export default reviewsListReducer;
+export default reviewsMetaReducer;
