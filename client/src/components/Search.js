@@ -6,17 +6,17 @@ import { InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
-  root: {
-    margin: '10px 0',
-    padding: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    border: '1px solid grey'
-  },
-  input: {
-    marginLeft: 8,
-    flex: 6
-  },
+  //   root: {
+  //     margin: '10px 0',
+  //     padding: '10px',
+  //     display: 'flex',
+  //     alignItems: 'center',
+  //     border: '1px solid grey'
+  //   },
+  //   input: {
+  //     marginLeft: 8,
+  //     flex: 10
+  //   },
   iconButton: {
     padding: 10
   }
@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 
 const SearchQuestion = ({ keyword, setKeyword }) => {
   const classes = useStyles();
-
   return (
     <div className='search'>
       <InputBase

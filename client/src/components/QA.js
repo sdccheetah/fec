@@ -19,6 +19,7 @@ class QA extends React.Component {
     let qq = ques.questions || [];
     return (
       <div className='QA'>
+        <Search />
         {qq.map(item => {
           let cleaned = [];
           let getAnswers = () => {
@@ -32,7 +33,6 @@ class QA extends React.Component {
           return (
             <div key={item.question_id}>
               <div>
-                <Search />
                 <Typography>{item.question_body}</Typography>
               </div>
               <div>
