@@ -21,8 +21,8 @@ class ReviewsList extends React.Component {
 
     handleMoreReviews(event) {
       event.preventDefault();
-      let total = this.props.store.reviewsList.results.length;
-      let limit = this.props.store.reviewsMeta.limit;
+      let total = this.props.store.reviewsList.list.results.length;
+      let limit = this.props.store.reviewsList.limit;
       limit = limit + 2;
       if (limit > total) {
         limit = total;
@@ -31,10 +31,9 @@ class ReviewsList extends React.Component {
     }
 
     render() {
-        let reviews = this.props.store.reviewsList.results || [];
-        let limit = this.props.store.reviewsMeta.limit;
+        let reviews = this.props.store.reviewsList.list.results || [];
+        let limit = this.props.store.reviewsList.limit;
         let months = this.props.store.reviewsDefaults.months;
-        console.log(reviews);
         if (reviews.length === 0) {
           return <div></div>
         }
@@ -58,6 +57,7 @@ class ReviewsList extends React.Component {
                 </div>
                 )
               })}
+              {}
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
           </div>
         );

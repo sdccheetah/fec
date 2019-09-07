@@ -76,7 +76,6 @@ class ReviewsMetaData extends React.Component {
     render() {
         let metaData = this.props.store.reviewsMeta;
         let charsTable = this.props.store.reviewsDefaults.charsTable;
-        console.log(metaData);
         if (metaData.total === 0 && metaData.count === 0) {
             return <div></div>
         }
