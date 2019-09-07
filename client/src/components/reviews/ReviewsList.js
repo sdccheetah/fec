@@ -34,6 +34,10 @@ class ReviewsList extends React.Component {
         let reviews = this.props.store.reviewsList.results || [];
         let limit = this.props.store.reviewsMeta.limit;
         let months = this.props.store.reviewsDefaults.months;
+        console.log(reviews);
+        if (reviews.length === 0) {
+          return <div></div>
+        }
         return (
           <div className="ReviewsList">
             <br/>
