@@ -13,7 +13,6 @@ const useStyles = makeStyles({
 
 const SearchQuestion = ({ keyword, setKeyword }) => {
   const classes = useStyles();
-  console.log(keyword, 'mike');
   return (
     <div className='search'>
       <InputBase
@@ -23,7 +22,7 @@ const SearchQuestion = ({ keyword, setKeyword }) => {
         placeholder='Have a question? Search for answers...'
         value={keyword}
         onChange={e => {
-          console.log('onchange', e.target.value);
+          console.log(e.target.value);
           setKeyword(e.target.value);
         }}
       />

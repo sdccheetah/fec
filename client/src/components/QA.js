@@ -47,7 +47,6 @@ class QA extends React.Component {
               </div>
               <div>
                 {cleaned.map((each, index) => {
-                  console.log('each', each);
                   return (
                     <ul key={index}>
                       <li>
