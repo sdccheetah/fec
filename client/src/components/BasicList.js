@@ -8,7 +8,7 @@ const BasicList = ({store, getInitMain, getStyles}) => {
   const getData = (prodId = store.mainItem.product_id) => {
     axios.get(`http://18.217.220.129/products/${prodId}`)
     .then(data => {
-      getInitMain(data.data);
+      getInitMain(data.data, prodId);
       axios.get(`http://18.217.220.129/products/${prodId}/styles`)
       .then(data => {
         getStyles(data.data.results);
