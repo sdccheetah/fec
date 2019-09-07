@@ -5,11 +5,6 @@ import FiveStars from './FiveStars';
 
 class ReviewsMetaData extends React.Component {
 
-    componentDidMount() {
-        // console.log("Review Meta Data mounted successfully!");
-        this.getMetaData(this.props.store.mainItem.product_id);
-    }
-
     ratingData(ratings) { //Parse rating data and calculate certain things like avg and rating percentages
         let total = 0;
         let count = 0;
@@ -66,7 +61,7 @@ class ReviewsMetaData extends React.Component {
                 let recs = this.recommended(metaData.recommended); //Get the percent recommended
                 newObj.recs = recs;
                 newObj.characteristics = this.parseCharacteristics(metaData.characteristics);
-                
+                newObj.product_id = this.props.store.mainItem.product_id;
                 this.props.reviewsMetaAction(newObj);
 
             })
@@ -76,6 +71,9 @@ class ReviewsMetaData extends React.Component {
     render() {
         let metaData = this.props.store.reviewsMeta;
         let charsTable = this.props.store.reviewsDefaults.charsTable;
+        if (parseInt(metaData.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
+            this.getMetaData(this.props.store.mainItem.product_id);
+        } 
         if (metaData.total === 0 && metaData.count === 0) {
             return <div></div>
         }
@@ -88,7 +86,6 @@ class ReviewsMetaData extends React.Component {
                 <FiveStars rating={metaData.average}/>
                 <br/>
             </div>
-            {/* <div> {metaData.count} Total Ratings</div> <br/> */}
             <br/> <br/>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>

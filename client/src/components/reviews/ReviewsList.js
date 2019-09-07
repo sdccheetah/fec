@@ -7,16 +7,13 @@ import './reviews.css';
 
 class ReviewsList extends React.Component {
 
-    componentDidMount() {
-        // console.log("Reviews List mounted successfully!");
-        this.getReviews(this.props.store.mainItem.product_id);
-    }
-
     getReviews(product_id) {
         axios.get(`http://18.217.220.129/reviews/${product_id}/list?count=100`)
             .then(data => {
-                //console.log(data.data);
-                this.props.reviewsListAction(data.data);
+                let newData = data.data;
+                newData.product_id = this.props.store.mainItem.product_id;
+                this.props.reviewsListAction(newData);
+                this.props.reviewsLimitAction(2);
             })
     }
 
@@ -41,6 +38,9 @@ class ReviewsList extends React.Component {
         let limit = this.props.store.reviewsList.limit;
         let submission = this.props.store.reviewsList.submit;
         let months = this.props.store.reviewsDefaults.months;
+        if (parseInt(this.props.store.reviewsList.list.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
+          this.getReviews(this.props.store.mainItem.product_id);
+      } 
         if (reviews.length === 0) {
           return <div></div>
         }

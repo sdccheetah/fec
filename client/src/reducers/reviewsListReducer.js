@@ -1,4 +1,4 @@
-const reviewsListReducer = (state = {list: [], limit: 2, submit: []}, action) => {
+const reviewsListReducer = (state = {list: [], limit: 2, submit: [], product_id: null}, action) => {
     switch (action.type) {
       case 'REVIEWS_LIST':
         return Object.assign({}, state, {list: action.payload});
