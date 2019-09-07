@@ -3,7 +3,7 @@ import magnify from './helpers.js';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
   // console.log('Style Select:');
-  // console.log(store);
+  // console.log(details);
   let currentSizes = [];
   let currentSku = 0;
 
@@ -34,7 +34,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
     return (
       <div className="right-container">
         <div className="prod-details">
-          <h4>{details.category}</h4>
+          <h4>Category > {details.category}</h4>
           <h1>{details.name}</h1>
           <h4>{"$" + details.default_price}</h4>
         </div>
