@@ -1,11 +1,12 @@
 import React from 'react';
 import './reviews.css';
 
-class ReviewSubmisison extends React.Component {
+class ReviewSubmission extends React.Component {
+
     render() {
         return (
             <div>
-                ReviewSubmisison HERE!
+                ReviewSubmissison HERE!
             </div>
         )
     }

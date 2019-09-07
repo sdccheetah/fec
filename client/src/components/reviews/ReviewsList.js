@@ -1,6 +1,7 @@
 import React from 'react';
 const axios = require('axios');
 import FiveStars from './FiveStars';
+import ReviewSubmission from './ReviewSubmission';
 import './reviews.css';
 
 
@@ -30,9 +31,15 @@ class ReviewsList extends React.Component {
       this.props.reviewsLimitAction(limit);
     }
 
+    handleAddReview(event) {
+      event.preventDefault();
+      this.props.reviewsPostAction([true]);
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
+        let submission = this.props.store.reviewsList.submit;
         let months = this.props.store.reviewsDefaults.months;
         if (reviews.length === 0) {
           return <div></div>
@@ -57,8 +64,11 @@ class ReviewsList extends React.Component {
                 </div>
                 )
               })}
-              {}
+              {submission.map((item) => {
+                return <ReviewSubmission key={item}/>
+              })}
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
+            <button onClick={this.handleAddReview.bind(this)}>Add Review</button>
           </div>
         );
       }
