@@ -65,7 +65,7 @@ class ReviewsList extends React.Component {
                 )
               })}
               {submission.map((item) => {
-                return <ReviewSubmission key={item}/>
+                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id}/>
               })}
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
             <button onClick={this.handleAddReview.bind(this)}>Add Review</button>
