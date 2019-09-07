@@ -1,11 +1,11 @@
 import React from 'react';
-import magnify from './helpers.js';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
   // console.log('Style Select:');
   // console.log(details);
   let currentSizes = [];
   let currentSku = 0;
+  let quant = 1;
 
   const selectColor = (e) => {
     e.preventDefault();
@@ -19,17 +19,27 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
     }
   };
 
+  const onAdd = (e) => {
+    e.preventDefault();
+    console.log(currentSku);
+    console.log(quant);
+  }
+
+  const changeQty = (e) => {
+    quant = Number(e.target.value);
+  }
+
   const onChange = (e) => {
-    currentSku = current.skus[currentSizes[e.target.value]];
-    // console.log(current.skus[currentSizes[e.target.value]]);
+    let index = Number(e.target.value);
+    currentSku = current.skus[currentSizes[index]];
   }
 
   if (store) {
-
+    let quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     for (let i in current.skus) {
       currentSizes.push(i);
     }
-    currentSku = currentSizes[0];
+    currentSku = current.skus[currentSizes[0]];
 
     return (
       <div className="right-container">
@@ -63,6 +73,23 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
                 })}
               </select>
             </div>
+          </div>
+          <div className="quantity">
+            <h3>Select Quantity:</h3>
+            <div id="sizeSelection">
+              <select onChange={changeQty}>
+                {quantity.map((item, index) => {
+                  return (
+                    <option key={index} value={item}>{item}</option>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
+          <div className="addCart">
+            <button 
+              id="addCartButton"
+              onClick={onAdd}>Add to Cart</button>
           </div>
         </div>
       </div>
