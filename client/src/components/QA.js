@@ -6,7 +6,7 @@ import Search from './Search.js';
 
 class QA extends React.Component {
   getData(product_id) {
-    axios.get(`http://18.217.220.129/qa/${product_id})`).then(data => {
+    axios.get(`http://18.217.220.129/qa/${product_id}`).then(data => {
       this.props.getQA(data.data.results);
     });
   }
@@ -47,7 +47,7 @@ class QA extends React.Component {
               </div>
               <div>
                 {cleaned.map((each, index) => {
-                  // console.log("each", each);
+                  console.log('each', each);
                   return (
                     <ul key={index}>
                       <li>

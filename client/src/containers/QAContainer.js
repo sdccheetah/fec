@@ -8,6 +8,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   getQA: questions => dispatch(initializeQA(questions))
+  // setKeyword: keyword => dispatch(setSearch(keyword))
 });
 
 const QAContainer = connect(

@@ -1,6 +1,8 @@
-export const setSearch = keyword => {
+const setSearch = keyword => {
   return {
     type: 'SEARCH',
-    keyword: keyword
+    payload: keyword
   };
 };
+
+export { setSearch };
