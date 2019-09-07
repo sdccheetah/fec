@@ -1,6 +1,7 @@
-const initializeMain = ({mainItem}) => ({
+const initializeMain = ({mainItem, prodId}) => ({
   type: "INIT_STORE",
-  mainItem: mainItem
+  mainItem: mainItem,
+  prodId: prodId
 });
 
 const getStyles = ({styles}) => ({

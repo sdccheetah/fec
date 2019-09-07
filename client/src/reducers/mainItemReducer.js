@@ -4,6 +4,7 @@ const mainItemReducer = (state = {product_id: Math.floor(Math.random() * Math.fl
     case 'INIT_STORE':
       tempObj = {
         details: action.mainItem,
+        product_id: action.prodId,
         init: true
       }
       return Object.assign({}, state, tempObj);
