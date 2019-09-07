@@ -6,13 +6,15 @@ class ReviewSubmission extends React.Component {
         super(props);
         this.state = {
             starsArr: [0,0,0,0,0],
-            oldArr: [0,0,0,0,0]
+            oldArr: [0,0,0,0,0],
+            rec: "yes"
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleStarsHover = this.handleStarsHover.bind(this);
         this.handleStarsClick = this.handleStarsClick.bind(this);
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
+        this.handleRadioClick = this.handleRadioClick.bind(this);
     }
 
     handleSubmit(event) {
@@ -52,6 +54,12 @@ class ReviewSubmission extends React.Component {
         });
     }
 
+    handleRadioClick(event) {
+        this.setState({
+            rec: event.target.value
+        });
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -65,6 +73,19 @@ class ReviewSubmission extends React.Component {
                         </div>
                     );
                 })}
+            </div>
+            <div className="review-radio">
+                Do you recommend this product? <br/>
+                <label>
+                    <input type="radio" value="yes" onChange={this.handleRadioClick} checked={this.state.rec === 'yes'} />
+                    Yes
+                </label>
+            </div>
+            <div className="review-radio">
+                <label>
+                    <input type="radio" value="no" onChange={this.handleRadioClick} checked={this.state.rec === 'no'}/>
+                    No
+                </label>
             </div>
             <label> Name:
                 <input type="text" id="form" />
