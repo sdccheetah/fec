@@ -33,6 +33,7 @@ class ReviewsList extends React.Component {
     render() {
         let reviews = this.props.store.reviewsList.results || [];
         let limit = this.props.store.reviewsMeta.limit;
+        let months = this.props.store.reviewsDefaults.months;
         return (
           <div className="ReviewsList">
             <br/>
@@ -44,7 +45,7 @@ class ReviewsList extends React.Component {
                   <ul>
                     <div className="review-entry-top">
                       <FiveStars rating={item.rating}/>
-                      <div className="review-entry-name-date">{item.reviewer_name + ", " + item.date.substring(0,10)}</div>
+                      <div className="review-entry-name-date">{item.reviewer_name + ", " + months[item.date.substring(5,7)-1]  + " " + parseInt(item.date.substring(8,10)) + ", " + item.date.substring(0,4)}</div>
                     </div>
                     <li>Summary: {item.summary}</li>
                     <li>Body: {item.body}</li>
