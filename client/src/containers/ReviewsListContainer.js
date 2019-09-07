@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ReviewsList from '../components/reviews/ReviewsList';
-import { reviewsListAction } from '../actions/reviewsListAction.js';
-import { reviewsLimitAction } from '../actions/reviewsLimitAction.js';
+import { reviewsListAction, reviewsLimitAction } from '../actions/reviewsListAction.js';
 import { reviewsPostAction } from '../actions/reviewsPostAction.js';
 
 
