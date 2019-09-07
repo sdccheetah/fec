@@ -21,15 +21,23 @@
   display: inline-flex;
   height: 600px;
   margin: auto;
+  position: relative;
+  top: 25px;
+  left: 25px;
 }
 
 .img-container {
-  width: 300px;
+  width: 150px;
   height: 600px;
+  padding: 10px;
   display: flex;
   overflow-y: scroll;
   float: left;
   display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 .slide{
   width: 100%;
