@@ -30,7 +30,21 @@ afterAll(() => {
 });
 
 describe("Main", () => {
-  test("Can access the page", async () => {
+  test("access the page", async () => {
     await page.goto(APP);
   }, 4000);
+
+  test("assert that <title> is correct", async () => {
+    const title = await page.title();
+    expect(title).toBe(
+      "Project Greenfield"
+    );
+  });
+
+
+  test("correct page name", async () => {
+    const pageName = await page.$eval("[class=siteName]", el => el.textContent);
+    expect(pageName).toEqual("BuyThisStuff.com");
+  });
+
 });

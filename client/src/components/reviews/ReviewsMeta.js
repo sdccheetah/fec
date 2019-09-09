@@ -76,7 +76,7 @@ class ReviewsMetaData extends React.Component {
             this.getMetaData(this.props.store.mainItem.product_id);
         } 
         if (metaData.total === 0 && metaData.count === 0) {
-            return <div></div>
+            return <div className="ReviewsMeta"></div>
         }
         return (
           <div className="ReviewsMeta">

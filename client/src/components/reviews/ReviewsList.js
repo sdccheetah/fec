@@ -42,7 +42,7 @@ class ReviewsList extends React.Component {
           this.getReviews(this.props.store.mainItem.product_id);
       } 
         if (reviews.length === 0) {
-          return <div></div>
+          return <div className="ReviewsList"></div>
         }
         return (
           <div className="ReviewsList">
