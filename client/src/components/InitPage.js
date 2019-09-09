@@ -7,7 +7,7 @@ import CssBaseLine from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
+const InitPage = ({store, props, getInitMain, getStyles, setCurrent}) => {
 
   return (
     <React.Fragment>
@@ -19,6 +19,7 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
       />
       {/* <Container> */}
         <StyleImages
+          props={props}
           store={store.mainItem}
           setCurrent={setCurrent}
         />

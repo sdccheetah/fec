@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
-        <InitContainer />
+        <InitContainer props="propStringTestingToSeeIfThisWorks.jpeg"/>
         <QAContainer />
         <Reviews />
       </div>

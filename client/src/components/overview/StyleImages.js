@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-const StyleImages = ({store, setCurrent}) => {
+const StyleImages = ({store, props, setCurrent}) => {
   // console.log('inside StyleImages');
   // console.log(store.currentStyle);
 
