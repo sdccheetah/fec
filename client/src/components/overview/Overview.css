@@ -74,8 +74,9 @@
   height: 600px;
   width: 950px;
   position: relative;
-  display: flex;
-  object-fit: contain;
+  /* display: flex; */
+  object-fit: cover;
+  /* z-index: 20; */
 }
 .img-zoom-container #myimage {
   flex: 2;

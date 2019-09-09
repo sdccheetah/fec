@@ -10,7 +10,7 @@ const StyleImages = ({store, setCurrent}) => {
   // console.log(store.currentStyle);
 
   if (store.currentStyle) {
-    let currentPic = store.currentStyle.photos[store.currentStyle['default?']].thumbnail_url;
+    let currentPic = store.currentStyle.photos[store.currentStyle['default?']].url;
     const onImgClick = (e) => {
       e.preventDefault();
       magnify("myimage", 3);
@@ -20,7 +20,9 @@ const StyleImages = ({store, setCurrent}) => {
     const setImage = (e) => {
       e.preventDefault();
       let current = document.getElementById('myimage');
-      current.src = e.target.src;
+      let newImg = e.target.getAttribute('key-i');
+      // console.log(store.currentStyle.photos[newImg]);
+      current.src = store.currentStyle.photos[newImg].url;
       magnify("myimage", 3);
       // imageZoom("myimage", "myresult");
     }
@@ -30,10 +32,11 @@ const StyleImages = ({store, setCurrent}) => {
       <div className="images">
         <div className="img-container img gallery">
           {store.currentStyle.photos.map((item, index) => {
-            let picture = item.thumbnail_url;
+            let picture = item.url;
             return (
               <img 
                 key={index}
+                key-i={index}
                 className="slide" 
                 src={picture} 
                 onClick={setImage} />
