@@ -99,7 +99,6 @@ class ReviewSubmission extends React.Component {
     }
 
     render() {
-        console.log(this.state.charsArr, this.state.characteristics);
         return (
             <form onSubmit={this.handleSubmit}>
             <div>
