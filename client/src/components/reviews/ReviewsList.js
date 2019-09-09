@@ -59,6 +59,14 @@ class ReviewsList extends React.Component {
             Number of Reviews: {reviews.length}
             <br/>
               {reviews.slice(0,limit).map((item) => {
+                let strRec = "";
+                let strRes = "";
+                if (parseInt(item.recommend) === 1) {
+                  strRec = "✔ I recommend this product";
+                }
+                if (item.response != null && item.response.length > 0 && !(item.response.includes("null"))) {
+                  strRes = "Response: " + item.response;
+                }
                 return (
                 <div key={item.review_id}>
                   <ul>
@@ -66,6 +74,8 @@ class ReviewsList extends React.Component {
                       <FiveStars rating={item.rating}/>
                       <div className="review-entry-name-date">{item.reviewer_name + ", " + months[item.date.substring(5,7)-1]  + " " + parseInt(item.date.substring(8,10)) + ", " + item.date.substring(0,4)}</div>
                     </div>
+                    <div className="review-list-rec">{strRec}</div> 
+                    <div className="review-list-res">{strRes}</div> 
                     <li>Summary: {item.summary}</li>
                     <li>Body: {item.body}</li>
                     <li>#Helped: {item.helpfulness}</li>
