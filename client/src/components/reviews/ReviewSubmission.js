@@ -9,7 +9,11 @@ class ReviewSubmission extends React.Component {
             oldArr: [0,0,0,0,0],
             rec: "yes",
             charsArr: [],
-            characteristics: {}
+            characteristics: {},
+            nameEntry: "Example: jackson11!",
+            emailEntry: "Example: jackson11@email.com",
+            summaryEntry: "Example: Best purchase ever!",
+            bodyEntry: "Why did you like the product or not?"
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +22,7 @@ class ReviewSubmission extends React.Component {
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
         this.handleRadioClick = this.handleRadioClick.bind(this);
         this.handleRadioRecClick = this.handleRadioRecClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
     }
 
@@ -47,8 +52,9 @@ class ReviewSubmission extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(document.getElementById("review-name-submission").value);
-        console.log(document.getElementById("review-email-submission").value);
+        console.log(this.state.nameEntry);
+        console.log(this.state.emailEntry);
+        console.log(this.state.summaryEntry);
 
     }
 
@@ -97,8 +103,25 @@ class ReviewSubmission extends React.Component {
         this.setState({
             characteristics: newChars
         });
-
     }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+          [name]: value
+        });
+
+        if(name === "summaryEntry") {
+            this.setState({
+                [name]: value.substring(0,60)
+            });
+        }
+    
+    }
+
 
     render() {
         return (
@@ -150,12 +173,18 @@ class ReviewSubmission extends React.Component {
                         </div>
                     )
                 })}
+            <label> Summary:
+                <input type="text" id="review-summary-submission" name="summaryEntry" maxlenth="60" value={this.state.summaryEntry} onChange={this.handleChange}/>
+            </label>
+            <label> Body:*
+                <input type="text" id="review-summary-body" name="bodyEntry" value={this.state.bodyEntry} onChange={this.handleChange}/>
+            </label>
             <label> Nickname:*
-                <input type="text" id="review-name-submission" />
+                <input type="text" id="review-name-submission" name="nameEntry" value={this.state.nameEntry} onChange={this.handleChange}/>
                 <div>For privacy reasons, do not use your full name or email address.</div>
             </label>
             <label> Email:*
-                <input type="text" id="review-email-submission" />
+                <input type="text" id="review-email-submission" name="emailEntry" value={this.state.emailEntry} onChange={this.handleChange}/>
                 <div>For authentication reasons, you will not be emailed.</div>
             </label>
             </div>
