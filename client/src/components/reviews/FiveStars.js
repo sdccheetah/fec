@@ -2,7 +2,7 @@ import React from 'react';
 import './reviews.css';
 
 function FiveStars(props) {
-    let rating = props.rating;
+    let rating = props.rating || 0;
     let stars = [];
     while (stars.length < 5) {
         if (rating > 1) {
