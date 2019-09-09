@@ -83,7 +83,7 @@ class ReviewsMetaData extends React.Component {
             RATINGS &amp; REVIEWS 
             <br/>
             <div>
-                <div className="review-average"> {metaData.average.toFixed(1)}</div>
+                <div className="review-average">{metaData.average.toFixed(1)}</div>
                 <FiveStars rating={metaData.average}/>
                 <br/>
             </div>

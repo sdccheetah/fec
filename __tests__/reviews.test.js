@@ -24,31 +24,24 @@ beforeAll(async () => {
 describe("Reviews", () => {
     test("access the page", async () => {
       await page.goto(APP);
-    }, 4000);
-  
-    test("assert that <title> is correct", async () => {
-      const title = await page.title();
-      expect(title).toBe(
-        "Project Greenfield"
-      );
     });
   
-  
-    test("correct page name", async () => {
-      const pageName = await page.$eval("[class=siteName]", el => el.textContent);
-      expect(pageName).toEqual("BuyThisStuff.com");
-    });
+    test("change page", async () => {
+        await page.click('[id="findItem"]',{delay: 100});
+        await page.keyboard.type("7",{delay: 100});
+        await page.click('[form="findItem"]');
+        const pageName = await page.$eval("[class=siteName]", el => el.textContent);
+        expect(pageName).toEqual("BuyThisStuff.com");
+      });
 
     test("reviews part exists", async () => {
         const name = await page.$eval("[class=Reviews-Layout]", el => el.textContent);
       });
-    
-    test("reviews metadata exists", async () => {
-    const name = await page.$eval("[class=ReviewsMeta]", el => el.textContent);
-    });
 
-    test("reviews list exists", async () => {
-    const name = await page.$eval("[class=ReviewsList]", el => el.textContent);
-    });
+    test("gives correct rating", async () => {
+        const rating = await page.$eval("[class=review-average]", el => el.textContent);
+        expect(rating).toEqual("3.4");
+
+        });
   
   });

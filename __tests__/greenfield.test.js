@@ -32,7 +32,7 @@ afterAll(() => {
 describe("Main", () => {
   test("access the page", async () => {
     await page.goto(APP);
-  }, 4000);
+  });
 
   test("assert that <title> is correct", async () => {
     const title = await page.title();
@@ -40,7 +40,6 @@ describe("Main", () => {
       "Project Greenfield"
     );
   });
-
 
   test("correct page name", async () => {
     const pageName = await page.$eval("[class=siteName]", el => el.textContent);
