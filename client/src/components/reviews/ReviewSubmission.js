@@ -13,7 +13,8 @@ class ReviewSubmission extends React.Component {
             nameEntry: "Example: jackson11!",
             emailEntry: "Example: jackson11@email.com",
             summaryEntry: "Example: Best purchase ever!",
-            bodyEntry: "Why did you like the product or not?"
+            bodyEntry: "Why did you like the product or not?",
+            bodyMin: "Minimum characters required left: 15"
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -114,10 +115,21 @@ class ReviewSubmission extends React.Component {
           [name]: value
         });
 
-        if(name === "summaryEntry") {
+        if(name === "summaryEntry" || name === "nameEntry" || name === "emailEntry") {
             this.setState({
                 [name]: value.substring(0,60)
             });
+        } else if (name === "bodyEntry") {
+            let length = this.state.bodyEntry.length;
+            if (length < 50) {
+                this.setState({
+                    bodyMin: "Minimum characters required left: " + (50 - length)
+                });
+            } else {
+                this.setState({
+                    bodyMin: "Minimum reached"
+                });
+            }
         }
     
     }
@@ -173,17 +185,18 @@ class ReviewSubmission extends React.Component {
                         </div>
                     )
                 })}
-            <label> Summary:
+            <label> Summary: <br/>
                 <input type="text" id="review-summary-submission" name="summaryEntry" maxlenth="60" value={this.state.summaryEntry} onChange={this.handleChange}/>
             </label>
-            <label> Body:*
-                <input type="text" id="review-summary-body" name="bodyEntry" value={this.state.bodyEntry} onChange={this.handleChange}/>
-            </label>
-            <label> Nickname:*
+            <div> Body:* <br/>
+                <textarea id="review-summary-body" name="bodyEntry" value={this.state.bodyEntry} onChange={this.handleChange}/> <br/>
+                {this.state.bodyMin}
+            </div>
+            <label> Nickname:* <br/>
                 <input type="text" id="review-name-submission" name="nameEntry" value={this.state.nameEntry} onChange={this.handleChange}/>
                 <div>For privacy reasons, do not use your full name or email address.</div>
             </label>
-            <label> Email:*
+            <label> Email:* <br/>
                 <input type="text" id="review-email-submission" name="emailEntry" value={this.state.emailEntry} onChange={this.handleChange}/>
                 <div>For authentication reasons, you will not be emailed.</div>
             </label>
