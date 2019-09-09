@@ -2,6 +2,7 @@ import React from 'react';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
   // console.log('Style Select:');
+  // console.log(store);
   // console.log(details);
   let currentSizes = [];
   let currentSku = 0;
