@@ -29,16 +29,19 @@ class ReviewSubmission extends React.Component {
         let characteristics = this.props.characteristics;
         let charsTable = this.props.charsTable;
         let newArr = [];
+        let charVals = {};
         for (let i = 0; i < characteristics.length; i++) {
             let levelArr = [];
             for (let k = 1; k < 6; k++) {
                 levelArr.push(charsTable[characteristics[i].name][k]);
             }
             let charObj = Object.assign({}, {name: characteristics[i].name, id: characteristics[i].id, levels: levelArr});
+            charVals[characteristics[i].id] = null;
             newArr.push(charObj);
         }
         this.setState({
-            charsArr: newArr
+            charsArr: newArr,
+            characteristics: charVals
         });
     }
 
@@ -85,11 +88,18 @@ class ReviewSubmission extends React.Component {
     }
 
     handleRadioClick(event) {
+        let chars = this.state.characteristics;
+        let newChars = Object.assign({}, chars);
+        let id = event.target.getAttribute("id");
+        newChars[id] = parseInt(event.target.value);
+        this.setState({
+            characteristics: newChars
+        });
 
     }
 
     render() {
-        console.log(this.state.charsArr);
+        console.log(this.state.charsArr, this.state.characteristics);
         return (
             <form onSubmit={this.handleSubmit}>
             <div>
@@ -129,7 +139,7 @@ class ReviewSubmission extends React.Component {
                                     return (
                                         <div className="review-characteristics-radio" key={i}>
                                             <label>
-                                                <input type="radio" value={i+1} onChange={this.handleRadioClick}/>
+                                                <input type="radio" value={i+1} onChange={this.handleRadioClick} id={item.id} checked={this.state.characteristics[item.id] === i+1}/>
                                                 {level}
                                             </label>
                                         </div>
