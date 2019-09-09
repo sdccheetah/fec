@@ -14,6 +14,7 @@ class ReviewsList extends React.Component {
                 newData.product_id = this.props.store.mainItem.product_id;
                 this.props.reviewsListAction(newData);
                 this.props.reviewsLimitAction(2);
+                this.props.reviewsPostAction([]);
             })
     }
 
@@ -65,7 +66,7 @@ class ReviewsList extends React.Component {
                 )
               })}
               {submission.map((item) => {
-                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id}/>
+                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics}/>
               })}
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
             <button onClick={this.handleAddReview.bind(this)}>Add Review</button>
