@@ -47,7 +47,9 @@ class ReviewSubmission extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(document.getElementById("form").value);
+        console.log(document.getElementById("review-name-submission").value);
+        console.log(document.getElementById("review-email-submission").value);
+
     }
 
     handleStarsHover(event) {
@@ -101,6 +103,7 @@ class ReviewSubmission extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+                <br/>
             <div>
                 {this.state.starsArr.map((item, i) => {
                     return (
@@ -125,9 +128,6 @@ class ReviewSubmission extends React.Component {
                     No
                 </label>
             </div>
-            <label> Name:
-                <input type="text" id="form" />
-            </label>
             <div>
                 {this.state.charsArr.map((item) => {
                     return (
@@ -148,6 +148,14 @@ class ReviewSubmission extends React.Component {
                         </div>
                     )
                 })}
+            <label> Nickname:
+                <input type="text" id="review-name-submission" />
+                <div>For privacy reasons, do not use your full name or email address.</div>
+            </label>
+            <label> Email:
+                <input type="text" id="review-email-submission" />
+                <div>For authentication reasons, you will not be emailed.</div>
+            </label>
             </div>
             <input type="submit" value="Submit" />
           </form>

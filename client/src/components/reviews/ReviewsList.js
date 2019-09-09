@@ -43,7 +43,14 @@ class ReviewsList extends React.Component {
           this.getReviews(this.props.store.mainItem.product_id);
       } 
         if (reviews.length === 0) {
-          return <div className="ReviewsList"></div>
+          return (
+          <div className="ReviewsList">
+            <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
+            {submission.map((item) => {
+                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable}/>
+              })}
+          </div>
+          )
         }
         return (
           <div className="ReviewsList">
@@ -65,11 +72,11 @@ class ReviewsList extends React.Component {
                 </div>
                 )
               })}
-              {submission.map((item) => {
+            <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
+            <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
+            {submission.map((item) => {
                 return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable}/>
               })}
-            <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
-            <button onClick={this.handleAddReview.bind(this)}>Add Review</button>
           </div>
         );
       }
