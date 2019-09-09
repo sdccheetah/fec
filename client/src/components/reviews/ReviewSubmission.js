@@ -103,8 +103,9 @@ class ReviewSubmission extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <br/>
+                <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
             <div>
+                Overall Rating*<br/>
                 {this.state.starsArr.map((item, i) => {
                     return (
                         <div className="single-star-container" value={i} key={i} onMouseOver={this.handleStarsHover} onClick={this.handleStarsClick} onMouseLeave={this.handleStarsLeave}>
@@ -116,7 +117,7 @@ class ReviewSubmission extends React.Component {
                 })}
             </div>
             <div className="review-radio-rec">
-                Do you recommend this product? <br/>
+                Do you recommend this product?* <br/>
                 <label>
                     <input type="radio" value="yes" onChange={this.handleRadioRecClick} checked={this.state.rec === 'yes'} />
                     Yes
@@ -129,6 +130,7 @@ class ReviewSubmission extends React.Component {
                 </label>
             </div>
             <div>
+                Characteristics:*
                 {this.state.charsArr.map((item) => {
                     return (
                         <div className="review-characteristics" key={item.id}>
@@ -148,11 +150,11 @@ class ReviewSubmission extends React.Component {
                         </div>
                     )
                 })}
-            <label> Nickname:
+            <label> Nickname:*
                 <input type="text" id="review-name-submission" />
                 <div>For privacy reasons, do not use your full name or email address.</div>
             </label>
-            <label> Email:
+            <label> Email:*
                 <input type="text" id="review-email-submission" />
                 <div>For authentication reasons, you will not be emailed.</div>
             </label>

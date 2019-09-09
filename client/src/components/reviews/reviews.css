@@ -15,6 +15,10 @@
     max-width: 50%;
 }
 
+.ReviewSubmission {
+    color: #4d4d4d;
+}
+
 .review-average {
     float: left;
     font-size: 400%;

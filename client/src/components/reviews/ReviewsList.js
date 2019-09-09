@@ -39,6 +39,7 @@ class ReviewsList extends React.Component {
         let limit = this.props.store.reviewsList.limit;
         let submission = this.props.store.reviewsList.submit;
         let months = this.props.store.reviewsDefaults.months;
+        let details = this.props.store.mainItem.details;
         if (parseInt(this.props.store.reviewsList.list.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
           this.getReviews(this.props.store.mainItem.product_id);
       } 
@@ -75,7 +76,7 @@ class ReviewsList extends React.Component {
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
             <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
             {submission.map((item) => {
-                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable}/>
+                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>
               })}
           </div>
         );
