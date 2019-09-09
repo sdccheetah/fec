@@ -7,7 +7,9 @@ class ReviewSubmission extends React.Component {
         this.state = {
             starsArr: [0,0,0,0,0],
             oldArr: [0,0,0,0,0],
-            rec: "yes"
+            rec: "yes",
+            charsArr: [],
+            characteristics: {}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,11 +17,33 @@ class ReviewSubmission extends React.Component {
         this.handleStarsClick = this.handleStarsClick.bind(this);
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
         this.handleRadioClick = this.handleRadioClick.bind(this);
+        this.handleRadioRecClick = this.handleRadioRecClick.bind(this);
+
+    }
+
+    componentDidMount(event) {
+        this.getCharacteristics();
+    }
+
+    getCharacteristics() {
+        let characteristics = this.props.characteristics;
+        let charsTable = this.props.charsTable;
+        let newArr = [];
+        for (let i = 0; i < characteristics.length; i++) {
+            let levelArr = [];
+            for (let k = 1; k < 6; k++) {
+                levelArr.push(charsTable[characteristics[i].name][k]);
+            }
+            let charObj = Object.assign({}, {name: characteristics[i].name, id: characteristics[i].id, levels: levelArr});
+            newArr.push(charObj);
+        }
+        this.setState({
+            charsArr: newArr
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.props);
         console.log(document.getElementById("form").value);
     }
 
@@ -54,14 +78,18 @@ class ReviewSubmission extends React.Component {
         });
     }
 
-    handleRadioClick(event) {
+    handleRadioRecClick(event) {
         this.setState({
             rec: event.target.value
         });
     }
 
+    handleRadioClick(event) {
+
+    }
+
     render() {
-        console.log(this.props.characteristics);
+        console.log(this.state.charsArr);
         return (
             <form onSubmit={this.handleSubmit}>
             <div>
@@ -75,22 +103,43 @@ class ReviewSubmission extends React.Component {
                     );
                 })}
             </div>
-            <div className="review-radio">
+            <div className="review-radio-rec">
                 Do you recommend this product? <br/>
                 <label>
-                    <input type="radio" value="yes" onChange={this.handleRadioClick} checked={this.state.rec === 'yes'} />
+                    <input type="radio" value="yes" onChange={this.handleRadioRecClick} checked={this.state.rec === 'yes'} />
                     Yes
                 </label>
             </div>
-            <div className="review-radio">
+            <div className="review-radio-rec">
                 <label>
-                    <input type="radio" value="no" onChange={this.handleRadioClick} checked={this.state.rec === 'no'}/>
+                    <input type="radio" value="no" onChange={this.handleRadioRecClick} checked={this.state.rec === 'no'}/>
                     No
                 </label>
             </div>
             <label> Name:
                 <input type="text" id="form" />
             </label>
+            <div>
+                {this.state.charsArr.map((item) => {
+                    return (
+                        <div className="review-characteristics" key={item.id}>
+                            {item.name}:
+                            <div className="review-characteristics-options"> 
+                                {item.levels.map((level, i) => {
+                                    return (
+                                        <div className="review-characteristics-radio" key={i}>
+                                            <label>
+                                                <input type="radio" value={i+1} onChange={this.handleRadioClick}/>
+                                                {level}
+                                            </label>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
             <input type="submit" value="Submit" />
           </form>
         )
