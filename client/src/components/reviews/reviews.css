@@ -15,6 +15,22 @@
     max-width: 50%;
 }
 
+.review-average {
+    float: left;
+    font-size: 400%;
+    font-weight: bold;
+}
+
+.review-entry-top {
+    display: flex;
+}
+
+.review-entry-name-date {
+    position: relative;
+    float: right;
+
+}
+
 .percentage-bar {
     position: relative;
     height: 10px;

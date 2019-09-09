@@ -5,7 +5,7 @@ const store = createStore(rootReducer);
 
 store.subscribe(() => {
   // console.log('get state', store.getState());
-  //console.log(store.getState());
+  // console.log(store.getState());
 });
 
 export default store;

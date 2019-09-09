@@ -17,12 +17,12 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
         getInitMain={getInitMain}
         getStyles={getStyles}
       />
-      <Container>
+      {/* <Container> */}
         <StyleImages
           store={store.mainItem}
           setCurrent={setCurrent}
         />
-      </Container>
+      {/* </Container> */}
       <ProductInfo
         store={store.mainItem}
       />

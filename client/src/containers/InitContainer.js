@@ -7,7 +7,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInitMain: (mainItem) => dispatch(initializeMain({mainItem})),
+  getInitMain: (mainItem, prodId) => dispatch(initializeMain({mainItem, prodId})),
   getStyles: (styles) => dispatch(getStyles({styles})),
   setCurrent: (style) => dispatch(setCurrent({style}))
 });

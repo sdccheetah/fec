@@ -5,10 +5,12 @@ let characteristics = {
     Quality: {1: "Poor", 2: "Below average", 3: "What I expected", 4: "Pretty great", 5: "Perfect"},
     Length: {1: "Runs Short", 2: "SRuns slightly short", 3: "Perfect", 4: "Runs slightly long", 5: "Runs long"},
     Fit: {1: "Runs tight", 2: "Runs slightly tight", 3: "Perfect", 4: "Runs slightly long", 5: "Runs long"}
-
 }
+let months = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
-const reviewsDefaultsReducer = (state = characteristics, action) => {
+const reviewsDefaultsReducer = (state = {charsTable: characteristics, months: months}, action) => {
     switch (action.type) {
       default:
         return state;
