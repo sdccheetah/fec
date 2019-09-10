@@ -78,6 +78,11 @@ class ReviewsList extends React.Component {
                     <div className="review-list-rec">{strRec}</div> <br/>
                     <div className="review-list-res">{strRes}</div>
                     <div>#Helped: {item.helpfulness}</div>
+                    <div className="review-photos">
+                    {item.photos.map((item) => {
+                      return <img key={item.id} className="review-photo" src={item.url}/>
+                    })} 
+                    </div>
                   </ul>
                 </div>
                 )

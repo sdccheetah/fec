@@ -147,6 +147,16 @@
     display: relative;
 }
 
+.review-photos {
+    display: flex;
+}
+
+.review-photo {
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+}
+
 /* .review-list-rec {
     text-align: center;
 } */
