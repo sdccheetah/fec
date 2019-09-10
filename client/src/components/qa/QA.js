@@ -81,43 +81,49 @@ class QA extends React.Component {
             }
           };
           getAnswers();
+          console.log('each question', item);
           return (
             <div key={item.question_id}>
               <div>
-                <Typography>{item.question_body}</Typography>
-              </div>
-              <div>
+                <Typography>Q: {item.question_body}</Typography>
                 <Typography>
+                  Did this help? {item.question_helpfulness}
+                  <br></br>
                   <Moment format='MM/DD/YYYY' date={item.question_date} />
                 </Typography>
               </div>
-              <div>
-                {/* <Typography>
+              {/* <div>
+                <Typography>
                   Did this help? {item.question_helpfulness}
-                </Typography> */}
-                <QuestionButtons
-                  loadMore={this.loadMore.bind(this)}
-                  collapesQuestions={this.collapesQuestions.bind(this)}
-                  showCollapes={this.state.load > 4}
-                  showLoadMore={this.state.load < qq.length}
-                />
-              </div>
+                  <br></br>
+                  <Moment format='MM/DD/YYYY' date={item.question_date} />
+                </Typography>
+              </div> */}
 
               <div>
-                {cleaned.map((each, index) => {
-                  return (
-                    <ul key={index}>
-                      <li>
-                        <Typography>{each}</Typography>
-                      </li>
-                    </ul>
-                  );
-                })}
+                <Typography>
+                  A:
+                  {cleaned.map((each, index) => {
+                    return (
+                      <ul key={index}>
+                        <li>
+                          <Typography>{each}</Typography>
+                        </li>
+                      </ul>
+                    );
+                  })}
+                </Typography>
               </div>
               <hr />
             </div>
           );
         })}
+        <QuestionButtons
+          loadMore={this.loadMore.bind(this)}
+          collapesQuestions={this.collapesQuestions.bind(this)}
+          showCollapes={this.state.load > 4}
+          showLoadMore={this.state.load < qq.length}
+        />
       </div>
     );
   }

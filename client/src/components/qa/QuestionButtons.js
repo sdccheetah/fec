@@ -55,7 +55,7 @@ const QuestionButtons = props => {
           onClick={() => {
             props.loadMore();
           }}>
-          Load More Answers
+          Load More Questions
         </Button>
       ) : props.showCollapes ? (
         <Button
