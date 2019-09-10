@@ -136,6 +136,17 @@
     display: inline-block;
 }
 
+.review-list-summary {
+    font-size: 130%;
+    font-weight: bold;
+}
+
+.Reviews-List-Total {
+    font-size: 130%;
+    font-weight: bold;
+    display: relative;
+}
+
 /* .review-list-rec {
     text-align: center;
 } */

@@ -56,8 +56,7 @@ class ReviewsList extends React.Component {
         return (
           <div className="ReviewsList">
             <br/>
-            Number of Reviews: {reviews.length}
-            <br/>
+            <ul><div className="Reviews-List-Total">{reviews.length} reviews, sorted by relevance</div></ul>
               {reviews.slice(0,limit).map((item) => {
                 let strRec = "";
                 let strRes = "";
@@ -73,21 +72,23 @@ class ReviewsList extends React.Component {
                     <div className="review-entry-top">
                       <FiveStars rating={item.rating}/>
                       <div className="review-entry-name-date">{item.reviewer_name + ", " + months[item.date.substring(5,7)-1]  + " " + parseInt(item.date.substring(8,10)) + ", " + item.date.substring(0,4)}</div>
-                    </div>
-                    <div className="review-list-rec">{strRec}</div> 
-                    <div className="review-list-res">{strRes}</div> 
-                    <li>Summary: {item.summary}</li>
-                    <li>Body: {item.body}</li>
-                    <li>#Helped: {item.helpfulness}</li>
+                    </div> <br/>
+                    <div className="review-list-summary">{item.summary}</div> <br/>
+                    <div>{item.body}</div> <br/>
+                    <div className="review-list-rec">{strRec}</div> <br/>
+                    <div className="review-list-res">{strRes}</div>
+                    <div>#Helped: {item.helpfulness}</div>
                   </ul>
                 </div>
                 )
               })}
+            <ul>
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
             <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
             {submission.map((item) => {
                 return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>
               })}
+            </ul>
           </div>
         );
       }
