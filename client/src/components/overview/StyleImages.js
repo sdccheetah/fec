@@ -79,7 +79,7 @@ const StyleImages = ({store, setCurrent}) => {
             onClick={onImgClick}
             width="100%"
             height="100%"/>
-          <button className="w3-button w3-display-left" onClick={minusDivs}>&#10094;</button>
+          <button className="w3-button button-left" onClick={minusDivs}>&#10094;</button>
           <button className="w3-button w3-display-right" onClick={plusDivs}>&#10095;</button>
         </div>
 
