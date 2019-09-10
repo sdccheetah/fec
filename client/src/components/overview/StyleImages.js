@@ -51,6 +51,8 @@ const StyleImages = ({store, setCurrent}) => {
       e.preventDefault();
       let current = document.getElementById('myimage');
       let newImg = e.target.getAttribute('key-i');
+      // document.getElementsByClassName('active').classList.remove('active');
+      e.target.className = "slide active";
       // console.log(store.currentStyle.photos[newImg]);
       current.src = store.currentStyle.photos[newImg].url;
       magnify("myimage", 3);

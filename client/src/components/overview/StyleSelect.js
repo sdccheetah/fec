@@ -1,8 +1,8 @@
 import React from 'react';
 
 const StyleSelect = ({store, setCurrent, current, details}) => {
-  // console.log('Style Select:');
-  // console.log(store);
+  console.log('Style Select:');
+  console.log(store);
   // console.log(details);
 
   let currentSizes = [];
@@ -61,7 +61,13 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
                   key={index}
                   style={color} 
                   onClick={selectColor}
-                  id={index}></div>
+                  id={index}>
+                  <img className="style-thumbnail" 
+                    src={item.photos[item['default?']].url}
+                    key={index}
+                    id={index}
+                    onClick={selectColor}/>
+                </div>
               );
             })}
           </div>
