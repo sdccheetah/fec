@@ -59,16 +59,6 @@ class ReviewsList extends React.Component {
             <br/>
             <ul><div className="Reviews-List-Total">{reviews.length} reviews, sorted by relevance</div></ul>
               {reviews.slice(0,limit).map((item) => {
-                let strRec = "";
-                let strRes1 = "";
-                let strRes2 = ""
-                if (parseInt(item.recommend) === 1) {
-                  strRec = "✔ I recommend this product";
-                }
-                if (item.response != null && item.response.length > 0 && !(item.response.includes("null"))) {
-                  strRes1 = "Response:";
-                  strRes2 = item.response;
-                }
                 return (
                 <div key={item.review_id}>
                   <ul>
@@ -78,14 +68,16 @@ class ReviewsList extends React.Component {
                     </div> <br/>
                     <div className="review-list-summary">{item.summary}</div> <br/>
                     <div>{item.body}</div> <br/>
-                    <div className="review-list-rec">{strRec}</div> <br/>
-                    <div className="review-list-res">{strRes1}</div>
-                    <div className="review-list-res">{strRes2}</div>
+                    {parseInt(item.recommend) === 1 && (
+                      <div><div className="review-list-rec">✔ I recommend this product</div><br/></div>
+                    )}
+                    {item.response != null && item.response.length > 0 && !(item.response.includes("null")) && (
+                      <div className="review-list-res">Response:<br/>{item.response}</div>
+                    )}
                     <div>#Helped: {item.helpfulness}</div>
                     <div className="review-photos">
                     {item.photos.map((item) => {
                       return <ImageComponent source={item.url}/>
-                      //return <img key={item.id} className="review-photo" src={item.url}/>
                     })} 
                     </div>
                   </ul>
