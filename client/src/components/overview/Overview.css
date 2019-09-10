@@ -98,7 +98,7 @@
 
 #styleSelection {
   display: grid;
-  grid-template-columns: 60px 60px 60px;
+  grid-template-columns: 60px 60px 60px 60px;
 }
 
 .size {
@@ -113,7 +113,7 @@
   left: 10px;
 }
 #sizeSelection {
-  background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+  /* background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0; */
   overflow: hidden;
   font-size: 14px;
   height: 29px;

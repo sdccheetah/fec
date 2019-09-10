@@ -4,6 +4,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
   // console.log('Style Select:');
   // console.log(store);
   // console.log(details);
+
   let currentSizes = [];
   let currentSku = 0;
   let quant = 1;
@@ -36,6 +37,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
   }
 
   if (store) {
+
     let quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     for (let i in current.skus) {
       currentSizes.push(i);
