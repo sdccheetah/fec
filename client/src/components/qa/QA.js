@@ -1,9 +1,10 @@
 import React from 'react';
 const axios = require('axios');
 import Moment from 'react-moment';
-import { Typography, Grid, Button } from '@material-ui/core';
+import { Typography, Container, Modal, Grid, Button } from '@material-ui/core';
 import Search from './Search.js';
-
+import { makeStyles } from '@material-ui/core/styles';
+import QuestionButtons from './QuestionButtons.js';
 class QA extends React.Component {
   constructor(props) {
     super(props);
@@ -12,8 +13,18 @@ class QA extends React.Component {
     };
     this.loadMore = this.loadMore.bind(this);
   }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.store.product_id !== prevProps.product_id ||
+      this.props.searchKeyword !== prevProps.searchKeyword
+    ) {
+      this.props.getData(this.props.store.product_id);
+    }
+  }
+
   loadMore() {
-    if (this.state.load < this.props.questions.results.length)
+    console.log('questions', this.props.store.questions);
+    if (this.state.load < this.props.store.questions.length)
       this.setState({
         load: this.state.load + 2
       });
@@ -47,6 +58,11 @@ class QA extends React.Component {
   componentDidMount() {
     this.getData(this.props.store.mainItem.product_id);
   }
+  collapesQuestions() {
+    this.setState({
+      load: 4
+    });
+  }
 
   render() {
     // check to see if product id is the same
@@ -76,10 +92,17 @@ class QA extends React.Component {
                 </Typography>
               </div>
               <div>
-                <Typography>
+                {/* <Typography>
                   Did this help? {item.question_helpfulness}
-                </Typography>
+                </Typography> */}
+                <QuestionButtons
+                  loadMore={this.loadMore.bind(this)}
+                  collapesQuestions={this.collapesQuestions.bind(this)}
+                  showCollapes={this.state.load > 4}
+                  showLoadMore={this.state.load < qq.length}
+                />
               </div>
+
               <div>
                 {cleaned.map((each, index) => {
                   return (

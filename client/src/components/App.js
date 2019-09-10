@@ -8,9 +8,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
-        <InitContainer />
+        {/* <InitContainer /> */}
         <QAContainer />
-        <Reviews />
+        {/* <Reviews /> */}
       </div>
     );
   }
