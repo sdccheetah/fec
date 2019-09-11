@@ -30,11 +30,6 @@ class ReviewsList extends React.Component {
       this.props.reviewsLimitAction(limit);
     }
 
-    handleAddReview(event) {
-      event.preventDefault();
-      this.props.reviewsPostAction([true]);
-    }
-
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
@@ -47,10 +42,7 @@ class ReviewsList extends React.Component {
         if (reviews.length === 0) {
           return (
           <div className="ReviewsList">
-            <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
-            {submission.map((item) => {
-                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable}/>
-              })}
+            {details !== undefined && (<ReviewSubmission product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>)}
           </div>
           )
         }
@@ -86,10 +78,7 @@ class ReviewsList extends React.Component {
               })}
             <ul>
             <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
-            <button onClick={this.handleAddReview.bind(this)}>Add Review</button> <br/>
-            {submission.map((item) => {
-                return <ReviewSubmission key={item} product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>
-              })}
+            {details !== undefined && (<ReviewSubmission product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>)}
             </ul>
           </div>
         );

@@ -5,6 +5,7 @@ class ReviewSubmission extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            showing: false,
             starsArr: [0,0,0,0,0],
             oldArr: [0,0,0,0,0],
             rec: "yes",
@@ -23,6 +24,7 @@ class ReviewSubmission extends React.Component {
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
         this.handleRadioClick = this.handleRadioClick.bind(this);
         this.handleRadioRecClick = this.handleRadioRecClick.bind(this);
+        this.handleAddReview = this.handleAddReview.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
     }
@@ -133,10 +135,24 @@ class ReviewSubmission extends React.Component {
         }
     
     }
+    
+    handleAddReview(event) {
+      event.preventDefault();
+      this.setState({
+          showing: true
+      }, () => {
+        let modal = document.getElementById("review-submission");
+        modal.style.display = "block";
+        console.log(modal);
+      });
+    }
 
 
     render() {
         return (
+            <div>
+            <button onClick={this.handleAddReview}>Add Review</button> <br/>
+            {this.state.showing && (<div className="review-modal" id="review-submission"><div className="review-modal-content"><div className="review-form">
             <form onSubmit={this.handleSubmit}>
                 <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
             <div>
@@ -203,6 +219,7 @@ class ReviewSubmission extends React.Component {
             </div>
             <input type="submit" value="Submit" />
           </form>
+            </div></div></div>)}</div>
         )
     }
 }
