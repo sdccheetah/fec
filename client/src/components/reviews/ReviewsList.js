@@ -71,7 +71,7 @@ class ReviewsList extends React.Component {
                     {item.response != null && item.response.length > 0 && !(item.response.includes("null")) && (
                       <div className="review-list-res">Response:<br/>{item.response}</div>
                     )}
-                    <div>#Helped: {item.helpfulness}</div>
+                    <div>Helpful? Yes({item.helpfulness})   |    Report</div>
                     <div className="review-photos">
                     {item.photos.map((item) => {
                       return <ImageComponent source={item.url} id={item.id} key={item.id}/>
