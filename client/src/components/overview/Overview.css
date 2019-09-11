@@ -152,10 +152,15 @@
   text-decoration: none;
   cursor: pointer;
 }
-
-
-.mode-buttons {
-  float: left;
+.mag-click {
+  position: absolute;
+  top: 566px;
+  left: 395px;
+}
+.mod-click {
+  position: absolute;
+  top: 566px;
+  left: 475px;
 }
 
 .img-magnifier-glass {

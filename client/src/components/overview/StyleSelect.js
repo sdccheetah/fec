@@ -76,10 +76,6 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
           <h4>Category > {details.category}</h4>
           <h1>{details.name}</h1>
           {prices()}
-          {/* <div>
-            <h5 className="orig-price">{"$" + current.original_price}</h5>
-            <h5 className="sale-price">{"Sale: $" + current.sale_price}</h5>
-          </div> */}
         </div>
         <div className="select-container">
           <h3>Selected Style: {current.name}</h3>

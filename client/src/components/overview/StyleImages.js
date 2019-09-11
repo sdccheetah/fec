@@ -1,9 +1,6 @@
 import React from 'react';
 import { magnify, setModal } from './helpers.js';
 import StyleSelect from './StyleSelect.js';
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 
 const StyleImages = ({store, setCurrent, reviews}) => {
   // console.log('inside StyleImages');
@@ -105,6 +102,8 @@ const StyleImages = ({store, setCurrent, reviews}) => {
           </div>
           <button className="w3-button button-left" onClick={minusDivs}>&#10094;</button>
           <button className="w3-button w3-display-right" onClick={plusDivs}>&#10095;</button>
+          <button className="w3-button mag-click" onClick={setMagClick}>Magnify</button>
+          <button className="w3-button mod-click" onClick={setModClick}>Expand</button>
         </div>
 
         <StyleSelect 
@@ -114,8 +113,8 @@ const StyleImages = ({store, setCurrent, reviews}) => {
           details={store.details}
           reviews={reviews}/>
 
-        <button className="mode-buttons" onClick={setMagClick}>Set Mag</button>
-        <button className="mode-buttons" onClick={setModClick}>Set Mod</button>
+        {/* <button className="mode-buttons" onClick={setMagClick}>Set Mag</button>
+        <button className="mode-buttons" onClick={setModClick}>Set Mod</button> */}
       </div>
     );
   } else {
