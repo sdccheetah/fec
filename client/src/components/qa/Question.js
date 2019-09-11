@@ -43,7 +43,7 @@ const Question = props => {
               <Typography variant='h6'>A: </Typography>
             </Grid>
             <Grid item>
-              {console.log(props.question)}
+              {/* {console.log(props.question)} */}
               <Answers questionId={props.question.question_id} />
             </Grid>
           </Grid>

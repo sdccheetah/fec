@@ -4,7 +4,7 @@ import Search from './Search';
 import { Typography, Box } from '@material-ui/core';
 
 const QuestionAndAnswers = props => {
-  console.log(props);
+  //console.log(props);
   return (
     <Box id='QA'>
       <Typography variant='h5'>QUESTIONS/ANSWERS</Typography>
