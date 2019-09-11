@@ -1,5 +1,6 @@
 import React from 'react';
 import './reviews.css';
+const axios = require('axios');
 
 class ReviewSubmission extends React.Component {
     constructor(props) {
@@ -56,10 +57,33 @@ class ReviewSubmission extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.nameEntry);
-        console.log(this.state.emailEntry);
-        console.log(this.state.summaryEntry);
+        let rating = 0;
+        let charValues = Object.values(this.state.characteristics);
+        for (let i = 0; i < charValues.length; i++) {
+            if (charValues[i] === null) return;
+        }
 
+        for (let i = 0; i < this.state.oldArr.length; i++) {
+            if (this.state.oldArr[i] === 1) {
+                rating++;
+            }
+        }
+        if (rating === 0 || this.state.bodyEntry.length < 50) return;
+        let submission = {
+            rating: rating,
+            summary: this.state.summaryEntry,
+            body: this.state.bodyEntry,
+            recommended: (this.state.rec === "yes") ? "true" : "false",
+            name: this.state.nameEntry,
+            email: this.state.emailEntry,
+            photos: [],
+            characteristics: this.state.characteristics
+        };
+        //console.log(this.props.product_id);
+        axios.post(`http://18.217.220.129/reviews/${this.props.product_id}`, submission)
+            .then(response => {
+                //console.log(response);
+            })
     }
 
     handleStarsHover(event) {
