@@ -6,12 +6,11 @@ import SocialMedia from './overview/SocialMedia.js';
 import css from './overview/Overview.css';
 import CssBaseLine from '@material-ui/core/CssBaseline';
 
-const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
-
+const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
   return (
     <React.Fragment>
       <CssBaseLine />
-      <BasicList 
+      <BasicList
         store={store}
         getInitMain={getInitMain}
         getStyles={getStyles}
@@ -28,7 +27,7 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
       />
       <SocialMedia />
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default InitPage;

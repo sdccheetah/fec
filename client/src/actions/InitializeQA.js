@@ -1,6 +1,6 @@
 const initializeQA = questions => ({
   type: 'QA',
-  questions: questions
+  payload: questions
 });
 
 export { initializeQA };
