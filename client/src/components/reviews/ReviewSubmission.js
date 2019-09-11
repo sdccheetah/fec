@@ -149,7 +149,8 @@ class ReviewSubmission extends React.Component {
 
     handleStopReview(event) {
         event.preventDefault();
-        if(event.target.getAttribute("class") === "review-modal-content") {
+        let name = event.target.getAttribute("class");
+        if(name === "review-modal-content" || name === "review-form-close") {
             this.setState({
                 showing: false
             });
@@ -162,6 +163,7 @@ class ReviewSubmission extends React.Component {
             <div>
             <button onClick={this.handleAddReview}>Add Review</button> <br/>
             {this.state.showing && (<div className="review-modal" id="review-submission" onClick={this.handleStopReview}><div className="review-modal-content"><div className="review-form">
+            <span className="review-form-close" onClick={this.handleStopReview}>&times;</span>
             <form onSubmit={this.handleSubmit}>
                 <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
             <div>
