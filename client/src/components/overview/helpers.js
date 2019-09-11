@@ -1,4 +1,4 @@
-function magnify(imgID, zoom) {
+export function magnify(imgID, zoom) {
   let img = document.getElementById(imgID);
 
   if (document.getElementsByClassName("img-magnifier-glass")) {
@@ -51,11 +51,18 @@ function magnify(imgID, zoom) {
 }
 
 
-function setModal() {
-  let modal = document.getElementById("myModal");
+export function setModal(imgName = "myimage", modalID = "myModal") {
+  let modal = document.getElementById(modalID);
 
-  let img = document.getElementById("myImg");
+  let img = document.getElementById(imgName);
+  let modalImg = document.getElementById("img01");
+  img.onClick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+
+  let span = document.getElementsByClassName("close")[0];
+  span.onClick = function() {
+    modal.style.display = "none";
+  }
 }
-
-
-export default magnify;

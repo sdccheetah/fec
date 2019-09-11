@@ -1,5 +1,5 @@
 import React from 'react';
-import magnify from './helpers.js';
+import { magnify, setModal } from './helpers.js';
 import StyleSelect from './StyleSelect.js';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -13,6 +13,23 @@ const StyleImages = ({store, setCurrent, reviews}) => {
     let currentPic = store.currentStyle.photos[store.currentStyle['default?']].url;
     let slideIndex = store.currentStyle['default?'];
     let tempPrevImg = null;
+
+    const setMagClick = function() {
+      let temp = document.getElementById("myimage");
+      temp.removeEventListener("click", setModal);
+      temp.addEventListener("click", onImgClick);
+    }
+    const setModClick = function() {
+      if (document.getElementsByClassName("img-magnifier-glass")) {
+        let toRemove = document.getElementsByClassName("img-magnifier-glass");
+        while (toRemove.length > 0) {
+          toRemove[0].parentNode.removeChild(toRemove[0]);
+        }
+      }
+      let temp = document.getElementById("myimage");
+      temp.removeEventListener("click", onImgClick);
+      temp.addEventListener("click", setModal);
+    }
 
     const plusDivs = function() {
       slideIndex++;
@@ -78,10 +95,14 @@ const StyleImages = ({store, setCurrent, reviews}) => {
         <div className="img-zoom-container img">
           <img id="myimage" 
             src={currentPic}
-            onClick={onImgClick}
+            // onClick={onImgClick}
             width="100%"
             height="100%"
             alt="Main Product Image"/>
+          <div id="myModal" className="modal">
+            <span className="close">&times;</span>
+            <img className="modal-content" id="img01" />
+          </div>
           <button className="w3-button button-left" onClick={minusDivs}>&#10094;</button>
           <button className="w3-button w3-display-right" onClick={plusDivs}>&#10095;</button>
         </div>
@@ -92,6 +113,9 @@ const StyleImages = ({store, setCurrent, reviews}) => {
           current={store.currentStyle}
           details={store.details}
           reviews={reviews}/>
+
+        <button className="mode-buttons" onClick={setMagClick}>Set Mag</button>
+        <button className="mode-buttons" onClick={setModClick}>Set Mod</button>
       </div>
     );
   } else {
