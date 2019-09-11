@@ -51,18 +51,18 @@ export function magnify(imgID, zoom) {
 }
 
 
-export function setModal(imgName = "myimage", modalID = "myModal") {
-  let modal = document.getElementById(modalID);
+export function setModal() {
+  let modal = document.getElementById("myModal");
 
-  let img = document.getElementById(imgName);
+  let img = document.getElementById("myimage");
   let modalImg = document.getElementById("img01");
-  img.onClick = function() {
+  img.addEventListener("click", function() {
     modal.style.display = "block";
     modalImg.src = this.src;
-  }
+  });
 
   let span = document.getElementsByClassName("close")[0];
-  span.onClick = function() {
+  span.addEventListener("click", function() {
     modal.style.display = "none";
-  }
+  });
 }
