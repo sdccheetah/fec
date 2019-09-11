@@ -1,11 +1,10 @@
 import React from 'react';
+import magnify from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
   // console.log('Style Select:');
   // console.log(details);
-  // console.log(details);
-
   let currentSizes = [];
   let currentSku = 0;
   let quant = 1;
@@ -24,7 +23,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     for (let i = 0; i < clearClass.length; i++) {
       clearClass[i].className = 'slide';
     }
-  };
+};
 
   const onAdd = (e) => {
     e.preventDefault();
