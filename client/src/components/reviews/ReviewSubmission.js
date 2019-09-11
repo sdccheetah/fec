@@ -1,10 +1,14 @@
 import React from 'react';
 import './reviews.css';
+const axios = require('axios');
+const {API_KEY} = require('./config');
+const client = filestack.init(API_KEY);
 
 class ReviewSubmission extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            showing: false,
             starsArr: [0,0,0,0,0],
             oldArr: [0,0,0,0,0],
             rec: "yes",
@@ -14,7 +18,8 @@ class ReviewSubmission extends React.Component {
             emailEntry: "Example: jackson11@email.com",
             summaryEntry: "Example: Best purchase ever!",
             bodyEntry: "Why did you like the product or not?",
-            bodyMin: "Minimum characters required left: 15"
+            bodyMin: "Minimum characters required left: 15",
+            photos: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +28,10 @@ class ReviewSubmission extends React.Component {
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
         this.handleRadioClick = this.handleRadioClick.bind(this);
         this.handleRadioRecClick = this.handleRadioRecClick.bind(this);
+        this.handleStopReview = this.handleStopReview.bind(this);
+        this.handleAddReview = this.handleAddReview.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
     }
 
@@ -53,10 +61,50 @@ class ReviewSubmission extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.nameEntry);
-        console.log(this.state.emailEntry);
-        console.log(this.state.summaryEntry);
+        let rating = 0;
+        let charValues = Object.values(this.state.characteristics);
+        for (let i = 0; i < charValues.length; i++) {
+            if (charValues[i] === null) return;
+        }
 
+        for (let i = 0; i < this.state.oldArr.length; i++) {
+            if (this.state.oldArr[i] === 1) {
+                rating++;
+            }
+        }
+        if (rating === 0 || this.state.bodyEntry.length < 50) return;
+        let submission = {
+            rating: rating,
+            summary: this.state.summaryEntry,
+            body: this.state.bodyEntry,
+            recommended: (this.state.rec === "yes") ? "true" : "false",
+            name: this.state.nameEntry,
+            email: this.state.emailEntry,
+            photos: this.state.photos,
+            characteristics: this.state.characteristics
+        };
+        //console.log(this.props.product_id);
+        axios.post(`http://18.217.220.129/reviews/${this.props.product_id}`, submission)
+            .then(response => {
+                //console.log(response);
+                this.setState({
+                    showing: false,
+                    starsArr: [0,0,0,0,0],
+                    oldArr: [0,0,0,0,0],
+                    rec: "yes",
+                    charsArr: [],
+                    characteristics: {},
+                    nameEntry: "Example: jackson11!",
+                    emailEntry: "Example: jackson11@email.com",
+                    summaryEntry: "Example: Best purchase ever!",
+                    bodyEntry: "Why did you like the product or not?",
+                    bodyMin: "Minimum characters required left: 15",
+                    photos: []
+                });
+            })
+            .then(nothing => {
+                this.props.getReviews();
+            })
     }
 
     handleStarsHover(event) {
@@ -133,10 +181,72 @@ class ReviewSubmission extends React.Component {
         }
     
     }
+    
+    handleAddReview(event) {
+      event.preventDefault();
+      this.setState({
+          showing: true
+      }, () => {
+        let modal = document.getElementById("review-submission");
+        modal.style.display = "block";
+      });
+    }
+
+    handleStopReview(event) {
+        event.preventDefault();
+        let name = event.target.getAttribute("class");
+        if(name === "review-modal-content" || name === "review-form-close") {
+            this.setState({
+                showing: false
+            });
+        }
+    }
+
+    handleUpload(event) {
+        event.preventDefault();
+        let photos = [];
+        let process = (uploadData) => {
+            let allPhotos = uploadData.filesUploaded;
+            for (let i = 0; i < allPhotos.length; i++) {
+                photos.push(allPhotos[i].url);
+            }
+            this.setState({
+                photos: photos
+            });
+        }
+        const options = {
+            "maxFiles": 5,
+            "accept": [
+              "image/jpeg",
+              "image/jpg",
+              "image/png",
+              "image/bmp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "storeTo": {
+              "container": "devportal-customers-assets",
+              "path": "user-uploads/",
+              "region": "us-east-1"
+            },
+            "fromSources": [
+              "local_file_system"
+            ],
+            "uploadInBackground": false,
+            onUploadDone: process
+          };
+
+        client.picker(options).open();
+
+    }
 
 
     render() {
         return (
+            <div>
+            <button onClick={this.handleAddReview}>Add Review</button> <br/>
+            {this.state.showing && (<div className="review-modal" id="review-submission"><div className="review-modal-content"><div className="review-form">
+            <span className="review-form-close" onClick={this.handleStopReview}>&times;</span>
             <form onSubmit={this.handleSubmit}>
                 <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
             <div>
@@ -201,8 +311,15 @@ class ReviewSubmission extends React.Component {
                 <div>For authentication reasons, you will not be emailed.</div>
             </label>
             </div>
+            <div className="review-photos">
+                {this.state.photos.map((url) => {
+                    return <img className="review-photo" src={url} key={url}></img>
+                })}
+            </div>
+            <button onClick={this.handleUpload}>Upload Photos</button>
             <input type="submit" value="Submit" />
           </form>
+            </div></div></div>)}</div>
         )
     }
 }
