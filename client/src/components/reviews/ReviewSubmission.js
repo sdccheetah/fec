@@ -24,6 +24,7 @@ class ReviewSubmission extends React.Component {
         this.handleStarsLeave = this.handleStarsLeave.bind(this);
         this.handleRadioClick = this.handleRadioClick.bind(this);
         this.handleRadioRecClick = this.handleRadioRecClick.bind(this);
+        this.handleStopReview = this.handleStopReview.bind(this);
         this.handleAddReview = this.handleAddReview.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
@@ -143,8 +144,16 @@ class ReviewSubmission extends React.Component {
       }, () => {
         let modal = document.getElementById("review-submission");
         modal.style.display = "block";
-        console.log(modal);
       });
+    }
+
+    handleStopReview(event) {
+        event.preventDefault();
+        if(event.target.getAttribute("class") === "review-modal-content") {
+            this.setState({
+                showing: false
+            });
+        }
     }
 
 
@@ -152,7 +161,7 @@ class ReviewSubmission extends React.Component {
         return (
             <div>
             <button onClick={this.handleAddReview}>Add Review</button> <br/>
-            {this.state.showing && (<div className="review-modal" id="review-submission"><div className="review-modal-content"><div className="review-form">
+            {this.state.showing && (<div className="review-modal" id="review-submission" onClick={this.handleStopReview}><div className="review-modal-content"><div className="review-form">
             <form onSubmit={this.handleSubmit}>
                 <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
             <div>
