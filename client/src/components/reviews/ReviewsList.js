@@ -30,6 +30,11 @@ class ReviewsList extends React.Component {
       this.props.reviewsLimitAction(limit);
     }
 
+    reset() {
+      this.props.reviewsListAction({list: [], limit: 2, submit: [], product_id: null});
+      this.props.reviewsMetaAction({average: 0.0, recs: 0, total: 0, stars: [], characteristics: [], product_id: null});
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
@@ -78,7 +83,7 @@ class ReviewsList extends React.Component {
               })}
             <ul>
             <div className="review-buttons"><button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
-            {details !== undefined && (<ReviewSubmission product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>)}
+            {details !== undefined && (<ReviewSubmission product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name} getReviews={this.reset.bind(this)}/>)}
             </div></ul>
           </div>
         );

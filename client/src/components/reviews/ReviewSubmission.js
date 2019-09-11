@@ -1,6 +1,8 @@
 import React from 'react';
 import './reviews.css';
 const axios = require('axios');
+const {API_KEY} = require('./config');
+const client = filestack.init(API_KEY);
 
 class ReviewSubmission extends React.Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class ReviewSubmission extends React.Component {
             emailEntry: "Example: jackson11@email.com",
             summaryEntry: "Example: Best purchase ever!",
             bodyEntry: "Why did you like the product or not?",
-            bodyMin: "Minimum characters required left: 15"
+            bodyMin: "Minimum characters required left: 15",
+            photos: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +31,7 @@ class ReviewSubmission extends React.Component {
         this.handleStopReview = this.handleStopReview.bind(this);
         this.handleAddReview = this.handleAddReview.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
     }
 
@@ -76,13 +80,30 @@ class ReviewSubmission extends React.Component {
             recommended: (this.state.rec === "yes") ? "true" : "false",
             name: this.state.nameEntry,
             email: this.state.emailEntry,
-            photos: [],
+            photos: this.state.photos,
             characteristics: this.state.characteristics
         };
         //console.log(this.props.product_id);
         axios.post(`http://18.217.220.129/reviews/${this.props.product_id}`, submission)
             .then(response => {
                 //console.log(response);
+                this.setState({
+                    showing: false,
+                    starsArr: [0,0,0,0,0],
+                    oldArr: [0,0,0,0,0],
+                    rec: "yes",
+                    charsArr: [],
+                    characteristics: {},
+                    nameEntry: "Example: jackson11!",
+                    emailEntry: "Example: jackson11@email.com",
+                    summaryEntry: "Example: Best purchase ever!",
+                    bodyEntry: "Why did you like the product or not?",
+                    bodyMin: "Minimum characters required left: 15",
+                    photos: []
+                });
+            })
+            .then(nothing => {
+                this.props.getReviews();
             })
     }
 
@@ -181,6 +202,44 @@ class ReviewSubmission extends React.Component {
         }
     }
 
+    handleUpload(event) {
+        event.preventDefault();
+        let photos = [];
+        let process = (uploadData) => {
+            let allPhotos = uploadData.filesUploaded;
+            for (let i = 0; i < allPhotos.length; i++) {
+                photos.push(allPhotos[i].url);
+            }
+            this.setState({
+                photos: photos
+            });
+        }
+        const options = {
+            "maxFiles": 5,
+            "accept": [
+              "image/jpeg",
+              "image/jpg",
+              "image/png",
+              "image/bmp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "storeTo": {
+              "container": "devportal-customers-assets",
+              "path": "user-uploads/",
+              "region": "us-east-1"
+            },
+            "fromSources": [
+              "local_file_system"
+            ],
+            "uploadInBackground": false,
+            onUploadDone: process
+          };
+
+        client.picker(options).open();
+
+    }
+
 
     render() {
         return (
@@ -252,6 +311,12 @@ class ReviewSubmission extends React.Component {
                 <div>For authentication reasons, you will not be emailed.</div>
             </label>
             </div>
+            <div className="review-photos">
+                {this.state.photos.map((url) => {
+                    return <img className="review-photo" src={url} key={url}></img>
+                })}
+            </div>
+            <button onClick={this.handleUpload}>Upload Photos</button>
             <input type="submit" value="Submit" />
           </form>
             </div></div></div>)}</div>
