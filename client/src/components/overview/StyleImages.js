@@ -63,6 +63,12 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       // console.log(store.currentStyle.photos[newImg]);
       current.src = store.currentStyle.photos[newImg].url;
       magnify("myimage", 3);
+      if (document.getElementsByClassName("img-magnifier-glass")) {
+        let toRemove = document.getElementsByClassName("img-magnifier-glass");
+        while (toRemove.length > 0) {
+          toRemove[0].parentNode.removeChild(toRemove[0]);
+        }
+      }
     }
 
     return (
