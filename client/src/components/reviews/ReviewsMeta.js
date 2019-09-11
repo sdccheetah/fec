@@ -5,11 +5,6 @@ import FiveStars from './FiveStars';
 
 class ReviewsMetaData extends React.Component {
 
-    componentDidMount() {
-        // console.log("Review Meta Data mounted successfully!");
-        this.getMetaData(this.props.store.mainItem.product_id);
-    }
-
     ratingData(ratings) { //Parse rating data and calculate certain things like avg and rating percentages
         let total = 0;
         let count = 0;
@@ -44,10 +39,10 @@ class ReviewsMetaData extends React.Component {
 
     parseCharacteristics(chars) { //As said in name, this is to find what characterstics exist for the product and what their values are
         let characteristics = [];
-        let possibles = Object.keys(this.props.store.reviewsDefaults);
+        let possibles = Object.keys(this.props.store.reviewsDefaults.charsTable);
         for (let i = 0; i < possibles.length; i++) {
             if (chars[possibles[i]] !== undefined) {
-                characteristics.push({name: possibles[i], value: chars[possibles[i]].value});
+                characteristics.push({name: possibles[i], value: chars[possibles[i]].value, id: chars[possibles[i]].id});
             }
         }
         return characteristics;
@@ -58,7 +53,7 @@ class ReviewsMetaData extends React.Component {
             .then(data => { //Process Meta Data first
                 let newObj = {};
                 let metaData = data.data;
-                // console.log(metaData);
+                //console.log(metaData);
                 let ratings = metaData.ratings;
                 let ratingData = this.ratingData(ratings); //Get the average rating and counts for #stars
                 Object.assign(newObj,ratingData);
@@ -66,7 +61,7 @@ class ReviewsMetaData extends React.Component {
                 let recs = this.recommended(metaData.recommended); //Get the percent recommended
                 newObj.recs = recs;
                 newObj.characteristics = this.parseCharacteristics(metaData.characteristics);
-                
+                newObj.product_id = this.props.store.mainItem.product_id;
                 this.props.reviewsMetaAction(newObj);
 
             })
@@ -75,13 +70,24 @@ class ReviewsMetaData extends React.Component {
 
     render() {
         let metaData = this.props.store.reviewsMeta;
-        let charsTable = this.props.store.reviewsDefaults;
+        let charsTable = this.props.store.reviewsDefaults.charsTable;
+        //console.log(metaData);
+        if (parseInt(metaData.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
+            this.getMetaData(this.props.store.mainItem.product_id);
+        } 
+        if (metaData.total === 0 && metaData.count === 0) {
+            return <div className="ReviewsMeta"></div>
+        }
         return (
           <div className="ReviewsMeta">
             RATINGS &amp; REVIEWS 
-            <FiveStars rating={metaData.average}/>
-            <div> {metaData.average}</div>
-            <div> {metaData.count} Total Ratings</div> <br/>
+            <br/>
+            <div>
+                <div className="review-average">{metaData.average.toFixed(1)}</div>
+                <FiveStars rating={metaData.average}/>
+                <br/>
+            </div>
+            <br/> <br/>
             <div> {metaData.recs}% of reviews recommended this product</div>
             <br/>
             {metaData.stars.map((item, i) => {

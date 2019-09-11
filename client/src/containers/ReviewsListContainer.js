@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import ReviewsList from '../components/reviews/ReviewsList';
-import { reviewsListAction } from '../actions/reviewsListAction.js';
+import { reviewsListAction, reviewsLimitAction } from '../actions/reviewsListAction.js';
+import { reviewsPostAction } from '../actions/reviewsPostAction.js';
+
+
 
 
 const mapStateToProps = (store) => ({
@@ -8,7 +11,11 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  reviewsListAction: (reviewsList) => dispatch(reviewsListAction(reviewsList))
+  reviewsListAction: (reviewsList) => dispatch(reviewsListAction(reviewsList)),
+  reviewsLimitAction: (limit) => dispatch(reviewsLimitAction(limit)),
+  reviewsPostAction: (arr) => dispatch(reviewsPostAction(arr))
+
+
 });
 
 const ReviewsListContainer = connect(

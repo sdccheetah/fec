@@ -2,12 +2,13 @@ import { connect } from 'react-redux';
 import { initializeMain, getStyles, setCurrent } from './../actions/initializeMain.js';
 import InitPage from '../components/InitPage.js';
 
-const mapStateToProps = (store) => ({
-  store: store
+const mapStateToProps = (store, props) => ({
+  store: store,
+  props: props
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getInitMain: (mainItem) => dispatch(initializeMain({mainItem})),
+  getInitMain: (mainItem, prodId) => dispatch(initializeMain({mainItem, prodId})),
   getStyles: (styles) => dispatch(getStyles({styles})),
   setCurrent: (style) => dispatch(setCurrent({style}))
 });
