@@ -7,12 +7,11 @@ import CssBaseLine from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
-
+const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
   return (
     <React.Fragment>
       <CssBaseLine />
-      <BasicList 
+      <BasicList
         store={store}
         getInitMain={getInitMain}
         getStyles={getStyles}
@@ -28,7 +27,7 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
         store={store.mainItem}
       />
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default InitPage;

@@ -71,7 +71,6 @@ class ReviewsMetaData extends React.Component {
     render() {
         let metaData = this.props.store.reviewsMeta;
         let charsTable = this.props.store.reviewsDefaults.charsTable;
-        //console.log(metaData);
         if (parseInt(metaData.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
             this.getMetaData(this.props.store.mainItem.product_id);
         } 
