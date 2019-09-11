@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { initializeMain, getStyles, setCurrent } from './../actions/initializeMain.js';
 import InitPage from '../components/InitPage.js';
 
-const mapStateToProps = (store) => ({
-  store: store
+const mapStateToProps = (store, props) => ({
+  store: store,
+  props: props
 });
 
 const mapDispatchToProps = (dispatch) => ({
