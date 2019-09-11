@@ -192,6 +192,10 @@
     width: 50%;
 }
 
+.review-buttons {
+    display: flex;
+}
+
 
 /* .review-list-rec {
     text-align: center;

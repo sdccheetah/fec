@@ -77,9 +77,9 @@ class ReviewsList extends React.Component {
                 )
               })}
             <ul>
-            <button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
+            <div className="review-buttons"><button onClick={this.handleMoreReviews.bind(this)}>More Reviews</button>
             {details !== undefined && (<ReviewSubmission product_id={this.props.store.mainItem.product_id} characteristics={this.props.store.reviewsMeta.characteristics} charsTable={this.props.store.reviewsDefaults.charsTable} name={details.name}/>)}
-            </ul>
+            </div></ul>
           </div>
         );
       }
