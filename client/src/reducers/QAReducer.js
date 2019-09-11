@@ -4,7 +4,7 @@ const QAReducer = (state = [], { type, payload }) => {
       let tempObj = {
         questions: payload
       };
-      console.log(tempObj);
+      console.log('temporary object', tempObj);
       return Object.assign({}, state, tempObj);
     case 'POST_ANSWER':
       return payload;

@@ -1,9 +1,4 @@
-//Dev Dependencies
 import React, { Fragment } from 'react';
-
-//React Components
-
-//Material Components
 import { Container, Modal, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
