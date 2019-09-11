@@ -21,6 +21,7 @@ const InitPage = ({store, getInitMain, getStyles, setCurrent}) => {
         <StyleImages
           store={store.mainItem}
           setCurrent={setCurrent}
+          reviews={store.reviewsMeta}
         />
       {/* </Container> */}
       <ProductInfo

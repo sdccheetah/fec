@@ -5,24 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-const StyleImages = ({store, setCurrent}) => {
+const StyleImages = ({store, setCurrent, reviews}) => {
   // console.log('inside StyleImages');
-  // console.log(store.currentStyle);
+  // console.log(reviews);
 
   if (store.currentStyle) {
     let currentPic = store.currentStyle.photos[store.currentStyle['default?']].url;
     let slideIndex = store.currentStyle['default?'];
-
-    // const showDivs = function(n) {
-    //   let x = document.getElementsByClassName("mySlides");
-    //   console.log(x);
-    //   if (n > x.length) {slideIndex = 1}
-    //   if (n < 1) {slideIndex = x.length}
-    //   for (let i = 0; i < x.length; i++) {
-    //     x[i].style.display = 'none';
-    //   }
-    //   x[slideIndex - 1].style.display = 'block';
-    // }
+    let tempPrevImg = null;
 
     const plusDivs = function() {
       slideIndex++;
@@ -51,8 +41,11 @@ const StyleImages = ({store, setCurrent}) => {
       e.preventDefault();
       let current = document.getElementById('myimage');
       let newImg = e.target.getAttribute('key-i');
-      // document.getElementsByClassName('active').classList.remove('active');
+      if (tempPrevImg) {
+        tempPrevImg.className = "slide";
+      }
       e.target.className = "slide active";
+      tempPrevImg = e.target;
       // console.log(store.currentStyle.photos[newImg]);
       current.src = store.currentStyle.photos[newImg].url;
       magnify("myimage", 3);
@@ -64,13 +57,20 @@ const StyleImages = ({store, setCurrent}) => {
         <div className="img-container img gallery">
           {store.currentStyle.photos.map((item, index) => {
             let picture = item.url;
+            let cName = '';
+            if (index === slideIndex) {
+              cName = "slide active";
+            } else {
+              cName = "slide";
+            }
             return (
               <img 
                 key={index}
                 key-i={index}
-                className="slide" 
+                className={cName} 
                 src={picture} 
-                onClick={setImage} />
+                onClick={setImage}
+                alt="Gallery Image" />
             );
           })}
         </div>
@@ -80,7 +80,8 @@ const StyleImages = ({store, setCurrent}) => {
             src={currentPic}
             onClick={onImgClick}
             width="100%"
-            height="100%"/>
+            height="100%"
+            alt="Main Product Image"/>
           <button className="w3-button button-left" onClick={minusDivs}>&#10094;</button>
           <button className="w3-button w3-display-right" onClick={plusDivs}>&#10095;</button>
         </div>
@@ -89,14 +90,15 @@ const StyleImages = ({store, setCurrent}) => {
           store={store.styles}
           setCurrent={setCurrent}
           current={store.currentStyle}
-          details={store.details}/>
+          details={store.details}
+          reviews={reviews}/>
       </div>
     );
   } else {
     return (
         <div>
           <div className="img-zoom-container">
-            <img className="mySlides" id="myimage" />
+            <img className="mySlides" id="myimage" alt="nothing here"/>
             <div id="myresult" className="img-zoom-result"></div>
           </div>  
         </div>

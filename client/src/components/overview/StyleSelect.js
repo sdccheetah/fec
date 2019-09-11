@@ -1,8 +1,9 @@
 import React from 'react';
+import FiveStars from './../reviews/FiveStars.js';
 
-const StyleSelect = ({store, setCurrent, current, details}) => {
-  console.log('Style Select:');
-  console.log(store);
+const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
+  // console.log('Style Select:');
+  // console.log(details);
   // console.log(details);
 
   let currentSizes = [];
@@ -18,6 +19,10 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
       while (toRemove.length > 0) {
         toRemove[0].parentNode.removeChild(toRemove[0]);
       }
+    }
+    let clearClass = document.getElementsByClassName('slide');
+    for (let i = 0; i < clearClass.length; i++) {
+      clearClass[i].className = 'slide';
     }
   };
 
@@ -46,6 +51,7 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
 
     return (
       <div className="right-container">
+        <FiveStars rating={reviews.average}/>
         <div className="prod-details">
           <h4>Category > {details.category}</h4>
           <h1>{details.name}</h1>
@@ -55,18 +61,17 @@ const StyleSelect = ({store, setCurrent, current, details}) => {
           <h3>Select Style:</h3>
           <div id="styleSelection">
             {store.map((item, index) => {
-              let color = { "backgroundColor": item.name };
               return (
                 <div className="circle" 
                   key={index}
-                  style={color} 
                   onClick={selectColor}
                   id={index}>
                   <img className="style-thumbnail" 
                     src={item.photos[item['default?']].url}
                     key={index}
                     id={index}
-                    onClick={selectColor}/>
+                    onClick={selectColor}
+                    alt="style"/>
                 </div>
               );
             })}

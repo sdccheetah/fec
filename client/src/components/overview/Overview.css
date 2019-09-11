@@ -102,6 +102,10 @@
   left: 150px;
   z-index: 10;
 }
+.w3-button {
+  z-index: 10;
+  background-color: grey;
+}
 
 .img-magnifier-glass {
   position: absolute;
@@ -110,6 +114,7 @@
   cursor: none;
   width: 100px;
   height: 100px;
+  background-size: inherit;
 }
 
 #myresult {
