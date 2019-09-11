@@ -4,7 +4,9 @@ import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
   // console.log('Style Select:');
+  // console.log(current);
   // console.log(details);
+
   let currentSizes = [];
   let currentSku = 0;
   let quant = 1;
@@ -40,13 +42,33 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     currentSku = current.skus[currentSizes[index]];
   }
 
+  const prices = () => {
+    if (current.sale_price > 0) {
+      return (
+        <div>
+          <h5 className="orig-price"><strike>{"Price: $" + current.original_price}</strike></h5>
+          <h5 className="sale-price">{"Sale: $" + current.sale_price}</h5>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h5 className="orig-price">{"Price: $" + current.original_price}</h5>
+        </div>
+      );
+    }
+  }
   if (store) {
 
     let quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     for (let i in current.skus) {
       currentSizes.push(i);
     }
     currentSku = current.skus[currentSizes[0]];
+    if (current.sale_price > 0) {
+
+    }
 
     return (
       <div className="right-container">
@@ -54,10 +76,10 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
         <div className="prod-details">
           <h4>Category > {details.category}</h4>
           <h1>{details.name}</h1>
-          <h4>{"$" + details.default_price}</h4>
+          {prices()}
         </div>
         <div className="select-container">
-          <h3>Select Style:</h3>
+          <h3>Selected Style: {current.name}</h3>
           <div id="styleSelection">
             {store.map((item, index) => {
               return (

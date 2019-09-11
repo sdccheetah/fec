@@ -4,8 +4,6 @@ import StyleImages from './overview/StyleImages.js';
 import ProductInfo from './overview/ProductInfo.js';
 import css from './overview/Overview.css';
 import CssBaseLine from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 
 const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
   return (
