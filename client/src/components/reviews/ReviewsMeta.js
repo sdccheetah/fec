@@ -39,10 +39,10 @@ class ReviewsMetaData extends React.Component {
 
     parseCharacteristics(chars) { //As said in name, this is to find what characterstics exist for the product and what their values are
         let characteristics = [];
-        let possibles = Object.keys(this.props.store.reviewsDefaults);
+        let possibles = Object.keys(this.props.store.reviewsDefaults.charsTable);
         for (let i = 0; i < possibles.length; i++) {
             if (chars[possibles[i]] !== undefined) {
-                characteristics.push({name: possibles[i], value: chars[possibles[i]].value});
+                characteristics.push({name: possibles[i], value: chars[possibles[i]].value, id: chars[possibles[i]].id});
             }
         }
         return characteristics;
@@ -53,7 +53,7 @@ class ReviewsMetaData extends React.Component {
             .then(data => { //Process Meta Data first
                 let newObj = {};
                 let metaData = data.data;
-                // console.log(metaData);
+                //console.log(metaData);
                 let ratings = metaData.ratings;
                 let ratingData = this.ratingData(ratings); //Get the average rating and counts for #stars
                 Object.assign(newObj,ratingData);
@@ -75,14 +75,14 @@ class ReviewsMetaData extends React.Component {
             this.getMetaData(this.props.store.mainItem.product_id);
         } 
         if (metaData.total === 0 && metaData.count === 0) {
-            return <div></div>
+            return <div className="ReviewsMeta"></div>
         }
         return (
           <div className="ReviewsMeta">
             RATINGS &amp; REVIEWS 
             <br/>
             <div>
-                <div className="review-average"> {metaData.average.toFixed(1)}</div>
+                <div className="review-average">{metaData.average.toFixed(1)}</div>
                 <FiveStars rating={metaData.average}/>
                 <br/>
             </div>

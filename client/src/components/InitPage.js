@@ -17,9 +17,15 @@ const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
         getStyles={getStyles}
       />
       {/* <Container> */}
-      <StyleImages store={store.mainItem} setCurrent={setCurrent} />
+        <StyleImages
+          store={store.mainItem}
+          setCurrent={setCurrent}
+          reviews={store.reviewsMeta}
+        />
       {/* </Container> */}
-      <ProductInfo store={store.mainItem} />
+      <ProductInfo
+        store={store.mainItem}
+      />
     </React.Fragment>
   );
 };

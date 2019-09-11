@@ -2,15 +2,15 @@ import React from 'react';
 import InitContainer from './../containers/InitContainer.js';
 import QAContainer from './../containers/QAContainer.js';
 import Reviews from './reviews/Reviews';
-import axios from 'axios';
 
 class App extends React.Component {
+
   render() {
     return (
       <div className='App'>
-        {<InitContainer />}
-        {<QAContainer />}
-        {<Reviews />}
+        <InitContainer props="propStringTestingToSeeIfThisWorks.jpeg"/>
+        <QAContainer />
+        <Reviews />
       </div>
     );
   }

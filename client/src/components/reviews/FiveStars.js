@@ -2,7 +2,7 @@ import React from 'react';
 import './reviews.css';
 
 function FiveStars(props) {
-    let rating = props.rating;
+    let rating = props.rating || 0;
     let stars = [];
     while (stars.length < 5) {
         if (rating > 1) {
@@ -46,7 +46,7 @@ function FiveStars(props) {
                 return (
                     <div className="single-star-container" key={i}>
                         <div className="single-star-fill" style={{"width" : `${parseInt(item*20)}px`}}>
-                            <img className="single-star-outline" src="singlestar.png"></img>
+                            <img className="single-star-outline" src="singlestar.png" alt="stars alt"></img>
                         </div>
                     </div>
                 );

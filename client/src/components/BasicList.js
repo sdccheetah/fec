@@ -33,8 +33,18 @@ const BasicList = ({store, getInitMain, getStyles}) => {
   }
   
   if (!store.mainItem.init) {
-
-    getData();
+    let pageUrl = document.URL;
+    if (pageUrl.includes('products/')) {
+      let index = pageUrl.indexOf('products/');
+      let pID = pageUrl.substring(index + 9);
+      if (pID.includes('/')) {
+        pID = pID.substring(0, pID.length - 1);
+      }
+      console.log(pID);
+      getData(Number(pID));
+    } else {
+      getData();
+    }
 
     return (
       <div>
