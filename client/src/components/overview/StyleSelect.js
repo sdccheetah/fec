@@ -1,4 +1,5 @@
 import React from 'react';
+import magnify from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
@@ -24,7 +25,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     for (let i = 0; i < clearClass.length; i++) {
       clearClass[i].className = 'slide';
     }
-  };
+};
 
   const onAdd = (e) => {
     e.preventDefault();
