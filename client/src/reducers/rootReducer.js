@@ -4,10 +4,12 @@ import questions from './QAReducer.js';
 import reviewsList from './reviewsListReducer.js';
 import reviewsMeta from './reviewsMetaReducer.js';
 import reviewsDefaults from './reviewsDefaultsReducer.js';
+import searchKeyword from './searchReducer.js';
 
 const rootReducer = combineReducers({
-  mainItem: mainItem,
-  questions: questions,
+  mainItem,
+  questions,
+  searchKeyword,
   reviewsList,
   reviewsMeta,
   reviewsDefaults
