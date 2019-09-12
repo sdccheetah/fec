@@ -78,7 +78,7 @@ class ReviewsList extends React.Component {
                 <div key={item.review_id}>
                   <ul>
                     <div className="review-entry-top">
-                      <FiveStars rating={item.rating}/>
+                      <div className="review-entry-fivestars"><FiveStars rating={item.rating}/></div>
                       <div className="review-entry-name-date">{item.reviewer_name + ", " + months[item.date.substring(5,7)-1]  + " " + parseInt(item.date.substring(8,10)) + ", " + item.date.substring(0,4)}</div>
                     </div> <br/>
                     <div className="review-list-summary">{item.summary}</div> <br/>
@@ -87,7 +87,7 @@ class ReviewsList extends React.Component {
                       <div><div className="review-list-rec">✔ I recommend this product</div><br/></div>
                     )}
                     {item.response != null && item.response.length > 0 && !(item.response.includes("null")) && (
-                      <div><div className="review-list-res">Response:<br/>{item.response}</div><br/></div>
+                      <div><div className="review-list-res-full"><div className="review-list-res-top">Response:</div>{item.response}</div><br/></div>
                     )}
                     <div className="review-put-options">Helpful?   
                       <div className="review-put-option" value={item.review_id} onClick={this.helpful.bind(this)}>Yes({item.helpfulness})</div>  |  
@@ -97,6 +97,7 @@ class ReviewsList extends React.Component {
                       return <ImageComponent source={item.url} id={item.id} key={item.id}/>
                     })} 
                     </div>
+                    <hr className="reviews-list-hr"/>
                   </ul>
                 </div>
                 )

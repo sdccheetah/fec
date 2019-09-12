@@ -10,6 +10,12 @@
     float: left;
 }
 
+.reviews-list-hr { 
+    height: 1px;
+    background-color:black;
+    opacity: 0.5;
+}
+
 .ReviewsList {
     color: #333333;
     float: right;
@@ -30,12 +36,18 @@
     display: flex;
     position: relative;
     z-index: -1;
+    width: 100%;
 }
 
 .review-entry-name-date {
-    position: relative;
     float: right;
+    right: -50%;
+    top: 5px;
+    position: relative;
+}
 
+.review-entry-fivestars {
+    display: inline-block;
 }
 
 .percentage-bar {
@@ -190,6 +202,16 @@
     margin-right: auto;
     padding: 30px;
     width: 50%;
+}
+
+.review-list-res-full {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+}
+
+.review-list-res-top {
+    font-weight: bold;
+    padding: 5px 0px;
 }
 
 .review-buttons {
