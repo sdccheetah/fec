@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 export function magnify(imgID, zoom) {
   let img = document.getElementById(imgID);
 
@@ -142,4 +144,21 @@ export function customSelects() {
   /* If the user clicks anywhere outside the select box,
   then close all select boxes: */
   document.addEventListener("click", closeAllSelect);
+}
+
+export function clickTracker(element, widget) {
+  let time = new Date();
+  time = time.toString();
+  let obj = {
+    element: element,
+    widget: widget,
+    time: time
+  };
+  axios.post('http://18.217.220.129/interactions/', obj)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
