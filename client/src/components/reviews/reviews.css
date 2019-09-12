@@ -1,3 +1,4 @@
+
 .Reviews-Layout {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -9,6 +10,12 @@
     float: left;
 }
 
+.reviews-list-hr { 
+    height: 1px;
+    background-color:black;
+    opacity: 0.5;
+}
+
 .ReviewsList {
     color: #333333;
     float: right;
@@ -17,6 +24,11 @@
 
 .ReviewSubmission {
     color: #4d4d4d;
+    font-size: 150%;
+}
+
+.review-requirement {
+    font-size: 120%;
 }
 
 .review-average {
@@ -29,12 +41,18 @@
     display: flex;
     position: relative;
     z-index: -1;
+    width: 100%;
 }
 
 .review-entry-name-date {
-    position: relative;
     float: right;
+    right: -50%;
+    top: 5px;
+    position: relative;
+}
 
+.review-entry-fivestars {
+    display: inline-block;
 }
 
 .percentage-bar {
@@ -143,10 +161,10 @@
     font-weight: bold;
 }
 
-.Reviews-List-Total {
+.Reviews-List-Top {
     font-size: 130%;
     font-weight: bold;
-    display: relative;
+    display: flex;
 }
 
 .review-photos {
@@ -175,14 +193,71 @@
   
   /* Modal Content */
 .review-modal-content {
-    background: rgba(100, 100, 100, 0.2);
+    background: rgba(100, 100, 100, 0.0);
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
     overflow: auto; /* Enable scroll if needed */
 }
 
+.review-form {
+    background-color: #fafafa;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    width: 50%;
+}
 
-/* .review-list-rec {
-    text-align: center;
-} */
+.review-list-res-full {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+}
+
+.review-list-res-top {
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.review-selector {
+    position: relative;
+    left: 4px;
+}
+
+.review-buttons {
+    display: flex;
+}
+
+/* The Close Button */
+.review-form-close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    top: -20px;
+    font-weight: bold;
+  }
+  
+  .review-form-close:hover,
+  .review-form-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .review-put-options {
+      display: flex;
+  }
+
+  .review-put-option {
+      display: inline-block;
+      padding: 0px 7px;
+      text-decoration: underline;
+      opacity: 0.8;
+  }
+
+  .review-put-option:hover, 
+  .review-put-option:focus {
+      opacity: 1.0;
+      cursor: pointer;
+  }
+

@@ -2,12 +2,12 @@ import React from 'react';
 import BasicList from './BasicList.js';
 import StyleImages from './overview/StyleImages.js';
 import ProductInfo from './overview/ProductInfo.js';
+import SocialMedia from './overview/SocialMedia.js';
 import css from './overview/Overview.css';
 import CssBaseLine from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 
 const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
+
   return (
     <React.Fragment>
       <CssBaseLine />
@@ -26,6 +26,7 @@ const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
       <ProductInfo
         store={store.mainItem}
       />
+      <SocialMedia />
     </React.Fragment>
   );
 };

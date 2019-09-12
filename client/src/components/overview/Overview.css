@@ -27,6 +27,51 @@
   position: relative;
   left: 10px;
 }
+.sale-price {
+  color: red;
+}
+
+.social-share {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  font-size: 13px;
+  line-height: 26px;
+}
+.upper-button {
+  width: 76px;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+}
+.twitter-share-button {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #1b95e0;
+  color: #fff;
+  font-weight: 500;
+  height: 28px;
+  border-radius: 4px;
+  padding: 1px 10px 1px 9px;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  outline: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: left;
+}
+i {
+  top: 4px;
+  height: 18px;
+  width: 18px;
+  position: relative;
+  display: inline-block;
+  background: transparent 0 0 no-repeat;
+}
 
 .circle {
   height: 50px;
@@ -45,7 +90,7 @@
 }
 
 .images {
-  display: inline-flex;
+  display: flex;
   height: 600px;
   margin: auto;
   position: relative;
@@ -107,6 +152,59 @@
   background-color: grey;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+.modal-content {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+@keyframes zoom {
+  from {transform: scale(0)}
+  to {transform:scale(1)}
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.mag-click {
+  position: absolute;
+  top: 566px;
+  left: 395px;
+}
+.mod-click {
+  position: absolute;
+  top: 566px;
+  left: 475px;
+}
+
 .img-magnifier-glass {
   position: absolute;
   border: 3px solid #000;
@@ -137,6 +235,52 @@
   position: relative;
   left: 10px;
 }
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none;
+}
+.select-selected {
+  background-color: #cccccc;
+}
+.select-selected:after {
+  position: absolute;
+  content: '';
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0,0,0,0.1) transparent;
+  cursor: pointer;
+}
+.select-items {
+  position: absolute;
+  background-color: #cccccc;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0,0,0,0.1);
+}
+
 #sizeSelection {
   /* background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0; */
   overflow: hidden;
