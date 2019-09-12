@@ -31,10 +31,10 @@ class Answers extends React.Component {
   getAnswers(page = 1, count = 50) {
     axios
       .get(
-        `http://18.222.40.124/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
+        `http://18.217.220.129/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
       )
-      .then(res => {
-        this.setState({ answers: res.data.results });
+      .then(data => {
+        this.setState({ answers: data.data.results });
       })
       .catch(err => {
         console.log(err);
@@ -42,7 +42,7 @@ class Answers extends React.Component {
   }
   voteAnswer(answer_id) {
     axios
-      .put(`http://18.222.40.124/qa/answer/${answer_id}/helpful`)
+      .put(`http://18.217.220.129/qa/answer/${answer_id}/helpful`)
       .then(res => {
         this.getAnswers();
       })
@@ -52,7 +52,7 @@ class Answers extends React.Component {
   }
   reportAnswer(answer_id) {
     axios
-      .put(`http://18.222.40.124/qa/answer/${answer_id}/report`)
+      .put(`http://18.217.220.129/qa/answer/${answer_id}/report`)
       .then(res => {
         this.getAnswers();
       })

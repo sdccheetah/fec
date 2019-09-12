@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
-  console.log('inside answer');
   return (
     <Fragment>
       <Typography variant='body1'>{props.answer.body} </Typography>
@@ -23,7 +22,7 @@ const Answer = props => {
             }>
             {props.answer.answerer_name}
           </span>
-          ,
+          |
           <Moment format='MM/DD/YYYY' date={props.answer.date} />| Helpful?
         </Typography>
         <Button

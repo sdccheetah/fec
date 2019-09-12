@@ -33,7 +33,7 @@ class Questions extends React.Component {
   voteQ(question_id) {
     // votes on a question based on the question id and updates the data
     axios
-      .put(`http://18.222.40.124/qa/question/${question_id}/helpful`)
+      .put(`http://18.217.220.129/qa/question/${question_id}/helpful`)
       .then(res => {
         this.props.getData(
           this.props.store.mainItem.product_id,

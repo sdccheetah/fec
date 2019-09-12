@@ -42,7 +42,10 @@ const Question = props => {
               <Typography variant='h6'>A: </Typography>
             </Grid>
             <Grid item>
-              <Answers question_id={props.question.question_id} />
+              <Answers
+                question_id={props.question.question_id}
+                getData={props.getData}
+              />
             </Grid>
           </Grid>
         </Grid>
