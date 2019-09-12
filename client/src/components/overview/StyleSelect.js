@@ -1,5 +1,5 @@
 import React from 'react';
-import magnify from './helpers.js';
+import { customSelects } from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
@@ -25,7 +25,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     for (let i = 0; i < clearClass.length; i++) {
       clearClass[i].className = 'slide';
     }
-};
+  };
 
   const onAdd = (e) => {
     e.preventDefault();
@@ -37,10 +37,10 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     quant = Number(e.target.value);
   }
 
-  const onChange = (e) => {
-    let index = Number(e.target.value);
-    currentSku = current.skus[currentSizes[index]];
-  }
+  // const onChange = (e) => {
+  //   let index = Number(e.target.value);
+  //   currentSku = current.skus[currentSizes[index]];
+  // }
 
   const prices = () => {
     if (current.sale_price > 0) {
@@ -58,6 +58,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
       );
     }
   }
+  window.onload = customSelects;
   if (store) {
 
     let quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -66,9 +67,6 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
       currentSizes.push(i);
     }
     currentSku = current.skus[currentSizes[0]];
-    if (current.sale_price > 0) {
-
-    }
 
     return (
       <div className="right-container">
@@ -99,7 +97,17 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
           </div>
           <div className="size">
             <h3>Select Size:</h3>
-            <div id="sizeSelection">
+            <div className="custom-select" style={{width: '200px'}}>
+              <select>
+                {currentSizes.map((item, index) => {
+                  return (
+                    <option value={index}
+                      key={index}>{item}</option>
+                  )
+                })}
+              </select>
+            </div>
+            {/* <div id="sizeSelection">
               <select onChange={onChange}>
                 {currentSizes.map((item, index) => {
                   return (
@@ -107,11 +115,21 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
                   );
                 })}
               </select>
-            </div>
+            </div> */}
           </div>
           <div className="quantity">
             <h3>Select Quantity:</h3>
-            <div id="sizeSelection">
+            <div className="custom-select" style={{width: '100px'}}>
+              <select>
+                {quantity.map((item, index) => {
+                  return (
+                    <option key={index}
+                      value={item}>{item}</option>
+                  );
+                })}
+              </select>
+            </div>
+            {/* <div id="sizeSelection">
               <select onChange={changeQty}>
                 {quantity.map((item, index) => {
                   return (
@@ -119,7 +137,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
                   );
                 })}
               </select>
-            </div>
+            </div> */}
           </div>
           <div className="addCart">
             <button 
