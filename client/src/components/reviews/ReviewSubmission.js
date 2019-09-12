@@ -19,6 +19,7 @@ class ReviewSubmission extends React.Component {
             summaryEntry: "Example: Best purchase ever!",
             bodyEntry: "Why did you like the product or not?",
             bodyMin: "Minimum characters required left: 15",
+            must: "",
             photos: []
         };
 
@@ -62,17 +63,36 @@ class ReviewSubmission extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         let rating = 0;
-        let charValues = Object.values(this.state.characteristics);
-        for (let i = 0; i < charValues.length; i++) {
-            if (charValues[i] === null) return;
-        }
-
         for (let i = 0; i < this.state.oldArr.length; i++) {
             if (this.state.oldArr[i] === 1) {
                 rating++;
             }
         }
-        if (rating === 0 || this.state.bodyEntry.length < 50) return;
+
+        if (rating === 0) {
+            this.setState({
+                must: "You must give the product a rating out of 5 stars"
+            });
+            return;
+        }
+
+        let charValues = Object.values(this.state.characteristics);
+        for (let i = 0; i < charValues.length; i++) {
+            if (charValues[i] === null) {
+                this.setState({
+                    must: "You must set all of the characterstics"
+                });
+                return;
+            }
+        }
+
+        if (this.state.bodyEntry.length < 50) { 
+            this.setState({
+                must: "You must meet the minimum body length"
+            });
+            return;
+        }
+        
         let submission = {
             rating: rating,
             summary: this.state.summaryEntry,
@@ -99,6 +119,7 @@ class ReviewSubmission extends React.Component {
                     summaryEntry: "Example: Best purchase ever!",
                     bodyEntry: "Why did you like the product or not?",
                     bodyMin: "Minimum characters required left: 15",
+                    must: "",
                     photos: []
                 });
             })
@@ -318,6 +339,7 @@ class ReviewSubmission extends React.Component {
             </div>
             <button onClick={this.handleUpload}>Upload Photos</button>
             <input type="submit" value="Submit" />
+            <div>{this.state.must}</div>
           </form>
             </div></div></div>)}</div>
         )
