@@ -212,6 +212,23 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  .review-put-options {
+      display: flex;
+  }
+
+  .review-put-option {
+      display: inline-block;
+      padding: 0px 7px;
+      text-decoration: underline;
+      opacity: 0.8;
+  }
+
+  .review-put-option:hover, 
+  .review-put-option:focus {
+      opacity: 1.0;
+      cursor: pointer;
+  }
 /* .review-list-rec {
     text-align: center;
 } */

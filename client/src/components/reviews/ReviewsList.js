@@ -35,6 +35,24 @@ class ReviewsList extends React.Component {
       this.props.reviewsMetaAction({average: 0.0, recs: 0, total: 0, stars: [], characteristics: [], product_id: null});
     }
 
+    report(event) {
+      event.preventDefault();
+      let reviewID = event.target.getAttribute("value");
+      axios.put(`http://18.217.220.129/reviews/report/${reviewID}`)
+      .then(res => {
+        this.reset();
+      })
+    }
+
+    helpful(event) {
+      event.preventDefault();
+      let reviewID = event.target.getAttribute("value");
+      axios.put(`http://18.217.220.129/reviews/helpful/${reviewID}`)
+        .then(res => {
+          this.reset();
+        })
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
@@ -69,9 +87,11 @@ class ReviewsList extends React.Component {
                       <div><div className="review-list-rec">✔ I recommend this product</div><br/></div>
                     )}
                     {item.response != null && item.response.length > 0 && !(item.response.includes("null")) && (
-                      <div className="review-list-res">Response:<br/>{item.response}</div>
+                      <div><div className="review-list-res">Response:<br/>{item.response}</div><br/></div>
                     )}
-                    <div>Helpful? Yes({item.helpfulness})   |    Report</div>
+                    <div className="review-put-options">Helpful?   
+                      <div className="review-put-option" value={item.review_id} onClick={this.helpful.bind(this)}>Yes({item.helpfulness})</div>  |  
+                      <div className="review-put-option" value={item.review_id} onClick={this.report.bind(this)}>Report</div></div>
                     <div className="review-photos">
                     {item.photos.map((item) => {
                       return <ImageComponent source={item.url} id={item.id} key={item.id}/>
