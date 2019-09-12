@@ -74,17 +74,18 @@ class Questions extends React.Component {
                     question={question}
                     key={question.question_id}
                     voteQ={this.voteQ}
-                  />
-                  <QuestionButtons
-                    loadMore={this.loadMore.bind(this)}
-                    resetQuestions={this.resetQuestions.bind(this)}
-                    showLess={this.state.load > 4}
-                    showLoadMore={this.state.load < qq.length}
+                    store={this.props.store}
                   />
                 </div>
               );
             }
           })}
+          <QuestionButtons
+            loadMore={this.loadMore.bind(this)}
+            resetQuestions={this.resetQuestions.bind(this)}
+            showLess={this.state.load > 4}
+            showLoadMore={this.state.load < qq.length}
+          />
         </div>
       );
     } else {

@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-//React Component
 import Answers from './Answers';
-// import AnswerForm from './AnswerForm';
+import AnswerForm from './AnswerForm';
 
 import { Typography, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Question = props => {
+  console.log(props.question.question_id);
   const [disabled, setDisabled] = React.useState(false);
   return (
     <Fragment>
@@ -43,8 +43,7 @@ const Question = props => {
               <Typography variant='h6'>A: </Typography>
             </Grid>
             <Grid item>
-              {/* {console.log(props.question)} */}
-              <Answers questionId={props.question.question_id} />
+              <Answers question_id={props.question.question_id} />
             </Grid>
           </Grid>
         </Grid>
@@ -63,11 +62,10 @@ const Question = props => {
               Helpful? ({props.question.question_helpfulness})
             </Button>
             <Typography component='h4'> | </Typography>
-            {/* <AnswerForm
-              product={props.product}
+            <AnswerForm
               question={props.question.question_body}
-              questionId={props.question.question_id}
-            /> */}
+              question_id={props.question.question_id}
+            />
           </Grid>
         </Grid>
       </Grid>

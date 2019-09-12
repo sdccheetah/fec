@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import { validate } from '../helpers';
+// import UploadImage from './UploadImage';
+import { validate } from './ValidateForm';
+
 import {
   Dialog,
   DialogContent,
@@ -32,8 +34,9 @@ const useStyles = makeStyles(theme => ({
     color: 'green'
   }
 }));
+
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='up' ref={ref} {...props} />;
+  return <Slide direction='down' ref={ref} {...props} />;
 });
 
 const defaultForm = {
@@ -43,8 +46,6 @@ const defaultForm = {
   photos: []
 };
 
-//helper function for validation
-//show all errors in a list
 const renderErrors = errorList => {
   if (!errorList || errorList.length === 0) {
     return;
@@ -64,26 +65,25 @@ const renderErrors = errorList => {
   }
 };
 
-const AnswerForm = ({ product, question, questionId, answer }) => {
+const AnswerForm = ({ product, question, question_id, answer }) => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState(defaultForm);
   const [error, setErrors] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const classes = useStyles();
 
-  //add inputs to form
   const handleChange = e => {
     e.persist();
     setForm(prevState => {
       return { ...prevState, [e.target.name]: e.target.value };
     });
-    // setErrors(validate(form, 'answer', null));
   };
 
-  const submitForm = (form, questionId) => {
+  const submitForm = (form, question_id) => {
+    console.log(form, question_id);
     axios({
       method: 'post',
-      url: `http://18.222.40.124/qa/${questionId}/answers`,
+      url: `http://18.222.40.124/qa/${question_id}/answers`,
       data: {
         body: form.answer,
         name: form.name,
@@ -101,12 +101,10 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
   };
 
   const handleSubmit = e => {
-    //returns an arr or errors or false
     let errorList = validate(form, 'answer', null);
     setErrors(errorList);
     if (!errorList) {
-      submitForm(form, questionId);
-      // handleClose();
+      submitForm(form, question_id);
     }
   };
 
@@ -138,6 +136,7 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
         aria-labelledby='form-dialog-title'>
         {!success ? (
           <Fragment>
+            {' '}
             <DialogTitle>Submit your Answer</DialogTitle>
             <DialogContent>
               <DialogContentText>
@@ -153,7 +152,6 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                 </InputLabel>
                 <TextField
                   id='answerbody'
-                  // label="Your answer"
                   multiline
                   required
                   inputProps={{ maxLength: 1000 }}
@@ -173,7 +171,7 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   id='nickname'
                   required
                   // label="What is your nickname"
-                  placeholder='Example:jack543!'
+                  placeholder='Example: jack543!'
                   fullWidth
                   required
                   helperText='For privacy reasons, do not use your full name or email address'
@@ -192,28 +190,24 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   id='email'
                   required
                   fullWidth
-                  // label="Your email"
                   inputProps={{ maxLength: 60 }}
-                  placeholder='email@email.com'
+                  placeholder='jack@email.com'
                   helperText='For authentication reasons, you will not be emailed'
                   onChange={handleChange.bind(this)}
                   value={form.email}
                   error={error.email ? true : false}
                   name='email'
                 />
-                {/* <UploadImage
-                  form={form}
-                  handleUpload={handleUpload.bind(this)}
-                /> */}
               </form>
             </DialogContent>
             <DialogActions>
               <Grid container justify='flex-end'>
                 <Button onClick={handleClose} color='secondary'>
-                  cancel
+                  Cancel
                 </Button>
                 <Button
                   onClick={e => {
+                    console.log('submitted');
                     event.preventDefault();
                     handleSubmit();
                   }}>
@@ -224,10 +218,7 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
           </Fragment>
         ) : (
           <Fragment>
-            <DialogTitle>Success</DialogTitle>
-            <Box className={classes.root}>
-              <CheckCircleOutline className={classes.checkMark} />
-            </Box>
+            <DialogTitle>Great! Thanks for the submission.</DialogTitle>
           </Fragment>
         )}
       </Dialog>
