@@ -3,6 +3,7 @@ const axios = require('axios');
 import FiveStars from './FiveStars';
 import ReviewSubmission from './ReviewSubmission';
 import ImageComponent from './ImageComponent';
+import { clickTracker } from '../overview/helpers';
 import './reviews.css';
 
 
@@ -28,6 +29,7 @@ class ReviewsList extends React.Component {
         limit = total;
       }
       this.props.reviewsLimitAction(limit);
+      clickTracker("More Reviews Button", "Reviews and Ratings");
     }
 
     reset() {
@@ -42,6 +44,8 @@ class ReviewsList extends React.Component {
         .then(res => {
           this.reset();
         })
+      clickTracker("Report a Review", "Reviews and Ratings");
+
     }
 
     helpful(event) {
@@ -51,6 +55,8 @@ class ReviewsList extends React.Component {
         .then(res => {
           this.reset();
         })
+        clickTracker("Call a Review Helpful", "Reviews and Ratings");
+
     }
 
     select(event) {
@@ -58,6 +64,8 @@ class ReviewsList extends React.Component {
       let sort = event.target.value;
       this.props.reviewsSortAction(sort);
       this.reset();
+      clickTracker("Select a Sort", "Reviews and Ratings");
+
     }
 
     render() {
