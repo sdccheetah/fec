@@ -34,7 +34,7 @@ class ReviewsList extends React.Component {
 
     reset() {
       this.props.reviewsListAction({list: [], limit: 2, submit: [], product_id: null});
-      this.props.reviewsMetaAction({average: 0.0, recs: 0, total: 0, stars: [], characteristics: [], product_id: null});
+      this.props.reviewsMetaAction({average: 0.0, recs: 0, total: 0, stars: [], product_id: null});
     }
 
     report(event) {
