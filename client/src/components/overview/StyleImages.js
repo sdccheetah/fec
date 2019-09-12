@@ -7,7 +7,10 @@ const StyleImages = ({store, setCurrent, reviews}) => {
   // console.log(reviews);
 
   if (store.currentStyle) {
-    let currentPic = store.currentStyle.photos[store.currentStyle['default?']].url;
+    let currentPic = 'https://s3.us-east-2.amazonaws.com/media.littleconquest.com/uploads/2017/06/404-Placeholder.png';
+    if (store.currentStyle.photos[store.currentStyle['default?']]) {
+      currentPic = store.currentStyle.photos[store.currentStyle['default?']].url;
+    }
     let slideIndex = store.currentStyle['default?'];
     let tempPrevImg = null;
 
@@ -76,7 +79,10 @@ const StyleImages = ({store, setCurrent, reviews}) => {
 
         <div className="img-container img gallery">
           {store.currentStyle.photos.map((item, index) => {
-            let picture = item.url;
+            let picture = 'https://s3.us-east-2.amazonaws.com/media.littleconquest.com/uploads/2017/06/404-Placeholder.png';
+            if (item) {
+              picture = item.url;
+            }
             let cName = '';
             if (index === slideIndex) {
               cName = "slide active";

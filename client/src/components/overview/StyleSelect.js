@@ -80,13 +80,17 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
           <h3>Selected Style: {current.name}</h3>
           <div id="styleSelection">
             {store.map((item, index) => {
+              let srcURL = 'https://s3.us-east-2.amazonaws.com/media.littleconquest.com/uploads/2017/06/404-Placeholder.png';
+              if (item.photos[item['default?']] !== null) {
+                srcURL = item.photos[item['default?']].url;
+              }
               return (
                 <div className="circle" 
                   key={index}
                   onClick={selectColor}
                   id={index}>
                   <img className="style-thumbnail" 
-                    src={item.photos[item['default?']].url}
+                    src={srcURL}
                     key={index}
                     id={index}
                     onClick={selectColor}
@@ -107,15 +111,6 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
                 })}
               </select>
             </div>
-            {/* <div id="sizeSelection">
-              <select onChange={onChange}>
-                {currentSizes.map((item, index) => {
-                  return (
-                    <option key={index} value={index}>{item}</option>
-                  );
-                })}
-              </select>
-            </div> */}
           </div>
           <div className="quantity">
             <h3>Select Quantity:</h3>
@@ -129,15 +124,6 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
                 })}
               </select>
             </div>
-            {/* <div id="sizeSelection">
-              <select onChange={changeQty}>
-                {quantity.map((item, index) => {
-                  return (
-                    <option key={index} value={item}>{item}</option>
-                  );
-                })}
-              </select>
-            </div> */}
           </div>
           <div className="addCart">
             <button 
