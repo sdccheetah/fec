@@ -1,5 +1,6 @@
 import React from 'react';
 import './reviews.css';
+import { clickTracker } from '../overview/helpers';
 const axios = require('axios');
 const {API_KEY} = require('./config');
 const client = filestack.init(API_KEY);
@@ -124,6 +125,7 @@ class ReviewSubmission extends React.Component {
                 });
             })
             .then(nothing => {
+                clickTracker("Submit a Review", "Reviews and Ratings");
                 this.props.getReviews();
             })
     }
@@ -211,6 +213,7 @@ class ReviewSubmission extends React.Component {
         let modal = document.getElementById("review-submission");
         modal.style.display = "block";
       });
+      clickTracker("Start a Review", "Reviews and Ratings");
     }
 
     handleStopReview(event) {
@@ -221,6 +224,8 @@ class ReviewSubmission extends React.Component {
                 showing: false
             });
         }
+        clickTracker("Stop the Review Submission", "Reviews and Ratings");
+
     }
 
     handleUpload(event) {
