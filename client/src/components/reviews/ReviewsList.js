@@ -8,8 +8,8 @@ import './reviews.css';
 
 class ReviewsList extends React.Component {
 
-    getReviews(product_id) {
-        axios.get(`http://18.217.220.129/reviews/${product_id}/list?count=100`)
+    getReviews(product_id,sort) {
+        axios.get(`http://18.217.220.129/reviews/${product_id}/list?count=100&sort=${sort}`)
             .then(data => {
                 let newData = data.data;
                 newData.product_id = this.props.store.mainItem.product_id;
@@ -53,6 +53,13 @@ class ReviewsList extends React.Component {
         })
     }
 
+    select(event) {
+      event.preventDefault();
+      let sort = event.target.value;
+      this.props.reviewsSortAction(sort);
+      this.reset();
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
@@ -60,7 +67,7 @@ class ReviewsList extends React.Component {
         let months = this.props.store.reviewsDefaults.months;
         let details = this.props.store.mainItem.details;
         if (parseInt(this.props.store.reviewsList.list.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
-          this.getReviews(this.props.store.mainItem.product_id);
+          this.getReviews(this.props.store.mainItem.product_id,this.props.store.reviewsList.sort);
       } 
         if (reviews.length === 0) {
           return (
@@ -72,7 +79,14 @@ class ReviewsList extends React.Component {
         return (
           <div className="ReviewsList">
             <br/>
-            <ul><div className="Reviews-List-Total">{reviews.length} reviews, sorted by relevance</div></ul>
+            <ul>
+              <div className="Reviews-List-Top"><div className="Reviews-List-Total">{reviews.length} reviews, sorted by </div> 
+              <select onChange={this.select.bind(this)} value={this.props.store.reviewsList.sort}>
+                <option value="newest">newest</option>
+                <option value="helpful">helpfulness</option>
+                <option value="relevant">relevance</option>
+              </select></div>
+            </ul>
               {reviews.slice(0,limit).map((item) => {
                 return (
                 <div key={item.review_id}>

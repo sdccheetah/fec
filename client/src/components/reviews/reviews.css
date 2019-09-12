@@ -156,10 +156,10 @@
     font-weight: bold;
 }
 
-.Reviews-List-Total {
+.Reviews-List-Top {
     font-size: 130%;
     font-weight: bold;
-    display: relative;
+    display: flex;
 }
 
 .review-photos {
