@@ -193,10 +193,9 @@
   
   /* Modal Content */
 .review-modal-content {
-    background: rgba(100, 100, 100, 0.2);
+    background: rgba(100, 100, 100, 0.0);
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
     overflow: auto; /* Enable scroll if needed */
 }
 
