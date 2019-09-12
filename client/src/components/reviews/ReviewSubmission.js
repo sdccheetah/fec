@@ -19,6 +19,7 @@ class ReviewSubmission extends React.Component {
             summaryEntry: "Example: Best purchase ever!",
             bodyEntry: "Why did you like the product or not?",
             bodyMin: "Minimum characters required left: 15",
+            must: "",
             photos: []
         };
 
@@ -62,17 +63,36 @@ class ReviewSubmission extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         let rating = 0;
-        let charValues = Object.values(this.state.characteristics);
-        for (let i = 0; i < charValues.length; i++) {
-            if (charValues[i] === null) return;
-        }
-
         for (let i = 0; i < this.state.oldArr.length; i++) {
             if (this.state.oldArr[i] === 1) {
                 rating++;
             }
         }
-        if (rating === 0 || this.state.bodyEntry.length < 50) return;
+
+        if (rating === 0) {
+            this.setState({
+                must: "You must give the product a rating out of 5 stars"
+            });
+            return;
+        }
+
+        let charValues = Object.values(this.state.characteristics);
+        for (let i = 0; i < charValues.length; i++) {
+            if (charValues[i] === null) {
+                this.setState({
+                    must: "You must set all of the characterstics"
+                });
+                return;
+            }
+        }
+
+        if (this.state.bodyEntry.length < 50) { 
+            this.setState({
+                must: "You must meet the minimum body length"
+            });
+            return;
+        }
+        
         let submission = {
             rating: rating,
             summary: this.state.summaryEntry,
@@ -99,6 +119,7 @@ class ReviewSubmission extends React.Component {
                     summaryEntry: "Example: Best purchase ever!",
                     bodyEntry: "Why did you like the product or not?",
                     bodyMin: "Minimum characters required left: 15",
+                    must: "",
                     photos: []
                 });
             })
@@ -248,9 +269,9 @@ class ReviewSubmission extends React.Component {
             {this.state.showing && (<div className="review-modal" id="review-submission"><div className="review-modal-content"><div className="review-form">
             <span className="review-form-close" onClick={this.handleStopReview}>&times;</span>
             <form onSubmit={this.handleSubmit}>
-                <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div>
+                <div className="ReviewSubmission">Write Your Review about <br/>{this.props.name}</div><br/>
             <div>
-                Overall Rating*<br/>
+                <div className="review-requirement">Overall Rating<font color="red">*</font></div>
                 {this.state.starsArr.map((item, i) => {
                     return (
                         <div className="single-star-container" value={i} key={i} onMouseOver={this.handleStarsHover} onClick={this.handleStarsClick} onMouseLeave={this.handleStarsLeave}>
@@ -260,9 +281,9 @@ class ReviewSubmission extends React.Component {
                         </div>
                     );
                 })}
-            </div>
+            </div><br/>
             <div className="review-radio-rec">
-                Do you recommend this product?* <br/>
+            <div className="review-requirement">Do you recommend this product?<font color="red">*</font></div>
                 <label>
                     <input type="radio" value="yes" onChange={this.handleRadioRecClick} checked={this.state.rec === 'yes'} />
                     Yes
@@ -273,9 +294,9 @@ class ReviewSubmission extends React.Component {
                     <input type="radio" value="no" onChange={this.handleRadioRecClick} checked={this.state.rec === 'no'}/>
                     No
                 </label>
-            </div>
+            </div><br/>
             <div>
-                Characteristics:*
+            <div className="review-requirement">Characteristics:<font color="red">*</font></div>
                 {this.state.charsArr.map((item) => {
                     return (
                         <div className="review-characteristics" key={item.id}>
@@ -294,21 +315,21 @@ class ReviewSubmission extends React.Component {
                             </div>
                         </div>
                     )
-                })}
-            <label> Summary: <br/>
+                })}<br/>
+            <label> <div className="review-requirement">Summary:</div>
                 <input type="text" id="review-summary-submission" name="summaryEntry" maxlenth="60" value={this.state.summaryEntry} onChange={this.handleChange}/>
             </label>
-            <div> Body:* <br/>
+            <div><br/><div className="review-requirement">Body:<font color="red">*</font></div> 
                 <textarea id="review-summary-body" name="bodyEntry" value={this.state.bodyEntry} onChange={this.handleChange}/> <br/>
                 {this.state.bodyMin}
-            </div>
-            <label> Nickname:* <br/>
+            </div><br/>
+            <label> <div className="review-requirement">Nickname:<font color="red">*</font></div>
                 <input type="text" id="review-name-submission" name="nameEntry" value={this.state.nameEntry} onChange={this.handleChange}/>
-                <div>For privacy reasons, do not use your full name or email address.</div>
+                <div>For privacy reasons, do not use your full name or email address.</div><br/>
             </label>
-            <label> Email:* <br/>
+            <label> <div className="review-requirement">Email:<font color="red">*</font></div>
                 <input type="text" id="review-email-submission" name="emailEntry" value={this.state.emailEntry} onChange={this.handleChange}/>
-                <div>For authentication reasons, you will not be emailed.</div>
+                <div>For authentication reasons, you will not be emailed.</div><br/>
             </label>
             </div>
             <div className="review-photos">
@@ -318,6 +339,7 @@ class ReviewSubmission extends React.Component {
             </div>
             <button onClick={this.handleUpload}>Upload Photos</button>
             <input type="submit" value="Submit" />
+            <div>{this.state.must}</div>
           </form>
             </div></div></div>)}</div>
         )

@@ -8,8 +8,8 @@ import './reviews.css';
 
 class ReviewsList extends React.Component {
 
-    getReviews(product_id) {
-        axios.get(`http://18.217.220.129/reviews/${product_id}/list?count=100`)
+    getReviews(product_id,sort) {
+        axios.get(`http://18.217.220.129/reviews/${product_id}/list?count=100&sort=${sort}`)
             .then(data => {
                 let newData = data.data;
                 newData.product_id = this.props.store.mainItem.product_id;
@@ -35,6 +35,31 @@ class ReviewsList extends React.Component {
       this.props.reviewsMetaAction({average: 0.0, recs: 0, total: 0, stars: [], characteristics: [], product_id: null});
     }
 
+    report(event) {
+      event.preventDefault();
+      let reviewID = event.target.getAttribute("value");
+      axios.put(`http://18.217.220.129/reviews/report/${reviewID}`)
+        .then(res => {
+          this.reset();
+        })
+    }
+
+    helpful(event) {
+      event.preventDefault();
+      let reviewID = event.target.getAttribute("value");
+      axios.put(`http://18.217.220.129/reviews/helpful/${reviewID}`)
+        .then(res => {
+          this.reset();
+        })
+    }
+
+    select(event) {
+      event.preventDefault();
+      let sort = event.target.value;
+      this.props.reviewsSortAction(sort);
+      this.reset();
+    }
+
     render() {
         let reviews = this.props.store.reviewsList.list.results || [];
         let limit = this.props.store.reviewsList.limit;
@@ -42,7 +67,7 @@ class ReviewsList extends React.Component {
         let months = this.props.store.reviewsDefaults.months;
         let details = this.props.store.mainItem.details;
         if (parseInt(this.props.store.reviewsList.list.product_id) !== parseInt(this.props.store.mainItem.product_id)) {
-          this.getReviews(this.props.store.mainItem.product_id);
+          this.getReviews(this.props.store.mainItem.product_id,this.props.store.reviewsList.sort);
       } 
         if (reviews.length === 0) {
           return (
@@ -54,13 +79,20 @@ class ReviewsList extends React.Component {
         return (
           <div className="ReviewsList">
             <br/>
-            <ul><div className="Reviews-List-Total">{reviews.length} reviews, sorted by relevance</div></ul>
+            <ul>
+              <div className="Reviews-List-Top"><div className="Reviews-List-Total">{reviews.length} reviews, sorted by </div> 
+              <select className="review-selector" onChange={this.select.bind(this)} value={this.props.store.reviewsList.sort}>
+                <option value="newest">newest</option>
+                <option value="helpful">helpfulness</option>
+                <option value="relevant">relevance</option>
+              </select></div>
+            </ul>
               {reviews.slice(0,limit).map((item) => {
                 return (
                 <div key={item.review_id}>
                   <ul>
                     <div className="review-entry-top">
-                      <FiveStars rating={item.rating}/>
+                      <div className="review-entry-fivestars"><FiveStars rating={item.rating}/></div>
                       <div className="review-entry-name-date">{item.reviewer_name + ", " + months[item.date.substring(5,7)-1]  + " " + parseInt(item.date.substring(8,10)) + ", " + item.date.substring(0,4)}</div>
                     </div> <br/>
                     <div className="review-list-summary">{item.summary}</div> <br/>
@@ -69,14 +101,17 @@ class ReviewsList extends React.Component {
                       <div><div className="review-list-rec">✔ I recommend this product</div><br/></div>
                     )}
                     {item.response != null && item.response.length > 0 && !(item.response.includes("null")) && (
-                      <div className="review-list-res">Response:<br/>{item.response}</div>
+                      <div><div className="review-list-res-full"><div className="review-list-res-top">Response:</div>{item.response}</div><br/></div>
                     )}
-                    <div>Helpful? Yes({item.helpfulness})   |    Report</div>
+                    <div className="review-put-options">Helpful?   
+                      <div className="review-put-option" value={item.review_id} onClick={this.helpful.bind(this)}>Yes({item.helpfulness})</div>  |  
+                      <div className="review-put-option" value={item.review_id} onClick={this.report.bind(this)}>Report</div></div>
                     <div className="review-photos">
                     {item.photos.map((item) => {
                       return <ImageComponent source={item.url} id={item.id} key={item.id}/>
                     })} 
                     </div>
+                    <hr className="reviews-list-hr"/>
                   </ul>
                 </div>
                 )
