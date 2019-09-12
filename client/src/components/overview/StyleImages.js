@@ -1,5 +1,5 @@
 import React from 'react';
-import { magnify, setModal } from './helpers.js';
+import { magnify, setModal, clickTracker } from './helpers.js';
 import StyleSelect from './StyleSelect.js';
 
 const StyleImages = ({store, setCurrent, reviews}) => {
@@ -18,6 +18,7 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       let temp = document.getElementById("myimage");
       temp.removeEventListener("click", setModal);
       temp.addEventListener("click", onImgClick);
+      clickTracker('myimage', 'overview');
     }
     const setModClick = function() {
       if (document.getElementsByClassName("img-magnifier-glass")) {
