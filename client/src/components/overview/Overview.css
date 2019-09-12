@@ -40,38 +40,6 @@
   font-size: 13px;
   line-height: 26px;
 }
-.upper-button {
-  width: 76px;
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-}
-.twitter-share-button {
-  position: relative;
-  box-sizing: border-box;
-  background-color: #1b95e0;
-  color: #fff;
-  font-weight: 500;
-  height: 28px;
-  border-radius: 4px;
-  padding: 1px 10px 1px 9px;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-  outline: 0;
-  text-decoration: none;
-  white-space: nowrap;
-  text-align: left;
-}
-i {
-  top: 4px;
-  height: 18px;
-  width: 18px;
-  position: relative;
-  display: inline-block;
-  background: transparent 0 0 no-repeat;
-}
 
 .circle {
   height: 50px;

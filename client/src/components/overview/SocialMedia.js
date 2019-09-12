@@ -8,8 +8,11 @@ const SocialMedia = () => {
           <i></i>
           <span className="label" id="l">Tweet</span>
         </a>
-        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
       </div>
+      <div className="Pin-button">
+      <a data-pin-do="buttonPin" data-pin-count="above" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"></a>
+      </div>
+
     </div>
   )
 }
