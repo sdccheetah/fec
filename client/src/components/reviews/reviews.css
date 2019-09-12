@@ -219,6 +219,11 @@
     padding: 5px 0px;
 }
 
+.review-selector {
+    position: relative;
+    left: 4px;
+}
+
 .review-buttons {
     display: flex;
 }

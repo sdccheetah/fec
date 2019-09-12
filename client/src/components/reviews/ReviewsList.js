@@ -81,7 +81,7 @@ class ReviewsList extends React.Component {
             <br/>
             <ul>
               <div className="Reviews-List-Top"><div className="Reviews-List-Total">{reviews.length} reviews, sorted by </div> 
-              <select onChange={this.select.bind(this)} value={this.props.store.reviewsList.sort}>
+              <select className="review-selector" onChange={this.select.bind(this)} value={this.props.store.reviewsList.sort}>
                 <option value="newest">newest</option>
                 <option value="helpful">helpfulness</option>
                 <option value="relevant">relevance</option>
