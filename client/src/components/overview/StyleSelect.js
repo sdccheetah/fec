@@ -37,10 +37,10 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     quant = Number(e.target.value);
   }
 
-  // const onChange = (e) => {
-  //   let index = Number(e.target.value);
-  //   currentSku = current.skus[currentSizes[index]];
-  // }
+  const onChange = (e) => {
+    let index = Number(e.target.value);
+    currentSku = current.skus[currentSizes[index]];
+  }
 
   const prices = () => {
     if (current.sale_price > 0) {
@@ -98,7 +98,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
           <div className="size">
             <h3>Select Size:</h3>
             <div className="custom-select" style={{width: '200px'}}>
-              <select>
+              <select onChange={onChange}>
                 {currentSizes.map((item, index) => {
                   return (
                     <option value={index}
@@ -120,7 +120,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
           <div className="quantity">
             <h3>Select Quantity:</h3>
             <div className="custom-select" style={{width: '100px'}}>
-              <select>
+              <select onChange={changeQty}>
                 {quantity.map((item, index) => {
                   return (
                     <option key={index}

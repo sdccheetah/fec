@@ -8,10 +8,6 @@ import CssBaseLine from '@material-ui/core/CssBaseline';
 
 const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
 
-  // componentDidUpdate() {
-  //   console.log('hi');
-  // };
-
   return (
     <React.Fragment>
       <CssBaseLine />
