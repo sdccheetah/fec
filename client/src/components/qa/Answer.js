@@ -28,7 +28,7 @@ const Answer = props => {
         <Button
           disabled={disabled}
           onClick={() => {
-            props.voteA(props.answer.answer_id);
+            props.voteAnswer(props.answer.answer_id);
             setDisabled(!disabled);
           }}>
           Yes ({+props.answer.helpfulness})
@@ -36,7 +36,7 @@ const Answer = props => {
         <Typography component='h4'> | </Typography>
         <Button
           onClick={() => {
-            props.reportA(props.answer.answer_id);
+            props.reportAnswer(props.answer.answer_id);
           }}>
           Report
         </Button>

@@ -73,6 +73,7 @@ class Answers extends React.Component {
                   key={index}
                   voteAnswer={this.voteAnswer}
                   reportAnswer={this.reportAnswer}
+                  getData={this.getData}
                 />
               );
             }
