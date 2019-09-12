@@ -1,3 +1,4 @@
+
 .Reviews-Layout {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -182,7 +183,35 @@
     overflow: auto; /* Enable scroll if needed */
 }
 
+.review-form {
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    width: 50%;
+}
 
+.review-buttons {
+    display: flex;
+}
+
+/* The Close Button */
+.review-form-close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    top: -20px;
+    font-weight: bold;
+  }
+  
+  .review-form-close:hover,
+  .review-form-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 /* .review-list-rec {
     text-align: center;
 } */
