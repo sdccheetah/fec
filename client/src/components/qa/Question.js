@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Question = props => {
-  console.log(props.question.question_id);
   const [disabled, setDisabled] = React.useState(false);
   return (
     <Fragment>

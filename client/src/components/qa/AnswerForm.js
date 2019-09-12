@@ -80,7 +80,6 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
   };
 
   const submitForm = (form, question_id) => {
-    console.log(form, question_id);
     axios({
       method: 'post',
       url: `http://18.222.40.124/qa/${question_id}/answers`,

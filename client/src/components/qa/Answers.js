@@ -14,7 +14,6 @@ class Answers extends React.Component {
     this.reportAnswer = this.reportAnswer.bind(this);
   }
   componentDidMount() {
-    console.log('did mount');
     this.getAnswers();
   }
 
@@ -30,13 +29,11 @@ class Answers extends React.Component {
   }
 
   getAnswers(page = 1, count = 50) {
-    console.log('answer props', this.props.question_id);
     axios
       .get(
         `http://18.222.40.124/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
       )
       .then(res => {
-        console.log('answer results', res.data.results);
         this.setState({ answers: res.data.results });
       })
       .catch(err => {
@@ -65,13 +62,11 @@ class Answers extends React.Component {
   }
 
   render() {
-    console.log('answers state', this.state);
     if (this.state.answers.length > 0) {
       return (
         <div className='answerContainer'>
           {this.state.answers.map((answer, index) => {
             if (index < this.state.load) {
-              console.log('inside answers');
               return (
                 <Answer
                   answer={answer}
