@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
+import Moment from 'react-moment';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
@@ -22,12 +23,13 @@ const Answer = props => {
             }>
             {props.answer.answerer_name}
           </span>
-          ,{/* {formatDate(props.answer.date)}  */}| Helpful?
+          ,
+          <Moment format='MM/DD/YYYY' date={props.answer.date} />| Helpful?
         </Typography>
         <Button
           disabled={disabled}
           onClick={() => {
-            props.voteAnswer(props.answer.answer_id);
+            props.voteA(props.answer.answer_id);
             setDisabled(!disabled);
           }}>
           Yes ({+props.answer.helpfulness})
@@ -35,7 +37,7 @@ const Answer = props => {
         <Typography component='h4'> | </Typography>
         <Button
           onClick={() => {
-            props.reportAnswer(props.answer.answer_id);
+            props.reportA(props.answer.answer_id);
           }}>
           Report
         </Button>

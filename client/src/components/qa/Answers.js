@@ -8,7 +8,7 @@ class Answers extends React.Component {
     super(props);
     this.state = { answers: [], load: 2 };
     this.getAnswers = this.getAnswers.bind(this);
-    // this.loadMore = this.loadMore.bind(this);
+    this.loadMore = this.loadMore.bind(this);
     // this.collapesAnswers = this.collapesAnswers.bind(this);
     this.voteAnswer = this.voteAnswer.bind(this);
     this.reportAnswer = this.reportAnswer.bind(this);
@@ -32,7 +32,7 @@ class Answers extends React.Component {
     axios
       .get(
         `http://18.222.40.124/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
-      ) //update question id
+      )
       .then(res => {
         this.setState({ answers: res.data.results });
       })
@@ -67,7 +67,6 @@ class Answers extends React.Component {
         <div className='answerContainer'>
           {this.state.answers.map((answer, index) => {
             if (index < this.state.load) {
-              console.log('inside answers');
               return (
                 <Answer
                   answer={answer}
