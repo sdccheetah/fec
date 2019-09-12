@@ -39,9 +39,9 @@ class ReviewsList extends React.Component {
       event.preventDefault();
       let reviewID = event.target.getAttribute("value");
       axios.put(`http://18.217.220.129/reviews/report/${reviewID}`)
-      .then(res => {
-        this.reset();
-      })
+        .then(res => {
+          this.reset();
+        })
     }
 
     helpful(event) {
