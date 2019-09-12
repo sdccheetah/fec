@@ -24,6 +24,11 @@
 
 .ReviewSubmission {
     color: #4d4d4d;
+    font-size: 150%;
+}
+
+.review-requirement {
+    font-size: 120%;
 }
 
 .review-average {
@@ -196,7 +201,7 @@
 }
 
 .review-form {
-    background-color: white;
+    background-color: #fafafa;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -251,6 +256,4 @@
       opacity: 1.0;
       cursor: pointer;
   }
-/* .review-list-rec {
-    text-align: center;
-} */
+
