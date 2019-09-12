@@ -93,7 +93,7 @@ class Answers extends React.Component {
               variant='text'
               className='loadmore'
               onClick={() => {
-                this.reset();
+                this.resetAnswers();
               }}>
               Collapse answers
             </Button>
