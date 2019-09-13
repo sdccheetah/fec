@@ -1,5 +1,5 @@
 import React from 'react';
-import { customSelects, getCookieValue } from './helpers.js';
+import { customSelects, getCookieValue, addToCart } from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
@@ -30,9 +30,10 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
 
   const onAdd = (e) => {
     e.preventDefault();
-    // let userId = document.cookie.user_id;
-    console.log(userId);
-    console.log(details.id);
+    let userId = Number(document.cookie.user_id);
+    addToCart(userId, details.id);
+    // console.log(userId);
+    // console.log(details.id);
   }
 
   const changeQty = (e) => {

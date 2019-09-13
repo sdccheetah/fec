@@ -9,7 +9,7 @@ const SocialMedia = () => {
           <span className="label" id="l">Tweet</span>
         </a>
       </div>
-      <div class="fb-share-button" 
+      <div className="fb-share-button" 
         data-href="https://www.your-domain.com/your-page.html" 
         data-layout="button_count">
       </div>

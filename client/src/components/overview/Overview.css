@@ -32,8 +32,9 @@
 }
 
 .social-share {
+  top: 25px;
   position: relative;
-  display: inline-block;
+  display: flex;
   white-space: nowrap;
   overflow: hidden;
   text-align: left;

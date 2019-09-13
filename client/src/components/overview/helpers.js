@@ -1,3 +1,5 @@
+import { identifier } from '@babel/types';
+
 const axios = require('axios');
 
 export function magnify(imgID, zoom) {
@@ -184,7 +186,7 @@ export function addToCart(userId, productId) {
     user_session: userId,
     product_id: productId
   };
-  axios.post('http://18.217.220.129//', obj)
+  axios.post('http://18.217.220.129/cart/', obj)
     .then((res) => {
       console.log(res);
     })
