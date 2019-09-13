@@ -1,0 +1,20 @@
+paper-button {
+  text-transform: 'none';
+}
+
+.qa-put-options {
+  display: flex;
+}
+
+.qa-put-option {
+  display: inline-block;
+  padding: 0px 7px;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.qa-put-option:hover,
+.qa-put-option:focus {
+  opacity: 1;
+  cursor: pointer;
+}
