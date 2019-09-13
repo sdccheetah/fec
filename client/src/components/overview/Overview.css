@@ -9,9 +9,18 @@
   position: relative;
 }
 .searchInput {
-  position: relative;
-  left: 100px;
+  position: absolute;
+  display: flex;
+  right: 10px;
+  top: 8px;
 }
+.siteName {
+  position: absolute;
+  display: flex;
+  left: 10px;
+  font-size: 30px;
+}
+
 .descript-container {
   display: flex;
   left: 25px;
@@ -229,7 +238,7 @@
   top: 7px;
 }
 .select-items div,.select-selected {
-  color: #ffffff;
+  color: black;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0,0,0,0.1) transparent;
@@ -275,4 +284,14 @@
 .addCart {
   position: relative;
   top: 25px;
+}
+#addCartButton {
+  background-color: #cccccc;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
