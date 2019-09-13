@@ -1,4 +1,5 @@
 import React from 'react';
+import { clickTracker } from './overview/helpers.js';
 const axios = require('axios');
 
 const BasicList = ({store, getInitMain, getStyles}) => {
@@ -18,6 +19,7 @@ const BasicList = ({store, getInitMain, getStyles}) => {
 
   const getInput = (e) => {
     e.preventDefault();
+    clickTracker('Search', 'overview');
     let searchText = document.getElementById("inputText").value;
     let searchNum = Number(searchText);
     if (Number.isNaN(searchNum)) {
@@ -64,13 +66,11 @@ const BasicList = ({store, getInitMain, getStyles}) => {
               type="text"
               onChange={updateSearch}></input>
           </form>
-        </div>
-        <div>
           <button 
             type="submit" 
             form="findItem" 
             value="Submit"
-            onClick={getInput}>Submit</button>
+            onClick={getInput}>Search</button>
         </div>
       </div>
     );
