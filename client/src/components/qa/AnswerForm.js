@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='right' ref={ref} {...props} />;
-});
-
 const defaultForm = {
   answer: '',
   email: '',
@@ -152,9 +148,8 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
 
   return (
     <Fragment>
-      <Button onClick={handleClickOpen}>Add Answer</Button>
+      <button onClick={handleClickOpen}>Add Answer</button>
       <Dialog
-        TransitionComponent={Transition}
         maxWidth='sm'
         fullWidth={!success}
         open={open}
@@ -230,17 +225,17 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
             </DialogContent>
             <DialogActions>
               <Grid container justify='flex-end'>
-                <Button onClick={handleClose} color='secondary'>
+                <button onClick={handleClose} color='secondary'>
                   Cancel
-                </Button>
-                <Button
+                </button>
+                <button
                   onClick={e => {
                     console.log('submitted');
                     event.preventDefault();
                     handleSubmit();
                   }}>
                   Submit
-                </Button>
+                </button>
               </Grid>
             </DialogActions>
           </Fragment>

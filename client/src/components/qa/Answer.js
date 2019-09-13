@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
 import Moment from 'react-moment';
 import ImageGallery from './ImageGallery';
-import clickTracker from '../overview/helpers.js';
+import './QA.css';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
@@ -28,21 +28,24 @@ const Answer = props => {
           |
           <Moment format='MM/DD/YYYY' date={props.answer.date} />| Helpful?
         </Typography>
-        <Button
+        <div
+          className='qa-put-option'
           disabled={disabled}
           onClick={() => {
             props.voteAnswer(props.answer.answer_id);
             setDisabled(!disabled);
           }}>
           Yes ({+props.answer.helpfulness})
-        </Button>
+        </div>
         <Typography component='h4'> | </Typography>
-        <Button
+        <div
+          className='qa-put-option'
+          text-transform='none'
           onClick={() => {
             props.reportAnswer(props.answer.answer_id);
           }}>
           Report
-        </Button>
+        </div>
       </Grid>
     </Fragment>
   );

@@ -21,10 +21,6 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     position: 'absolute',
-    width: 800,
-    height: 600,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
     outline: 'none'
   }
 }));

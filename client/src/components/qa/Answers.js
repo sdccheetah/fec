@@ -3,6 +3,7 @@ import Answer from './Answer';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { clickTracker } from '../overview/helpers.js';
+import './QA.css';
 
 class Answers extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class Answers extends React.Component {
     this.state = { answers: [], load: 2 };
     this.getAnswers = this.getAnswers.bind(this);
     this.loadMore = this.loadMore.bind(this);
-    // this.collapesAnswers = this.collapesAnswers.bind(this);
     this.voteAnswer = this.voteAnswer.bind(this);
     this.reportAnswer = this.reportAnswer.bind(this);
   }
@@ -84,8 +84,8 @@ class Answers extends React.Component {
 
           {this.state.load < this.state.answers.length ? (
             <Button
+              className='qa-put-option'
               variant='text'
-              className='loadmore'
               onClick={() => {
                 this.loadMore();
               }}>
@@ -94,7 +94,7 @@ class Answers extends React.Component {
           ) : this.state.load > 2 ? (
             <Button
               variant='text'
-              className='loadmore'
+              className='qa-put-option'
               onClick={() => {
                 this.resetAnswers();
               }}>
