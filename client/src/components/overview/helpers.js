@@ -162,3 +162,33 @@ export function clickTracker(element, widget) {
       console.log(err);
     });
 }
+
+export function getCookieValue(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+export function addToCart(userId, productId) {
+  let obj = {
+    user_session: userId,
+    product_id: productId
+  };
+  axios.post('http://18.217.220.129//', obj)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

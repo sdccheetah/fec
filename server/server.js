@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 app.get('/cookies', (req, res) => {
-  console.log('Cookies: ', req.cookies);
   res.cookie('user_id', 'value');
   res.send(req.cookies);
 });

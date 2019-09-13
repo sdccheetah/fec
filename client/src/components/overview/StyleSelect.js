@@ -1,5 +1,5 @@
 import React from 'react';
-import { customSelects } from './helpers.js';
+import { customSelects, getCookieValue } from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
@@ -10,6 +10,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
   let currentSizes = [];
   let currentSku = 0;
   let quant = 1;
+  let userId = getCookieValue('user_id');
 
   const selectColor = (e) => {
     e.preventDefault();
@@ -29,8 +30,9 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
 
   const onAdd = (e) => {
     e.preventDefault();
-    console.log(currentSku);
-    console.log(quant);
+    // let userId = document.cookie.user_id;
+    console.log(userId);
+    console.log(details.id);
   }
 
   const changeQty = (e) => {
