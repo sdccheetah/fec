@@ -17,7 +17,6 @@ import {
   InputLabel
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -36,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='down' ref={ref} {...props} />;
+  return <Slide direction='right' ref={ref} {...props} />;
 });
 
 const defaultForm = {
@@ -124,7 +123,7 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
 
   return (
     <Fragment>
-      <Button onClick={handleClickOpen}>Add answer</Button>
+      <Button onClick={handleClickOpen}>Add Answer</Button>
       <Dialog
         TransitionComponent={Transition}
         maxWidth='sm'
@@ -136,7 +135,7 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
         {!success ? (
           <Fragment>
             {' '}
-            <DialogTitle>Submit your Answer</DialogTitle>
+            <DialogTitle>Submit your Answer!</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 {product}: {question}
@@ -164,12 +163,12 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
                   htmlFor='nickname'
                   required
                   error={error.name ? true : false}>
-                  What is your nickname
+                  Nickname
                 </InputLabel>
                 <TextField
                   id='nickname'
                   required
-                  // label="What is your nickname"
+                  label='What is your nickname'
                   placeholder='Example: jack543!'
                   fullWidth
                   required

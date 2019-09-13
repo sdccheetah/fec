@@ -86,7 +86,7 @@ class Answers extends React.Component {
               onClick={() => {
                 this.loadMore();
               }}>
-              Load more answers
+              Load More Answers
             </Button>
           ) : this.state.load > 2 ? (
             <Button
@@ -95,7 +95,7 @@ class Answers extends React.Component {
               onClick={() => {
                 this.resetAnswers();
               }}>
-              Collapse answers
+              Collapse Answers
             </Button>
           ) : (
             <Fragment />

@@ -1,16 +1,18 @@
 import React, { useState, Fragment } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
 import Moment from 'react-moment';
+import ImageGallery from './ImageGallery';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
   return (
     <Fragment>
       <Typography variant='body1'>{props.answer.body} </Typography>
-      {/* {props.answer.photos.length > 0 ? ( */}
-      {/* // // <ImageGallery photos={props.answer.photos} /> */}
-      {/* // ) : ( // <Fragment /> */}
-      {/* // )} */}
+      {props.answer.photos.length > 0 ? (
+        <ImageGallery photos={props.answer.photos} />
+      ) : (
+        <Fragment />
+      )}
       <Grid container direction='row' justify='flex-start' alignItems='center'>
         <Typography variant='subtitle2'>
           by{' '}
