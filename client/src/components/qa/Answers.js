@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Answer from './Answer';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
+import { clickTracker } from '../overview/helpers.js';
 
 class Answers extends React.Component {
   constructor(props) {
@@ -31,18 +32,19 @@ class Answers extends React.Component {
   getAnswers(page = 1, count = 50) {
     axios
       .get(
-        `http://18.222.40.124/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
+        `http://18.217.220.129/qa/${this.props.question_id}/answers?page=${page}&count=${count}`
       )
-      .then(res => {
-        this.setState({ answers: res.data.results });
+      .then(data => {
+        this.setState({ answers: data.data.results });
       })
       .catch(err => {
         console.log(err);
       });
   }
   voteAnswer(answer_id) {
+    clickTracker('moreAnswers', 'QandA');
     axios
-      .put(`http://18.222.40.124/qa/answer/${answer_id}/helpful`)
+      .put(`http://18.217.220.129/qa/answer/${answer_id}/helpful`)
       .then(res => {
         this.getAnswers();
       })
@@ -51,8 +53,9 @@ class Answers extends React.Component {
       });
   }
   reportAnswer(answer_id) {
+    clickTracker('reportAnswer', 'QandA');
     axios
-      .put(`http://18.222.40.124/qa/answer/${answer_id}/report`)
+      .put(`http://18.217.220.129/qa/answer/${answer_id}/report`)
       .then(res => {
         this.getAnswers();
       })
@@ -73,6 +76,7 @@ class Answers extends React.Component {
                   key={index}
                   voteAnswer={this.voteAnswer}
                   reportAnswer={this.reportAnswer}
+                  getData={this.getData}
                 />
               );
             }
@@ -85,16 +89,16 @@ class Answers extends React.Component {
               onClick={() => {
                 this.loadMore();
               }}>
-              Load more answers
+              See More Answers
             </Button>
           ) : this.state.load > 2 ? (
             <Button
               variant='text'
               className='loadmore'
               onClick={() => {
-                this.reset();
+                this.resetAnswers();
               }}>
-              Collapse answers
+              Collapse Answers
             </Button>
           ) : (
             <Fragment />

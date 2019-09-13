@@ -4,6 +4,8 @@ import Moment from 'react-moment';
 import { Typography, Container, Modal, Grid, Button } from '@material-ui/core';
 import Question from './Question';
 import QuestionButtons from './QuestionButtons';
+import { clickTracker } from '../overview/helpers.js';
+import QuestionForm from './QuestionForm';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class Questions extends React.Component {
 
   loadMore() {
     //loads more questions each time clicked
+    clickTracker('loadMoreQuestions', 'QandA');
     if (this.state.load < 2)
       this.setState({
         load: this.state.load + 2
@@ -24,7 +27,7 @@ class Questions extends React.Component {
   }
 
   resetQuestions() {
-    //resets the questions list back to 4
+    clickTracker('resetQuestionForm', 'QandA');
     this.setState({
       load: 4
     });
@@ -32,8 +35,9 @@ class Questions extends React.Component {
 
   voteQ(question_id) {
     // votes on a question based on the question id and updates the data
+    clickTracker('voteQuestionForm', 'QandA');
     axios
-      .put(`http://18.222.40.124/qa/question/${question_id}/helpful`)
+      .put(`http://18.217.220.129/qa/question/${question_id}/helpful`)
       .then(res => {
         this.props.getData(
           this.props.store.mainItem.product_id,

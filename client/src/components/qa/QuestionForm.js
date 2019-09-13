@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
-import axios from 'axios';
-const { API_KEY } = require('../reviews/config');
-const client = filestack.init(API_KEY);
-import { clickTracker } from '../overview/helpers.js';
 import { validate } from './ValidateForm';
-
+import { connect } from 'react-redux';
+import { clickTracker } from '../overview/helpers.js';
+import { postQuestion } from '../../actions/PostQ';
 import {
   Dialog,
   DialogContent,
@@ -16,18 +14,19 @@ import {
   Button,
   Slide,
   Box,
-  InputLabel
+  InputLabel,
+  Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    'border-radius': 0,
-    padding: '15px'
-  },
   root: {
     textAlign: 'center'
+  },
+  checkMark: {
+    width: 50,
+    height: 50,
+    color: 'green'
   }
 }));
 
@@ -36,12 +35,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const defaultForm = {
-  answer: '',
-  email: '',
+  question: '',
   name: '',
-  photos: []
+  email: ''
 };
-
 const renderErrors = errorList => {
   if (!errorList || errorList.length === 0) {
     return;
@@ -61,11 +58,11 @@ const renderErrors = errorList => {
   }
 };
 
-const AnswerForm = ({ product, question, question_id, answer }) => {
+const QuestionForm = ({ productName, productId, postQuestion }) => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState(defaultForm);
   const [error, setErrors] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const [success, setSeccess] = React.useState(false);
   const classes = useStyles();
 
   const handleChange = e => {
@@ -75,130 +72,83 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
     });
   };
 
-  const handleUpload = event => {
-    event.preventDefault();
-    let photos = [];
-    let process = uploadData => {
-      let allPhotos = uploadData.filesUploaded;
-      for (let i = 0; i < allPhotos.length; i++) {
-        photos.push(allPhotos[i].url);
-      }
-      this.setState({
-        photos: photos
-      });
-    };
-    const options = {
-      maxFiles: 5,
-      accept: [
-        'image/jpeg',
-        'image/jpg',
-        'image/png',
-        'image/bmp',
-        'image/gif',
-        'application/pdf'
-      ],
-      storeTo: {
-        container: 'devportal-customers-assets',
-        path: 'user-uploads/',
-        region: 'us-east-1'
-      },
-      fromSources: ['local_file_system'],
-      uploadInBackground: false,
-      onUploadDone: process
-    };
-
-    client.picker(options).open();
-  };
-
-  const submitForm = (form, question_id) => {
-    axios({
-      method: 'post',
-      url: `http://18.217.220.129/qa/${question_id}/answers`,
-      data: {
-        body: form.answer,
-        name: form.name,
-        email: form.email,
-        photos: form.photos
-      }
-    })
-      .then(data => {
-        setSuccess(true);
-      })
-      .catch(err => {
-        console.log(err);
-        alert('Error occurred when submitting your answer');
-      });
-  };
-
   const handleSubmit = e => {
-    clickTracker('moreAnswers', 'QandA');
-    let errorList = validate(form, 'answer', null);
+    clickTracker('submitQuestionForm', 'QandA');
+    let errorList = validate(form, 'question', null);
     setErrors(errorList);
     if (!errorList) {
-      submitForm(form, question_id);
+      postQuestion(Object.assign(form, { productId: productId }));
+      setSeccess(true);
     }
   };
 
   function handleClickOpen() {
-    clickTracker('click', 'QandA');
+    clickTracker('openQuestionForm', 'QandA');
     setOpen(true);
   }
+
   function handleClose() {
+    clickTracker('closeQuestionForm', 'QandA');
     setOpen(false);
     setForm(defaultForm);
     setErrors(false);
-    setSuccess(false);
+    setSeccess(false);
   }
 
   return (
     <Fragment>
-      <Button onClick={handleClickOpen}>Add Answer</Button>
+      <Button variant='outlined' onClick={handleClickOpen}>
+        Add a question +
+      </Button>
       <Dialog
-        TransitionComponent={Transition}
         maxWidth='sm'
         fullWidth={!success}
+        TransitionComponent={Transition}
         open={open}
         onClose={handleClose}
         onClick={success ? handleClose : () => {}}
         aria-labelledby='form-dialog-title'>
-        {!success ? (
+        {success ? (
           <Fragment>
-            {' '}
-            <DialogTitle>Submit your Answer!</DialogTitle>
+            <DialogTitle>Success! Thanks for posting a question.</DialogTitle>
+            <Box className={classes.root}></Box>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <DialogTitle>Ask Your Question</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                {product}: {question}
-              </DialogContentText>
               {renderErrors(error)}
               <form>
                 <InputLabel
-                  htmlFor='answerbody'
+                  htmlFor='questionarea'
                   required
-                  error={error.answer ? true : false}>
-                  Your answer
+                  error={error.question ? true : false}>
+                  Your question
                 </InputLabel>
                 <TextField
-                  id='answerbody'
+                  id='questionarea'
+                  label='Your Question'
+                  placeholder='Enter Your Question'
                   multiline
                   required
                   inputProps={{ maxLength: 1000 }}
                   fullWidth
                   onChange={handleChange.bind(this)}
-                  value={form.answer}
-                  error={error.answer ? true : false}
-                  name='answer'
+                  value={form.question}
+                  error={error.question ? true : false}
+                  name='question'
                 />
                 <InputLabel
                   htmlFor='nickname'
                   required
                   error={error.name ? true : false}>
-                  Nickname
+                  What is your nickname
                 </InputLabel>
                 <TextField
                   id='nickname'
                   required
                   label='What is your nickname'
-                  placeholder='Example: jack543!'
+                  placeholder='Example:jack543!'
                   fullWidth
                   required
                   helperText='For privacy reasons, do not use your full name or email address'
@@ -210,7 +160,7 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
                 <InputLabel
                   htmlFor='email'
                   required
-                  error={error.name ? true : false}>
+                  error={error.email ? true : false}>
                   Your email
                 </InputLabel>
                 <TextField
@@ -218,24 +168,23 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
                   required
                   fullWidth
                   inputProps={{ maxLength: 60 }}
-                  placeholder='jack@email.com'
+                  placeholder='email@email.com'
                   helperText='For authentication reasons, you will not be emailed'
                   onChange={handleChange.bind(this)}
                   value={form.email}
                   error={error.email ? true : false}
                   name='email'
                 />
-                <button onClick={handleUpload}>Upload Photos</button>
               </form>
             </DialogContent>
             <DialogActions>
               <Grid container justify='flex-end'>
-                <Button onClick={handleClose} color='secondary'>
-                  Cancel
+                <Button color='secondary' onClick={handleClose}>
+                  cancel
                 </Button>
                 <Button
+                  color='primary'
                   onClick={e => {
-                    console.log('submitted');
                     event.preventDefault();
                     handleSubmit();
                   }}>
@@ -244,14 +193,26 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
               </Grid>
             </DialogActions>
           </Fragment>
-        ) : (
-          <Fragment>
-            <DialogTitle>Great! Thanks for the submission.</DialogTitle>
-          </Fragment>
         )}
       </Dialog>
     </Fragment>
   );
 };
 
-export default AnswerForm;
+const mapStateToProps = state => {
+  return {
+    product_id: state.mainItem.product_id
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postQuestion: question => {
+      dispatch(postQuestion(question));
+    }
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionForm);
