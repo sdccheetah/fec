@@ -64,13 +64,11 @@ const BasicList = ({store, getInitMain, getStyles}) => {
               type="text"
               onChange={updateSearch}></input>
           </form>
-        </div>
-        <div>
           <button 
             type="submit" 
             form="findItem" 
             value="Submit"
-            onClick={getInput}>Submit</button>
+            onClick={getInput}>Search</button>
         </div>
       </div>
     );

@@ -26,7 +26,7 @@ const InitPage = ({ store, getInitMain, getStyles, setCurrent }) => {
       <ProductInfo
         store={store.mainItem}
       />
-      <SocialMedia />
+      {/* <SocialMedia /> */}
     </React.Fragment>
   );
 };

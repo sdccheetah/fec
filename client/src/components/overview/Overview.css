@@ -4,13 +4,14 @@
   top: 10px;
   left: 25px;
   background-color: gray;
-  width: 1250px;
+  width: 1350px;
   height: 40px;
   position: relative;
 }
-/* .searchInput {
-  float: right;
-} */
+.searchInput {
+  position: relative;
+  left: 100px;
+}
 .descript-container {
   display: flex;
   left: 25px;
@@ -32,15 +33,14 @@
 }
 
 .social-share {
-  top: 25px;
-  position: relative;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  position: fixed;
   display: flex;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-  font-size: 13px;
-  line-height: 26px;
+  z-index: 100;
 }
+
 
 .circle {
   height: 50px;
@@ -60,7 +60,7 @@
 
 .images {
   display: flex;
-  height: 600px;
+  height: 700px;
   margin: auto;
   position: relative;
   top: 25px;
@@ -69,7 +69,7 @@
 
 .img-container {
   width: 150px;
-  height: 600px;
+  height: 700px;
   padding: 10px;
   display: flex;
   overflow-y: scroll;
@@ -98,8 +98,8 @@
 .img-zoom-container {
   background-color: black;
   float: left;
-  height: 600px;
-  width: 950px;
+  height: 700px;
+  width: 1050px;
   position: relative;
   /* display: flex; */
   object-fit: scale-down;
@@ -112,7 +112,7 @@
 }
 .button-left {
   position: absolute;
-  top: 280px;
+  top: 330px;
   left: 150px;
   z-index: 10;
 }
@@ -165,12 +165,12 @@
 }
 .mag-click {
   position: absolute;
-  top: 566px;
+  top: 666px;
   left: 395px;
 }
 .mod-click {
   position: absolute;
-  top: 566px;
+  top: 666px;
   left: 475px;
 }
 
@@ -272,3 +272,7 @@
   width: 268px;
 }
 
+.addCart {
+  position: relative;
+  top: 25px;
+}
