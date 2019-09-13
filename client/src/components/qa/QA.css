@@ -18,3 +18,9 @@ paper-button {
   opacity: 1;
   cursor: pointer;
 }
+.QA {
+  display: relative;
+  top: 25px;
+  margin-left: 5%;
+  width: 1000px;
+}

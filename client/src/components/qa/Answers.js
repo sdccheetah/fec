@@ -84,12 +84,13 @@ class Answers extends React.Component {
 
           {this.state.load < this.state.answers.length ? (
             <Button
+              className='qa-put-option'
               variant='text'
               className='upper-button'
               onClick={() => {
                 this.loadMore();
               }}>
-              See More
+              See More Answers
             </Button>
           ) : this.state.load > 2 ? (
             <Button
