@@ -18,7 +18,7 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       let temp = document.getElementById("myimage");
       temp.removeEventListener("click", setModal);
       temp.addEventListener("click", onImgClick);
-      clickTracker('myimage', 'overview');
+      clickTracker('Magnify', 'overview');
     }
     const setModClick = function() {
       if (document.getElementsByClassName("img-magnifier-glass")) {
@@ -30,6 +30,7 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       let temp = document.getElementById("myimage");
       temp.removeEventListener("click", onImgClick);
       temp.addEventListener("click", setModal);
+      clickTracker('Expand', 'overview');
     }
 
     const plusDivs = function() {
@@ -39,6 +40,7 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       }
       let current = document.getElementById('myimage');
       current.src = store.currentStyle.photos[slideIndex].url;
+      clickTracker('RightArrow', 'overview');
     }
 
     const minusDivs = function() {
@@ -48,11 +50,12 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       }
       let current = document.getElementById('myimage');
       current.src = store.currentStyle.photos[slideIndex].url;
+      clickTracker('LeftArrow', 'overview');
     }
   
     const onImgClick = (e) => {
       e.preventDefault();
-      magnify("myimage", 3);
+      magnify("myimage", 2.5);
     }
   
     const setImage = (e) => {
@@ -66,13 +69,17 @@ const StyleImages = ({store, setCurrent, reviews}) => {
       tempPrevImg = e.target;
       // console.log(store.currentStyle.photos[newImg]);
       current.src = store.currentStyle.photos[newImg].url;
-      magnify("myimage", 3);
+      // magnify("myimage", 3);
       if (document.getElementsByClassName("img-magnifier-glass")) {
         let toRemove = document.getElementsByClassName("img-magnifier-glass");
         while (toRemove.length > 0) {
           toRemove[0].parentNode.removeChild(toRemove[0]);
         }
       }
+      let temp = document.getElementById("myimage");
+      temp.removeEventListener("click", setModal);
+      temp.removeEventListener("click", onImgClick);
+      clickTracker('Gallery', 'overview');
     }
 
     return (
