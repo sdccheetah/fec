@@ -6,6 +6,7 @@ import Question from './Question';
 import QuestionButtons from './QuestionButtons';
 import { clickTracker } from '../overview/helpers.js';
 import QuestionForm from './QuestionForm';
+import getQA from './getQA.js';
 
 class Questions extends React.Component {
   constructor(props) {

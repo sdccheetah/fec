@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='right' ref={ref} {...props} />;
-});
-
 const defaultForm = {
   answer: '',
   email: '',
@@ -154,7 +150,6 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
     <Fragment>
       <button onClick={handleClickOpen}>Add Answer</button>
       <Dialog
-        TransitionComponent={Transition}
         maxWidth='sm'
         fullWidth={!success}
         open={open}

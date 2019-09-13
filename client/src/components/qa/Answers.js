@@ -86,6 +86,7 @@ class Answers extends React.Component {
             <Button
               className='qa-put-option'
               variant='text'
+              text-size='10px'
               className='upper-button'
               onClick={() => {
                 this.loadMore();
