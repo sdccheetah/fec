@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Answer from './Answer';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
+import { clickTracker } from '../overview/helpers.js';
 
 class Answers extends React.Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Answers extends React.Component {
       });
   }
   voteAnswer(answer_id) {
+    clickTracker('moreAnswers', 'QandA');
     axios
       .put(`http://18.217.220.129/qa/answer/${answer_id}/helpful`)
       .then(res => {
@@ -51,6 +53,7 @@ class Answers extends React.Component {
       });
   }
   reportAnswer(answer_id) {
+    clickTracker('reportAnswer', 'QandA');
     axios
       .put(`http://18.217.220.129/qa/answer/${answer_id}/report`)
       .then(res => {
@@ -86,7 +89,7 @@ class Answers extends React.Component {
               onClick={() => {
                 this.loadMore();
               }}>
-              Load More Answers
+              See More Answers
             </Button>
           ) : this.state.load > 2 ? (
             <Button

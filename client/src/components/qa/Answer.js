@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
 import Moment from 'react-moment';
 import ImageGallery from './ImageGallery';
+import clickTracker from '../overview/helpers.js';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);

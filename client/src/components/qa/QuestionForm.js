@@ -1,9 +1,9 @@
+//Dev Dependencies
 import React, { Fragment } from 'react';
-import axios from 'axios';
-// import UploadImage from './UploadImage';
+import { validate } from '../helpers';
+import { connect } from 'react-redux';
 import { clickTracker } from '../overview/helpers.js';
-import { validate } from './ValidateForm';
-
+import { postQuestion } from '../../actions/QandA/postQuestion';
 import {
   Dialog,
   DialogContent,
@@ -15,16 +15,13 @@ import {
   Button,
   Slide,
   Box,
-  InputLabel
+  InputLabel,
+  Typography
 } from '@material-ui/core';
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    'border-radius': 0,
-    padding: '15px'
-  },
   root: {
     textAlign: 'center'
   },
@@ -36,16 +33,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='right' ref={ref} {...props} />;
+  return <Slide direction='left' ref={ref} {...props} />;
 });
 
 const defaultForm = {
-  answer: '',
-  email: '',
+  question: '',
   name: '',
-  photos: []
+  email: ''
 };
-
 const renderErrors = errorList => {
   if (!errorList || errorList.length === 0) {
     return;
@@ -65,11 +60,11 @@ const renderErrors = errorList => {
   }
 };
 
-const AnswerForm = ({ product, question, question_id, answer }) => {
+const QuestionForm = ({ productName, productId, postQuestion }) => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState(defaultForm);
   const [error, setErrors] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const [success, setSeccess] = React.useState(false);
   const classes = useStyles();
 
   const handleChange = e => {
@@ -79,100 +74,87 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
     });
   };
 
-  const submitForm = (form, question_id) => {
-    axios({
-      method: 'post',
-      url: `http://18.217.220.129/qa/${question_id}/answers`,
-      data: {
-        body: form.answer,
-        name: form.name,
-        email: form.email,
-        photos: form.photos
-      }
-    })
-      .then(data => {
-        setSuccess(true);
-      })
-      .catch(err => {
-        console.log(err);
-        alert('Error occurred when submitting your answer');
-      });
-  };
-
   const handleSubmit = e => {
-    clickTracker('moreAnswers', 'QandA');
-    let errorList = validate(form, 'answer', null);
+    clickTracker('submitQuestionForm', 'QandA');
+    let errorList = validate(form, 'question', null);
     setErrors(errorList);
     if (!errorList) {
-      submitForm(form, question_id);
+      postQuestion(Object.assign(form, { productId: productId }));
+      setSeccess(true);
     }
   };
 
-  const handleUpload = images => {
-    setForm(prevState => {
-      return { ...prevState, photos: images };
-    });
-  };
   function handleClickOpen() {
-    clickTracker('click', 'QandA');
+    clickTracker('openQuestionForm', 'QandA');
     setOpen(true);
   }
+
   function handleClose() {
+    clickTracker('closeQuestionForm', 'QandA');
     setOpen(false);
     setForm(defaultForm);
     setErrors(false);
-    setSuccess(false);
+    setSeccess(false);
   }
 
   return (
     <Fragment>
-      <Button onClick={handleClickOpen}>Add Answer</Button>
+      <Button variant='outlined' onClick={handleClickOpen}>
+        Add a question +
+      </Button>
       <Dialog
-        TransitionComponent={Transition}
         maxWidth='sm'
         fullWidth={!success}
+        TransitionComponent={Transition}
         open={open}
         onClose={handleClose}
         onClick={success ? handleClose : () => {}}
         aria-labelledby='form-dialog-title'>
-        {!success ? (
+        {success ? (
           <Fragment>
-            {' '}
-            <DialogTitle>Submit your Answer!</DialogTitle>
+            <DialogTitle>Success</DialogTitle>
+            <Box className={classes.root}>
+              <CheckCircleOutline className={classes.checkMark} />
+            </Box>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <DialogTitle>Ask Your Question</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                {product}: {question}
-              </DialogContentText>
+              <DialogContentText>About the {productName}</DialogContentText>
               {renderErrors(error)}
               <form>
                 <InputLabel
-                  htmlFor='answerbody'
+                  htmlFor='questionarea'
                   required
-                  error={error.answer ? true : false}>
-                  Your answer
+                  // asterisk
+                  error={error.question ? true : false}>
+                  Your question
                 </InputLabel>
                 <TextField
-                  id='answerbody'
+                  id='questionarea'
+                  label='Your Question'
+                  placeholder='Enter Your Question'
                   multiline
                   required
                   inputProps={{ maxLength: 1000 }}
                   fullWidth
                   onChange={handleChange.bind(this)}
-                  value={form.answer}
-                  error={error.answer ? true : false}
-                  name='answer'
+                  value={form.question}
+                  error={error.question ? true : false}
+                  name='question'
                 />
                 <InputLabel
                   htmlFor='nickname'
                   required
                   error={error.name ? true : false}>
-                  Nickname
+                  What is your nickname
                 </InputLabel>
                 <TextField
                   id='nickname'
                   required
                   label='What is your nickname'
-                  placeholder='Example: jack543!'
+                  placeholder='Example:jack543!'
                   fullWidth
                   required
                   helperText='For privacy reasons, do not use your full name or email address'
@@ -184,15 +166,16 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
                 <InputLabel
                   htmlFor='email'
                   required
-                  error={error.name ? true : false}>
+                  error={error.email ? true : false}>
                   Your email
                 </InputLabel>
                 <TextField
                   id='email'
                   required
                   fullWidth
+                  // label="Your email"
                   inputProps={{ maxLength: 60 }}
-                  placeholder='jack@email.com'
+                  placeholder='email@email.com'
                   helperText='For authentication reasons, you will not be emailed'
                   onChange={handleChange.bind(this)}
                   value={form.email}
@@ -203,12 +186,12 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
             </DialogContent>
             <DialogActions>
               <Grid container justify='flex-end'>
-                <Button onClick={handleClose} color='secondary'>
-                  Cancel
+                <Button color='secondary' onClick={handleClose}>
+                  cancel
                 </Button>
                 <Button
+                  color='primary'
                   onClick={e => {
-                    console.log('submitted');
                     event.preventDefault();
                     handleSubmit();
                   }}>
@@ -217,14 +200,27 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
               </Grid>
             </DialogActions>
           </Fragment>
-        ) : (
-          <Fragment>
-            <DialogTitle>Great! Thanks for the submission.</DialogTitle>
-          </Fragment>
         )}
       </Dialog>
     </Fragment>
   );
 };
 
-export default AnswerForm;
+const mapStateToProps = state => {
+  return {
+    productId: state.productId,
+    productName: state.product.name
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postQuestion: question => {
+      dispatch(postQuestion(question));
+    }
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionForm);
