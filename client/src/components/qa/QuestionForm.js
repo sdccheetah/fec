@@ -1,9 +1,8 @@
-//Dev Dependencies
 import React, { Fragment } from 'react';
-import { validate } from '../helpers';
+import { validate } from './ValidateForm';
 import { connect } from 'react-redux';
 import { clickTracker } from '../overview/helpers.js';
-import { postQuestion } from '../../actions/QandA/postQuestion';
+import { postQuestion } from '../../actions/PostQ';
 import {
   Dialog,
   DialogContent,
@@ -18,7 +17,6 @@ import {
   InputLabel,
   Typography
 } from '@material-ui/core';
-import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='left' ref={ref} {...props} />;
+  return <Slide direction='right' ref={ref} {...props} />;
 });
 
 const defaultForm = {
@@ -112,22 +110,18 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
         aria-labelledby='form-dialog-title'>
         {success ? (
           <Fragment>
-            <DialogTitle>Success</DialogTitle>
-            <Box className={classes.root}>
-              <CheckCircleOutline className={classes.checkMark} />
-            </Box>
+            <DialogTitle>Success! Thanks for posting a question.</DialogTitle>
+            <Box className={classes.root}></Box>
           </Fragment>
         ) : (
           <Fragment>
             <DialogTitle>Ask Your Question</DialogTitle>
             <DialogContent>
-              <DialogContentText>About the {productName}</DialogContentText>
               {renderErrors(error)}
               <form>
                 <InputLabel
                   htmlFor='questionarea'
                   required
-                  // asterisk
                   error={error.question ? true : false}>
                   Your question
                 </InputLabel>
@@ -173,7 +167,6 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                   id='email'
                   required
                   fullWidth
-                  // label="Your email"
                   inputProps={{ maxLength: 60 }}
                   placeholder='email@email.com'
                   helperText='For authentication reasons, you will not be emailed'
@@ -208,8 +201,7 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
 
 const mapStateToProps = state => {
   return {
-    productId: state.productId,
-    productName: state.product.name
+    product_id: state.mainItem.product_id
   };
 };
 

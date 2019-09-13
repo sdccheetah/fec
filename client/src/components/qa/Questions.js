@@ -5,6 +5,7 @@ import { Typography, Container, Modal, Grid, Button } from '@material-ui/core';
 import Question from './Question';
 import QuestionButtons from './QuestionButtons';
 import { clickTracker } from '../overview/helpers.js';
+import QuestionForm from './QuestionForm';
 
 class Questions extends React.Component {
   constructor(props) {
