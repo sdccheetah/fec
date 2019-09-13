@@ -1,75 +1,66 @@
 * {
   box-sizing: border-box;
 }
+
 .searchbar {
   display: flex;
+  flex: 2;
   top: 10px;
   left: 25px;
+  right: 25px;
   background-color: gray;
-  width: 1250px;
+  max-width: 1350px;
+  width: 100%;
   height: 40px;
   position: relative;
 }
+.searchInput {
+  position: absolute;
+  display: flex;
+  right: 10px;
+  top: 8px;
+}
+.siteName {
+  position: absolute;
+  display: flex;
+  left: 10px;
+  font-size: 30px;
+}
+
 .descript-container {
   display: flex;
   left: 25px;
   top: 20px;
+  bottom: 25px;
 }
 .descript {
   left: 25px;
   top: 20px;
   position: relative;
-  width: 1000px;
+  width: 1050px;
+}
+#item-desc {
+  display: flex;
+  position: relative;
+  top: 10px;
+  bottom: 25px;
 }
 .features {
   top: 20px;
   position: relative;
-  left: 10px;
+  left: 28px;
 }
 .sale-price {
   color: red;
 }
 
 .social-share {
-  position: relative;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-  font-size: 13px;
-  line-height: 26px;
-}
-.upper-button {
-  width: 76px;
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-}
-.twitter-share-button {
-  position: relative;
-  box-sizing: border-box;
-  background-color: #1b95e0;
-  color: #fff;
-  font-weight: 500;
-  height: 28px;
-  border-radius: 4px;
-  padding: 1px 10px 1px 9px;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-  outline: 0;
-  text-decoration: none;
-  white-space: nowrap;
-  text-align: left;
-}
-i {
-  top: 4px;
-  height: 18px;
-  width: 18px;
-  position: relative;
-  display: inline-block;
-  background: transparent 0 0 no-repeat;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  position: fixed;
+  display: flex;
+  z-index: 100;
 }
 
 .circle {
@@ -90,7 +81,7 @@ i {
 
 .images {
   display: flex;
-  height: 600px;
+  height: 700px;
   margin: auto;
   position: relative;
   top: 25px;
@@ -99,7 +90,7 @@ i {
 
 .img-container {
   width: 150px;
-  height: 600px;
+  height: 700px;
   padding: 10px;
   display: flex;
   overflow-y: scroll;
@@ -129,8 +120,8 @@ i {
 .img-zoom-container {
   background-color: black;
   float: left;
-  height: 600px;
-  width: 950px;
+  height: 700px;
+  width: 1050px;
   position: relative;
   /* display: flex; */
   object-fit: scale-down;
@@ -143,7 +134,7 @@ i {
 }
 .button-left {
   position: absolute;
-  top: 280px;
+  top: 330px;
   left: 150px;
   z-index: 10;
 }
@@ -200,12 +191,12 @@ i {
 }
 .mag-click {
   position: absolute;
-  top: 566px;
+  top: 666px;
   left: 395px;
 }
 .mod-click {
   position: absolute;
-  top: 566px;
+  top: 666px;
   left: 475px;
 }
 
@@ -265,7 +256,7 @@ i {
 }
 .select-items div,
 .select-selected {
-  color: #ffffff;
+  color: black;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -307,4 +298,19 @@ i {
   height: 29px;
   padding: 5px;
   width: 268px;
+}
+
+.addCart {
+  position: relative;
+  top: 25px;
+}
+#addCartButton {
+  background-color: #cccccc;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

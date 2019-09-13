@@ -1,5 +1,5 @@
 import React from 'react';
-import { customSelects } from './helpers.js';
+import { customSelects, getCookieValue, addToCart, clickTracker } from './helpers.js';
 import FiveStars from './../reviews/FiveStars.js';
 
 const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
@@ -10,6 +10,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
   let currentSizes = [];
   let currentSku = 0;
   let quant = 1;
+  let userId = getCookieValue('user_id');
 
   const selectColor = (e) => {
     e.preventDefault();
@@ -25,21 +26,27 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
     for (let i = 0; i < clearClass.length; i++) {
       clearClass[i].className = 'slide';
     }
+    clickTracker('StyleSelect', 'overview');
   };
 
   const onAdd = (e) => {
     e.preventDefault();
-    console.log(currentSku);
-    console.log(quant);
+    let userId = Number(document.cookie.user_id);
+    addToCart(userId, details.id);
+    clickTracker('AddCart', 'overview');
+    // console.log(userId);
+    // console.log(details.id);
   }
 
   const changeQty = (e) => {
     quant = Number(e.target.value);
+    clickTracker('QuantityChange', 'overview');
   }
 
   const onChange = (e) => {
     let index = Number(e.target.value);
     currentSku = current.skus[currentSizes[index]];
+    clickTracker('SizeSelect', 'overview');
   }
 
   const prices = () => {
@@ -87,7 +94,7 @@ const StyleSelect = ({store, setCurrent, current, details, reviews}) => {
               return (
                 <div className="circle" 
                   key={index}
-                  onClick={selectColor}
+                  // onClick={selectColor}
                   id={index}>
                   <img className="style-thumbnail" 
                     src={srcURL}
