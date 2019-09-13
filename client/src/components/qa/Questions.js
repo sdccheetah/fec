@@ -69,16 +69,15 @@ class Questions extends React.Component {
     // check to see if product id is the same
     // console.log('this state', this.state.product_id);
     // console.log('mainitem', this.props.store.mainItem.product_id);
-
-    // if (
-    //   parseInt(this.state.product_id) !==
-    //   parseInt(this.props.store.mainItem.product_id)
-    // ) {
-    //   this.setState({
-    //     product_id: this.props.store.mainItem.product_id
-    //   });
-    //   this.props.getQA(this.props.store.mainItem.product_id);
-    // }
+    if (
+      parseInt(this.state.product_id) !==
+      parseInt(this.props.store.mainItem.product_id)
+    ) {
+      this.setState({
+        product_id: this.props.store.mainItem.product_id
+      });
+      this.props.getQA(this.props.store.mainItem.product_id);
+    }
     let qq = this.props.store.questions.questions || [];
     if (qq.length > 0) {
       return (
