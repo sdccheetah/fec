@@ -7,6 +7,8 @@ import './QA.css';
 const QuestionAndAnswers = props => {
   return (
     <div className='QA'>
+      <br />
+      <br />
       <Box id='QA'>
         <Typography variant='h5'>Questions & Answers</Typography>
         <Search />
