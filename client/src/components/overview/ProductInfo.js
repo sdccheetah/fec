@@ -8,7 +8,7 @@ const ProductInfo = ({store}) => {
       <div className="descript-container">
         <div className="descript">
           <h3>{store.details.slogan}</h3>
-          <h4>{store.details.description}</h4>
+          <h4 id="item-desc">{store.details.description}</h4>
         </div>
         <div className="features">
           <h3>Features:</h3>
