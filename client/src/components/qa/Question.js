@@ -55,14 +55,15 @@ const Question = props => {
             direction='row'
             justify='flex-end'
             alignItems='center'>
-            <Button
+            <div
+              className='qa-put-option'
               disabled={disabled}
               onClick={() => {
                 props.voteQ(props.question.question_id);
                 setDisabled(!disabled);
               }}>
               Helpful? ({props.question.question_helpfulness})
-            </Button>
+            </div>
             <Typography component='h4'> | </Typography>
             <AnswerForm
               question={props.question.question_body}

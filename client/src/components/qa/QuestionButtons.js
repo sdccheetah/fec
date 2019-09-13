@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Modal, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import QuestionForm from './QuestionForm';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -63,6 +64,7 @@ const QuestionButtons = props => {
       ) : (
         <Fragment />
       )}
+      <QuestionForm product={props.product} />
     </div>
   );
 };

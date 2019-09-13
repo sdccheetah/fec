@@ -4,12 +4,15 @@ import Moment from 'react-moment';
 import { Typography, Container, Modal, Grid, Button } from '@material-ui/core';
 import Question from './Question';
 import QuestionButtons from './QuestionButtons';
+import { clickTracker } from '../overview/helpers.js';
+import QuestionForm from './QuestionForm';
 
 class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      load: 4
+      load: 4,
+      product_id: this.props.store.mainItem.product_id || null
     };
     this.loadMore = this.loadMore.bind(this);
     this.voteQ = this.voteQ.bind(this);
@@ -17,6 +20,7 @@ class Questions extends React.Component {
 
   loadMore() {
     //loads more questions each time clicked
+    clickTracker('loadMoreQuestions', 'QandA');
     if (this.state.load < 2)
       this.setState({
         load: this.state.load + 2
@@ -24,7 +28,7 @@ class Questions extends React.Component {
   }
 
   resetQuestions() {
-    //resets the questions list back to 4
+    clickTracker('resetQuestionForm', 'QandA');
     this.setState({
       load: 4
     });
@@ -32,6 +36,7 @@ class Questions extends React.Component {
 
   voteQ(question_id) {
     // votes on a question based on the question id and updates the data
+    clickTracker('voteQuestionForm', 'QandA');
     axios
       .put(`http://18.217.220.129/qa/question/${question_id}/helpful`)
       .then(res => {
@@ -62,6 +67,17 @@ class Questions extends React.Component {
 
   render() {
     // check to see if product id is the same
+    // console.log('this state', this.state.product_id);
+    // console.log('mainitem', this.props.store.mainItem.product_id);
+    if (
+      parseInt(this.state.product_id) !==
+      parseInt(this.props.store.mainItem.product_id)
+    ) {
+      this.setState({
+        product_id: this.props.store.mainItem.product_id
+      });
+      this.props.getQA(this.props.store.mainItem.product_id);
+    }
     let qq = this.props.store.questions.questions || [];
     if (qq.length > 0) {
       return (

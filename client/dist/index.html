@@ -3,11 +3,22 @@
     <head>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <title>Project Greenfield</title>
-        <meta charset="utf-8">
+        <meta charset="utf-8" name="viewport" content= "width=device-width, initial-scale=1.0">
+        <meta name="description" content="Buy Our Stuff!">
     </head>
     <body>
-        <div id="app"></div>
+        <div id="root"></div>
         <script src="/bundle.js"></script>
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+        <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>
