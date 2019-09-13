@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-// import UploadImage from './UploadImage';
+const { API_KEY } = require('../reviews/config');
+const client = filestack.init(API_KEY);
 import { clickTracker } from '../overview/helpers.js';
 import { validate } from './ValidateForm';
 
@@ -27,11 +28,6 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     textAlign: 'center'
-  },
-  checkMark: {
-    width: 50,
-    height: 50,
-    color: 'green'
   }
 }));
 
@@ -79,6 +75,41 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
     });
   };
 
+  const handleUpload = event => {
+    event.preventDefault();
+    let photos = [];
+    let process = uploadData => {
+      let allPhotos = uploadData.filesUploaded;
+      for (let i = 0; i < allPhotos.length; i++) {
+        photos.push(allPhotos[i].url);
+      }
+      this.setState({
+        photos: photos
+      });
+    };
+    const options = {
+      maxFiles: 5,
+      accept: [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/bmp',
+        'image/gif',
+        'application/pdf'
+      ],
+      storeTo: {
+        container: 'devportal-customers-assets',
+        path: 'user-uploads/',
+        region: 'us-east-1'
+      },
+      fromSources: ['local_file_system'],
+      uploadInBackground: false,
+      onUploadDone: process
+    };
+
+    client.picker(options).open();
+  };
+
   const submitForm = (form, question_id) => {
     axios({
       method: 'post',
@@ -108,11 +139,6 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
     }
   };
 
-  const handleUpload = images => {
-    setForm(prevState => {
-      return { ...prevState, photos: images };
-    });
-  };
   function handleClickOpen() {
     clickTracker('click', 'QandA');
     setOpen(true);
@@ -199,6 +225,7 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
                   error={error.email ? true : false}
                   name='email'
                 />
+                <button onClick={handleUpload}>Upload Photos</button>
               </form>
             </DialogContent>
             <DialogActions>
