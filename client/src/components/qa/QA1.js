@@ -2,14 +2,13 @@ import React from 'react';
 import Questions from './Questions';
 import Search from './Search';
 import { Typography, Box } from '@material-ui/core';
-import './QA.css';
 
 const QuestionAndAnswers = props => {
   return (
-    <div className='QA'>
-      <br />
-      <br />
-      <Box id='QA'>
+    <div id='QA'>
+      <br></br>
+      <br></br>
+      <Box>
         <Typography variant='h5'>Questions & Answers</Typography>
         <Search />
         <Questions store={props.store} getQA={props.getQA} />
