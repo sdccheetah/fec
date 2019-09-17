@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-const { API_KEY } = require('../reviews/config');
-const client = filestack.init(API_KEY);
+// const { API_KEY } = require('../reviews/config');
+// const client = filestack.init(API_KEY);
 import { clickTracker } from '../overview/helpers.js';
 import { validate } from './ValidateForm';
 
@@ -103,7 +103,7 @@ const AnswerForm = ({ product, question, question_id, answer }) => {
       onUploadDone: process
     };
 
-    client.picker(options).open();
+    // client.picker(options).open();
   };
 
   const submitForm = (form, question_id) => {
