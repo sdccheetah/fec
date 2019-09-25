@@ -1,6 +1,7 @@
 import React from 'react';
 const axios = require('axios');
 import Moment from 'react-moment';
+import { clickTracker } from '../overview/helpers.js';
 import { Typography, Container, Modal, Grid, Button } from '@material-ui/core';
 import Question from './Question';
 import QuestionButtons from './QuestionButtons';
@@ -32,7 +33,7 @@ class Questions extends React.Component {
 
   voteQ(question_id) {
     // votes on a question based on the question id and updates the data
-    clickTracker('moreQuetions', 'QandA');
+    clickTracker('moreQuestions', 'QandA');
     axios
       .put(`http://18.217.220.129/qa/question/${question_id}/helpful`)
       .then(res => {
