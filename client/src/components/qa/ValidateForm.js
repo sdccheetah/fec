@@ -18,8 +18,5 @@ export const validate = (form, component, categories) => {
   if (!form.name || form.name === '') {
     errors.name = 'nickname';
   }
-
   return Object.keys(errors).length ? errors : false;
 };
-
-ex;
