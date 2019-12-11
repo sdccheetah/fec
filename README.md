@@ -1,31 +1,6 @@
-# empty-project
+Project Greenfield comprises a complete redesign of an outdated client-facing retail web-portal. This redesign provides an item details page which includes an image gallery, styles, questions and answers, and ratings and reviews
 
-Empty project.
-
-## Building and running on localhost
-
-First install dependencies:
-
-```sh
-npm install
-```
-
-To create a production build:
-
-```sh
-npm run build-prod
-```
-
-To create a development build:
-
-```sh
-npm run build-dev
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
+Built entirely using React and Redux
+Client pages served through an Express server
+Built using Webpack
+Designed with CSS & Material UI, following Material Design standards set by Google
